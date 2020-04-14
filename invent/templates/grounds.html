@@ -1,0 +1,19 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='inv.css')}}">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>Inventory</title>
+    {% endif %}
+</head>
+{% block head %}
+{% endblock %}
+<body>
+{% block content %}
+{% endblock %}
+</body>
+</html>

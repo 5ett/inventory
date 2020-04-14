@@ -1,0 +1,302 @@
+*{
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+body{
+    margin: 0;
+    font-family: 'roboto';
+}
+
+@font-face{
+    font-family: 'roboto';
+    src: url('/static/fonts/Roboto-Regular.ttf');
+}
+
+nav{
+    width: 100%;
+    height: 40px;
+    background: #fff;
+    position: fixed;
+}
+
+label.logo{
+    color: #012033;
+    line-height: 40px;
+    padding: 0 150px;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: Helvetica;
+}
+
+nav ul{
+    float: right;
+    margin-right: 150px;
+}
+
+nav ul li{
+    display: inline-block;
+    line-height: 10px;
+    margin: 0 10px;
+}
+
+nav ul li a{
+    color: #012033;
+    padding: 7px 7px;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+nav a:active, nav a:hover{
+    background: #012033;
+    color: #fff;
+    transition: .5s;
+
+}
+
+button{
+    border-radius: 4px;
+    padding:5px;
+    border: transparent;
+    background: #094164;
+    color: #f1f2f3;
+    margin-top: 5px;
+}
+
+button:hover{
+    color: #094164;
+    background: #f1f2f3;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #094164;
+    font-weight: bolder;
+    transition: .5s;
+}
+
+.menu{
+    font-size: 20px;
+    color: #012033;
+    float: right;
+    line-height: 40px;
+    margin-right: 50px;
+    margin-top: 10px;
+    cursor: pointer;
+    display: none;
+}
+
+#check{
+    display: none;
+}
+
+.container{
+    margin: 0 150px;
+}
+
+.container a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.grey{
+    padding-top: 40px;
+    padding-bottom: 30px;
+    background: #F9FBFB;
+    display: flex;
+    width: 100%;
+}
+
+.plain{
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+
+.hidari{
+    float: left;
+    width: 70%;
+}
+
+.migi{
+    float: right;
+    width: 25%;
+    line-height: 1.5em;
+    font-size: 15px;
+    font-family: 'work_sans';
+    color: #333;
+    transition: all .2s;
+    adding-left: 20px;
+    padding-top: 12px;
+    padding-right: 20px;
+    padding-left: 20px;
+    font-family: Helvetica;
+    background-color: #29292E;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+form fieldset .form-field{
+    width: 95%;
+    border: transparent;
+    border-radius: 4px;
+    margin-bottom: 25px;
+    padding: 7px;
+    transition: all .1s;
+}
+
+form fieldset .form-field:focus{
+    width: 100%;
+}
+
+fieldset{
+    border-style: none;
+    padding: 10px;
+}
+
+.form-submit{
+    border-radius: 4px;
+    padding:5px 10px;
+    border: transparent;
+    background: #094164;
+    color: #f1f2f3;
+    margin-top: 5px;
+    font-family: 'roboto';
+}
+
+.form-submit:hover{
+    color: #094164;
+    background: #f1f2f3;
+    border-color: #094164;
+    transition: .2s;
+}
+
+.formset{
+    background-color: #29292E;
+    border-radius: 9px;
+    padding: 9px 0;
+}
+
+#fst-gen{
+    margin-top: 20px;
+}
+
+h1.banner-size{
+    font-size: 30px;
+    color: #034168;
+    text-shadow: 50px;
+    line-height: 1.3em;
+    margin-bottom: 5px;
+    font-family: Helvetica;
+}
+
+.hidari p.small-text{
+    font-size: 12;
+    color: #094164;
+    margin-bottom: 5px;
+}
+
+div.small-text{
+    font-size: 11;
+    color: #333;
+    line-height: 1.3em;
+    font-family: 'work_sans';
+    text-align: center;
+}
+
+/*.box{
+    border: transparent;
+    border-style: solid;
+    width: 20%;
+    padding: 8px 12px;
+    background-color: #F9FBFB;
+    float: left;
+    margin-right: 5%;
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 952px){
+    label.logo{
+        font-size: 20px;
+        padding-left: 50px;
+    }
+
+    nav ul li a{
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 858px){
+    .menu{
+        display: block;
+    }
+
+    ul{
+        position: absolute;
+        width: 100%;
+        height: 30%;
+        height: 35vh;
+        background: #fff;
+        top: 20px;
+        left: -800;
+                                bottom: 5px;
+        text-align: center;
+        transition: all .5s;
+    }
+
+    nav ul li{
+        display: block;
+        margin: 20px 5px;
+        line-height: 30px;
+    }
+
+    nav ul li a{
+        font-size: 13px;
+        color: #012033;
+    }
+
+    nav a:hover, nav a:active{
+        background: none;
+        color: #094164;
+    }
+
+    #check:checked ~ ul{
+        left: 0;
+    }
+
+    .container{
+        width: 80%;
+        margin: 0 10%;
+    }
+    .grey{
+        display: block;
+        width: 100%;
+    }
+
+    .hidari{
+        float: none;
+        width: 90%;
+    }
+
+    .migi{
+        float: none;
+        width: 90%;
+    }
+}
