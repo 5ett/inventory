@@ -13,6 +13,19 @@
 {% block head %}
 {% endblock %}
 <body>
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="menu">
+            <i class="fas fa-bars"></i>
+        </label>
+        <label for="" class="logo">THE INVENTORY</label>
+        <ul>
+            <li><a href="{{ url_for('index') }}">home</a></li>
+            <li><a href="{{ url_for('order') }}">new order</a></li>
+            <li><a href="{{ url_for('history') }}">history</a></li>
+            <li><a href="{{ url_for('catalogue') }}">catalogue</a></li>
+        </ul>
+    </nav>
 {% block content %}
 {% endblock %}
 </body>

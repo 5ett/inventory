@@ -15,6 +15,26 @@ body{
     src: url('/static/fonts/Roboto-Regular.ttf');
 }
 
+@font-face{
+    font-family: 'roboto-b';
+    src: url('/static/fonts/Roboto-Bold.ttf');
+}
+
+@font-face{
+    font-family: 'montserat';
+    src: url('/static/fonts/Montserrat-Regular.ttf');
+}
+
+@font-face{
+    font-family: 'montserat-b';
+    src: url('/static/fonts/Montserrat-Bold.ttf');
+}
+
+@font-face{
+    font-family: 'work-sans';
+    src: url('/static/fonts/WorkSans-Medium.ttf');
+}
+
 nav{
     width: 100%;
     height: 40px;
@@ -33,7 +53,7 @@ label.logo{
 
 nav ul{
     float: right;
-    margin-right: 150px;
+    margin-right: 135px;
 }
 
 nav ul li{
@@ -47,14 +67,19 @@ nav ul li a{
     padding: 7px 7px;
     border-radius: 3px;
     font-size: 13px;
-    font-weight: bold;
+    font-family: 'work-sans';
+    /*font-weight: bold;*/
 }
 
-nav a:active, nav a:hover{
+ nav a:hover{
     background: #012033;
     color: #fff;
-    transition: .5s;
+    transition: .2s;
+ }
 
+nav a:active{
+    background: #012033;
+    color: #fff;
 }
 
 button{
@@ -64,6 +89,7 @@ button{
     background: #094164;
     color: #f1f2f3;
     margin-top: 5px;
+    font-family: 'roboto'
 }
 
 button:hover{
@@ -73,7 +99,7 @@ button:hover{
     border-width: 2px;
     border-color: #094164;
     font-weight: bolder;
-    transition: .5s;
+    transition: .2s;
 }
 
 .menu{
@@ -123,7 +149,7 @@ button:hover{
     width: 25%;
     line-height: 1.5em;
     font-size: 15px;
-    font-family: 'work_sans';
+    font-family: 'roboto';
     color: #333;
     transition: all .2s;
     adding-left: 20px;
@@ -168,7 +194,7 @@ fieldset{
     color: #094164;
     background: #f1f2f3;
     border-color: #094164;
-    transition: .2s;
+    transition: .1s;
 }
 
 .formset{
@@ -187,20 +213,21 @@ h1.banner-size{
     text-shadow: 50px;
     line-height: 1.3em;
     margin-bottom: 5px;
-    font-family: Helvetica;
+    font-family: 'montserat-b';
 }
 
 .hidari p.small-text{
-    font-size: 12;
+    font-size: 11;
     color: #094164;
     margin-bottom: 5px;
+    font-family: 'roboto';
 }
 
 div.small-text{
     font-size: 11;
     color: #333;
     line-height: 1.3em;
-    font-family: 'work_sans';
+    font-family: 'roboto';
     text-align: center;
 }
 
@@ -256,7 +283,7 @@ div.small-text{
         background: #fff;
         top: 20px;
         left: -800;
-                                bottom: 5px;
+        bottom: 5px;
         text-align: center;
         transition: all .5s;
     }
