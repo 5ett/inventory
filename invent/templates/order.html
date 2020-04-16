@@ -1,4 +1,43 @@
 {% extends 'grounds.html' %}
 
 {% block content %}
+       <section class="plain">
+        <div class="container">
+            <div class="hidari">
+               <form action="POST" id="orderset">
+                    <fieldset class="new-order">
+                        {{ form_1.hidden_tag() }}
+                        <div>
+                            {{ form_1.item(class='form-field', id='fst-gen', placeholder='search item') }}
+                        </div>
+                        <div>
+                            {{ form_1.quantity(class='form-field', placeholder='quantity') }}
+                        </div>
+                        <div>
+                            {{ form_1.item_type(class='form-field', placeholder='item type') }}
+                        </div>
+                        <div>
+                            {{ form_1.add(class='form-submit') }}
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="migi">
+                <form action="GET" id="">
+                    <fieldset class="new-order">
+                        {{ form_2.hidden_tag() }}
+                        <div>
+                            {{ form_2.items_qty(class='form-field', id='fst-gen', placeholder='order items') }}
+                        </div>
+                        <div>
+                            {{ form_2.order_made_by(class='form-field', id='made_by', placeholder='made by') }}
+                        </div>
+                        <div>
+                            {{ form_2.submit(class='form-submit') }}
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </section>
 {% endblock %}

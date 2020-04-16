@@ -29,3 +29,4 @@ class Order(db.Model):
     item_types = db.Column(db.String, nullable=False)
     order_date = db.Column(db.DateTime, nullable=False,
                            default=datetime.utcnow().date())
+    made_by = db.Column(db.String, nullable=False)

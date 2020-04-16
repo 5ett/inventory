@@ -139,12 +139,12 @@ button:hover{
     padding-bottom: 20px;
 }
 
-.hidari{
+#hidari{
     float: left;
     width: 70%;
 }
 
-.migi{
+#migi{
     float: right;
     width: 25%;
     line-height: 1.5em;
@@ -159,7 +159,30 @@ button:hover{
     font-family: Helvetica;
     background-color: #29292E;
     border-radius: 10px;
-    margin-top: 10px;
+    margin-top: 15px;
+}
+
+.hidari{
+    float: left;
+    width: 45%;
+}
+
+.migi{
+    float: right;
+    width: 45%;
+    line-height: 1.5em;
+    font-size: 15px;
+    font-family: 'roboto';
+    color: #333;
+    transition: all .2s;
+    adding-left: 20px;
+    padding-top: 12px;
+    padding-right: 20px;
+    padding-left: 20px;
+    font-family: Helvetica;
+    background-color: #B5B5B5;
+    border-radius: 10px;
+    margin-top: 20px;
 }
 
 form fieldset .form-field{
@@ -179,6 +202,22 @@ fieldset{
     border-style: none;
     padding: 10px;
 }
+
+#orderset{
+    width: 50%;
+    background-color: #EBEBEB;
+    border-radius: 9px;
+    padding: 15px 12px;
+    margin-top: 20px;
+}
+
+#made_by{
+    width:fit-content;
+}
+
+/*#formset{
+    margin-top: 15px;
+}*/
 
 .form-submit{
     border-radius: 4px;
@@ -216,7 +255,7 @@ h1.banner-size{
     font-family: 'montserat-b';
 }
 
-.hidari p.small-text{
+#hidari p.small-text{
     font-size: 11;
     color: #094164;
     margin-bottom: 5px;

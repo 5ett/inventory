@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, IntegerField, SubmitField, TextField
+from wtforms import StringField, PasswordField, IntegerField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired
 
 
@@ -10,12 +10,13 @@ class Login(FlaskForm):
 
 
 class Order(FlaskForm):
-    item = StringField('item', validators=[DataRequired()])
+    item = StringField('search item', validators=[DataRequired()])
     quantity = IntegerField('quantity', validators=[DataRequired()])
+    item_type = StringField('type', validators=[DataRequired()])
     add = SubmitField('add to order')
 
 
 class MakeOrder(FlaskForm):
-    items_qty = TextField('cart', validators=[DataRequired()])
-    item_types = TextField('categories/ tags', validators=[DataRequired()])
+    items_qty = TextAreaField('cart', validators=[DataRequired()])
+    order_made_by = StringField('made by', validators=[DataRequired()])
     submit = SubmitField('make order')
