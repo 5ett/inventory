@@ -16,9 +16,9 @@ def order():
     form_2 = MakeOrder()
     if form_1.is_submitted():
         items.append(
-            f'{form_1.items.data}({form_1.quantity.data} {form_1.item_type.data})')
-        form_2.items_qty.data = items
-        return redirect(url_for(order))
+            f'{form_1.item.data}({form_1.quantity.data} {form_1.item_type.data})')
+    for element in items:
+        form_2.items_qty.data = element
     return render_template('order.html', title='Make Order', form_1=form_1, form_2=form_2)
 
 

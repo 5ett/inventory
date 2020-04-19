@@ -270,6 +270,13 @@ div.small-text{
     text-align: center;
 }
 
+legend h4{
+    margin:0 0 2px 0;
+}
+
+legend h4.chkut{
+    color: white;
+}
 /*.box{
     border: transparent;
     border-style: solid;
@@ -356,6 +363,16 @@ div.small-text{
         width: 100%;
     }
 
+    #hidari{
+        float: none;
+        width: 90%;
+    }
+
+    #migi{
+        float: none;
+        width: 65%;
+    }
+
     .hidari{
         float: none;
         width: 90%;
@@ -363,6 +380,6 @@ div.small-text{
 
     .migi{
         float: none;
-        width: 90%;
+        width: 65%;
     }
 }

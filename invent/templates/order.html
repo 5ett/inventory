@@ -4,8 +4,9 @@
        <section class="plain">
         <div class="container">
             <div class="hidari">
-               <form action="POST" id="orderset">
+               <form action="" method="POST" id="orderset">
                     <fieldset class="new-order">
+                        <legend><h4>Order Form</h4></legend>
                         {{ form_1.hidden_tag() }}
                         <div>
                             {{ form_1.item(class='form-field', id='fst-gen', placeholder='search item') }}
@@ -23,9 +24,10 @@
                 </form>
             </div>
             <div class="migi">
-                <form action="GET" id="">
+                <form action="" method="=GET" id="">
                     <fieldset class="new-order">
                         {{ form_2.hidden_tag() }}
+                        <legend><h4 class="chkut">Checkout</h4></legend>
                         <div>
                             {{ form_2.items_qty(class='form-field', id='fst-gen', placeholder='order items') }}
                         </div>
