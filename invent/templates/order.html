@@ -22,15 +22,27 @@
                         </div>
                     </fieldset>
                 </form>
+                <div>
+                    <div id="outoforder">
+                        <fieldset class="new-order">
+                            <legend><h4>Out of Stock</h4></legend>
+
+                        </fieldset>
+                    </div>
+                    <div id="outoforder">
+                        <fieldset class="new-order">
+                            <legend><h4>Out of Stock</h4></legend>
+
+                        </fieldset>
+                    </div>
+                </div>
+
             </div>
             <div class="migi">
-                <form action="" method="=GET" id="">
+                <form action="" method="=GET" id="neworder">
                     <fieldset class="new-order">
                         {{ form_2.hidden_tag() }}
                         <legend><h4 class="chkut">Checkout</h4></legend>
-                        <div>
-                            {{ form_2.items_qty(class='form-field', id='fst-gen', placeholder='order items') }}
-                        </div>
                         <div>
                             {{ form_2.order_made_by(class='form-field', id='made_by', placeholder='made by') }}
                         </div>

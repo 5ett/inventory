@@ -1,4 +1,4 @@
-from invent import db, osyrus
+from invent import db
 from datetime import datetime
 
 
@@ -15,7 +15,7 @@ class User(db.Model):
     password = db.Column(db.String(200), unique=True, nullable=False)
 
 
-class Item(db.Model):
+class Items(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     item_name = db.Column(db.String, unique=True, nullable=False)
     item_quantity = db.Column(db.Integer, nullable=False)
@@ -25,8 +25,15 @@ class Item(db.Model):
 
 class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    items_qtty = db.Column(db.String, nullable=False)
+    items = db.Column(db.String, nullable=False)
+    quantity = db.Column(db.Integer, nullable=False)
     item_types = db.Column(db.String, nullable=False)
     order_date = db.Column(db.DateTime, nullable=False,
                            default=datetime.utcnow().date())
+    made_by = db.Column(db.String, nullable=False)
+
+
+class Tempdb(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    tem_items = db.Column(db.String, nullable=False)
     made_by = db.Column(db.String, nullable=False)

@@ -13,6 +13,7 @@
 {% block head %}
 {% endblock %}
 <body>
+<section class="backgrd">
     <nav>
         <input type="checkbox" id="check">
         <label for="check" class="menu">
@@ -24,9 +25,23 @@
             <li><a href="{{ url_for('order') }}">new order</a></li>
             <li><a href="{{ url_for('history') }}">history</a></li>
             <li><a href="{{ url_for('catalogue') }}">catalogue</a></li>
+            <li><a href="{{ url_for('newuser') }}">new user</a></li>
         </ul>
     </nav>
+    {% with message = get_flashed_messages(with_categories=true) %}
+        {% if messages  %}
+            {% for message, category in messages %}
+                <div class="{{category}}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 {% block content %}
 {% endblock %}
+    <!-- <footer>
+        <div class="container">
+            <p class="small-text">designed and developed by King Praise | The A-max Team 2020</p>
+        </div>
+    </footer> -->
+</section>
 </body>
 </html>
