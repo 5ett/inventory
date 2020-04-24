@@ -194,11 +194,27 @@ button:hover{
     margin-top: 20px;
 }
 
+.up-img{
+    background-image: url('/static/media/corp.jpg');
+    width: 80%;
+    color: white;
+    padding: 20px;
+}
+
 form fieldset .form-field{
     width: 95%;
     border: transparent;
     border-radius: 4px;
     margin-bottom: 25px;
+    padding: 7px;
+    transition: all .1s;
+}
+
+form fieldset .form-field-err{
+    width: 95%;
+    border-color: red;
+    border-radius: 4px;
+    margin-bottom: 1p;
     padding: 7px;
     transition: all .1s;
 }
@@ -247,6 +263,13 @@ fieldset{
 
 #made_by{
     width:fit-content;
+}
+
+.error-msg{
+    font-size: 10;
+    color: red;
+    margin-top: 0;
+    margin-bottom: 3px;
 }
 
 /*#formset{

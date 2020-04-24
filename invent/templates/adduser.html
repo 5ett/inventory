@@ -16,10 +16,24 @@
                       {{ form.last_name(class='form-field', id='adduser', placeholder='last name') }}
                     </div>
                     <div>
-                        {{ form.username(class='form-field', id='adduser', placeholder='username') }}
+                        {% if form.username.errors %}
+                            {{ form.username(class='form-field-err', id='adduser', placeholder='first name') }}
+                            {% for error in form.username.errors %}
+                                <div class="error-msg"><span>{{ error }}</span></div>
+                            {% endfor %}
+                        {% else %}
+                            {{ form.username(class='form-field', id='adduser', placeholder='username') }}
+                        {% endif %}
                     </div>
                     <div>
-                        {{ form.password(class='form-field', id='adduser', placeholder='password') }}
+                        {% if form.password.errors %}
+                            {{ form.password(class='form-field-err', id='adduser', placeholder='first name') }}
+                            {% for error in form.password.errors %}
+                                <span class="small-text">{{ error }}</span>
+                            {% endfor %}
+                        {% else %}
+                            {{ form.password(class='form-field', id='adduser', placeholder='password') }}
+                        {% endif %}
                     </div>
                     <div>
                         {{ form.submit(class='form-submit', id='nu-user') }}

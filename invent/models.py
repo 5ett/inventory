@@ -1,13 +1,14 @@
-from invent import db
+from invent import db, osyrus
 from datetime import datetime
+from flask_login import UserMixin
 
 
-# @osyrus.user_loader
-# def load_user(user_id):
-#     return User.query.get(int(user_id))
+@osyrus.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     email = db.Column(db.String, unique=True, nullable=False)

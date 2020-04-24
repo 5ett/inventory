@@ -1,19 +1,24 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, IntegerField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, ValidationError
-from invent import db
+from invent.models import User
 
 
 class Login(FlaskForm):
-    username = StringField('username', validators=[DataRequired()])
+    email = StringField('username', validators=[
+        DataRequired()])
     password = PasswordField('password', validators=[DataRequired()])
     submit = SubmitField('login')
 
     def validate_email(self, email):
-        user = db.query.filter_by(email=email.data).first()
+        user = User.query.filter_by(email=email.data).first()
         if not user:
             raise ValidationError(
-                "the ujser you entered doesn't exist")
+                "the user you entered doesn't exist")
+
+    def validate_password(self, password):
+        if password.errors:
+            raise ValidationError('invalid password, try again!')
 
 
 class New_Order(FlaskForm):
@@ -32,16 +37,22 @@ class MakeOrder(FlaskForm):
 class NewUser(FlaskForm):
     first_name = StringField('first name', validators=[DataRequired()])
     last_name = StringField('last name', validators=[DataRequired()])
-    username = StringField('username', validators=[DataRequired()])
+    username = StringField('username', validators=[
+                           DataRequired(), Length(min=6, max=15)])
     email = StringField('email', validators=[DataRequired(), Email()])
     password = PasswordField('password', validators=[
-                             DataRequired(), Length(min=8, max=15)])
+                             DataRequired(), Length(min=8, max=20)])
     submit = SubmitField('add user')
 
     def validate_email(self, email):
-        user = db.query.filter_by(email=email.data).first()
+        user = User.query.filter_by(email=email.data).first()
         if user:
             raise ValidationError(
                 'user already exists, redirect to login instead')
         elif email.errors:
             raise ValidationError('make sure you typed a correct email')
+
+    def validate_password(self, password):
+        if password.errors:
+            raise ValidationError(
+                'invalid password. either it is too long or too short ')

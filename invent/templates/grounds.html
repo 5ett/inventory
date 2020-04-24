@@ -21,11 +21,24 @@
         </label>
         <label for="" class="logo">THE INVENTORY</label>
         <ul>
-            <li><a href="{{ url_for('index') }}">home</a></li>
-            <li><a href="{{ url_for('order') }}">new order</a></li>
-            <li><a href="{{ url_for('history') }}">history</a></li>
-            <li><a href="{{ url_for('catalogue') }}">catalogue</a></li>
-            <li><a href="{{ url_for('newuser') }}">new user</a></li>
+            {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('index') }}">home</a></li>
+                <li><a href="{{ url_for('order') }}">new order</a></li>
+                <li><a href="{{ url_for('history') }}">history</a></li>
+                <li><a href="{{ url_for('catalogue') }}">catalogue</a></li>
+                <li><a href="{{ url_for('logout') }}">logout</a></li>
+            {% elif current_user.username == 'code_cmnd' %}
+                <li><a href="{{ url_for('index') }}">home</a></li>
+                <li><a href="{{ url_for('order') }}">new order</a></li>
+                <li><a href="{{ url_for('history') }}">history</a></li>
+                <li><a href="{{ url_for('catalogue') }}">catalogue</a></li>
+                <li><a href="{{ url_for('newuser') }}">new user</a></li>
+            {% else %}
+                <li><a href="{{ url_for('index') }}">home</a></li>
+                <li><a href="{{ url_for('order') }}">new order</a></li>
+                <li><a href="{{ url_for('history') }}">history</a></li>
+                <li><a href="{{ url_for('catalogue') }}">catalogue</a></li>
+            {% endif %}
         </ul>
     </nav>
     {% with message = get_flashed_messages(with_categories=true) %}
