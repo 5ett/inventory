@@ -3,8 +3,15 @@
 {% block content %}
 <section>
     <div class="container">
+        {% with message = get_flashed_messages(with_categories=true) %}
+        {% if messages  %}
+            {% for message, category in messages %}
+                <div class="{{category}}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
         <div id="">
-        <form action="POST" id="newuser">
+        <form action="" method="POST" id="newuser">
             <legend><h3 class="banner-size">add new user</h3></legend>
             <hr style="width: 39%; margin-top: 2px; margin-left: 16px;border-color: #014A36;">
             <fieldset class="">
@@ -24,6 +31,9 @@
                         {% else %}
                             {{ form.username(class='form-field', id='adduser', placeholder='username') }}
                         {% endif %}
+                    </div>
+                    <div>
+                        {{ form.email(class='form-field', id='adduser', placeholder='email') }}
                     </div>
                     <div>
                         {% if form.password.errors %}

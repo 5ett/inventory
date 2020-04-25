@@ -1,0 +1,17 @@
+{% extends "grounds.html" %}
+
+{% block content %}
+    <section class="all-users">
+        <div class="container">
+            <div>
+               {% for user in all_users %}
+                <div id="user">
+                    <legend><h4>{{user.name}}</h4></legend>
+                    <p>{{user.username}}</p>
+                    <p>{{user.email}}</p>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

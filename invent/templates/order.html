@@ -25,13 +25,13 @@
                 <div>
                     <div id="outoforder">
                         <fieldset class="new-order">
-                            <legend><h4>Out of Stock</h4></legend>
+                            <legend><h4>out of Stock</h4></legend>
 
                         </fieldset>
                     </div>
                     <div id="outoforder">
                         <fieldset class="new-order">
-                            <legend><h4>Out of Stock</h4></legend>
+                            <legend><h4>new stock</h4></legend>
 
                         </fieldset>
                     </div>
@@ -46,11 +46,22 @@
                         <div>
                             {{ form_2.order_made_by(class='form-field', id='made_by', placeholder='made by') }}
                         </div>
+                        <div style="color: white; padding-top: 1px; margin-top: 0;">
+                            <p>{{ date }}</p>
+                        </div>
                         <div>
                             {{ form_2.submit(class='form-submit') }}
                         </div>
                     </fieldset>
                 </form>
+                <div>
+                    <div id="pending-order">
+                        <fieldset class="new-order">
+                            <legend><h4>pending orders</h4></legend>
+
+                        </fieldset>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

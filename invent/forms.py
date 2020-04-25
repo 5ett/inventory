@@ -56,3 +56,8 @@ class NewUser(FlaskForm):
         if password.errors:
             raise ValidationError(
                 'invalid password. either it is too long or too short ')
+
+    def validate_username(self, username):
+        user = User.query.filter_by(username=username.data).first()
+        if user:
+            raise ValidationError('username exists already, choose another!')
