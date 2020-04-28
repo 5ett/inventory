@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, IntegerField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, ValidationError
-from invent.models import User
+from invent.models import User, Items
 
 
 class Login(FlaskForm):
@@ -61,3 +61,27 @@ class NewUser(FlaskForm):
         user = User.query.filter_by(username=username.data).first()
         if user:
             raise ValidationError('username exists already, choose another!')
+
+
+class Updateitems(FlaskForm):
+    item = StringField('item', validators=[DataRequired()])
+    quantity = IntegerField('quantity', validators=[DataRequired()])
+    submit = SubmitField('update')
+
+    def validate_item(self, item):
+        item_check = Items.query.filter_by(item_name=item.data)
+        if not item_check:
+            raise ValidationError('this is a new item. use the second form')
+
+
+class AddnewItem(FlaskForm):
+    item = StringField('item', validators=[DataRequired()])
+    quantity = IntegerField('quantity', validators=[DataRequired()])
+    item_type = StringField('item type', validators=[DataRequired()])
+    submit = SubmitField('add item')
+
+    def validate_item(self, item):
+        item_check = Items.query.filter_by(item_name=item.data)
+        if item_check:
+            raise ValidationError(
+                'item already in database. use the first form')

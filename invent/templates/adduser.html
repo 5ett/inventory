@@ -4,53 +4,53 @@
 <section>
     <div class="container">
         {% with message = get_flashed_messages(with_categories=true) %}
-        {% if messages  %}
-            {% for message, category in messages %}
-                <div class="{{category}}">{{ message }}</div>
-            {% endfor %}
-        {% endif %}
+            {% if messages  %}
+                {% for message, category in messages %}
+                    <div class="{{category}}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
         {% endwith %}
         <div id="">
-        <form action="" method="POST" id="newuser">
-            <legend><h3 class="banner-size">add new user</h3></legend>
-            <hr style="width: 39%; margin-top: 2px; margin-left: 16px;border-color: #014A36;">
-            <fieldset class="">
-                    {{ form.hidden_tag() }}
-                    <div>
-                        {{ form.first_name(class='form-field', id='adduser', placeholder='first name') }}
-                    </div>
-                    <div>
-                      {{ form.last_name(class='form-field', id='adduser', placeholder='last name') }}
-                    </div>
-                    <div>
-                        {% if form.username.errors %}
-                            {{ form.username(class='form-field-err', id='adduser', placeholder='first name') }}
-                            {% for error in form.username.errors %}
-                                <div class="error-msg"><span>{{ error }}</span></div>
-                            {% endfor %}
-                        {% else %}
-                            {{ form.username(class='form-field', id='adduser', placeholder='username') }}
-                        {% endif %}
-                    </div>
-                    <div>
-                        {{ form.email(class='form-field', id='adduser', placeholder='email') }}
-                    </div>
-                    <div>
-                        {% if form.password.errors %}
-                            {{ form.password(class='form-field-err', id='adduser', placeholder='first name') }}
-                            {% for error in form.password.errors %}
-                                <span class="small-text">{{ error }}</span>
-                            {% endfor %}
-                        {% else %}
-                            {{ form.password(class='form-field', id='adduser', placeholder='password') }}
-                        {% endif %}
-                    </div>
-                    <div>
-                        {{ form.submit(class='form-submit', id='nu-user') }}
-                    </div>
-            </fieldset>
-        </form>
-    </div>
+            <form action="" method="POST" id="newuser">
+                <legend><h3 class="banner-size">add new user</h3></legend>
+                <hr style="width: 39%; margin-top: 2px; margin-left: 16px;border-color: #014A36;">
+                <fieldset class="">
+                        {{ form.hidden_tag() }}
+                        <div>
+                            {{ form.first_name(class='form-field', id='adduser', placeholder='first name') }}
+                        </div>
+                        <div>
+                          {{ form.last_name(class='form-field', id='adduser', placeholder='last name') }}
+                        </div>
+                        <div>
+                            {% if form.username.errors %}
+                                {{ form.username(class='form-field-err', id='adduser', placeholder='first name') }}
+                                {% for error in form.username.errors %}
+                                    <div class="error-msg"><span>{{ error }}</span></div>
+                                {% endfor %}
+                            {% else %}
+                                {{ form.username(class='form-field', id='adduser', placeholder='username') }}
+                            {% endif %}
+                        </div>
+                        <div>
+                            {{ form.email(class='form-field', id='adduser', placeholder='email') }}
+                        </div>
+                        <div>
+                            {% if form.password.errors %}
+                                {{ form.password(class='form-field-err', id='adduser', placeholder='first name') }}
+                                {% for error in form.password.errors %}
+                                    <span class="small-text">{{ error }}</span>
+                                {% endfor %}
+                            {% else %}
+                                {{ form.password(class='form-field', id='adduser', placeholder='password') }}
+                            {% endif %}
+                        </div>
+                        <div>
+                            {{ form.submit(class='form-submit', id='nu-user') }}
+                        </div>
+                </fieldset>
+            </form>
+        </div>
     </div>
 </section>
 

@@ -1,9 +1,10 @@
 from flask import url_for, request, redirect, render_template, flash
-from invent import app, guard, db
+import string
 from datetime import datetime
-from invent.forms import Login, New_Order, MakeOrder, NewUser
+from invent import app, guard, db
 from invent.models import Tempdb, Order, Items, User
 from flask_login import login_user, logout_user, current_user, login_required
+from invent.forms import Login, New_Order, MakeOrder, NewUser, Updateitems, AddnewItem
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -28,7 +29,7 @@ def order():
     form_2 = MakeOrder()
     form_2.order_made_by.data = f'made by: {current_user.name}'
     if form_1.validate_on_submit():
-        item_order = Order(
+        item_order = Tempdb(
             items=form_1.item.data, quantity=form_1.quantity.data, item_type=form_1.item_type.data)
     return render_template('order.html', title='Make Order', form_1=form_1, form_2=form_2, date=date)
 
@@ -67,7 +68,33 @@ def logout():
     return redirect(url_for('index'))
 
 
-@app.route('/users')
+@app.route('/users', methods=['GET', 'POST'])
 def users():
     all_users = User.query.all()
-    return render_template('manage_users.html', all_users=all_users)
+    return render_template('manage_users.html', all_users=all_users, title='Users')
+
+
+@app.route('/additem', methods=['GET', 'POST'])
+def additem():
+    form = Updateitems()
+    form_2 = AddnewItem()
+    if form.validate_on_submit():
+        item = string.capwords(form.item.data)
+        item_update = Items.query.filter_by(item_name=item).first()
+        if item_update:
+            item_update.item_quantity = item_update.item_quantity + form.quantity.data
+            db.session.commit()
+            flash('item updated', 'success')
+        else:
+            flash('failed to update item', 'danger')
+    if form_2.validate_on_submit():
+        item = string.capwords(form_2.item.data)
+        item_type = string.capwords(form_2.item_type)
+        new_item = Items(item_name=item,
+                         item_quantity=form.quantity.data, item_type=item_type)
+        db.session.add(new_item)
+        db.session.commit()
+        flash('new item added to inventory', 'info')
+    else:
+        flash('failed to add new item to inventory', 'danger')
+    return render_template('additem.html', title='Update Iventory', form=form, form_2=form_2)

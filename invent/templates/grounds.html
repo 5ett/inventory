@@ -26,6 +26,7 @@
                 <li><a href="{{ url_for('index') }}">home</a></li>
                 <li><a href="{{ url_for('order') }}">new order</a></li>
                 <li><a href="{{ url_for('catalogue') }}">catalogue</a></li>
+                <li><a href="{{ url_for('additem') }}">update inventory</a></li>
                 <li><a href="{{ url_for('newuser') }}">new user</a></li>
                 <li><a href="{{ url_for('users') }}">manage users</a></li>
                 <li><a href="{{ url_for('logout') }}">logout</a></li>
@@ -39,7 +40,6 @@
             {% else %}
                 <li><a href="{{ url_for('index') }}">home</a></li>
                 <li><a href="{{ url_for('order') }}">new order</a></li>
-                <li><a href="{{ url_for('history') }}">history</a></li>
                 <li><a href="{{ url_for('catalogue') }}">catalogue</a></li>
             {% endif %}
         </ul>
