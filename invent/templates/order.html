@@ -9,13 +9,17 @@
                         <legend><h4>Order Form</h4></legend>
                         {{ form_1.hidden_tag() }}
                         <div>
-                            {{ form_1.item(class='form-field', id='fst-gen', placeholder='search item') }}
+                            {% if form_1.item.errors %}
+                                {{ form_1.item(class='form-field-err', id='fst-gen', placeholder='search item') }}
+                                {% for error in form_1.item.errors %}
+                                    <div class="error-msg"><span>{{ error }}</span></div>
+                                {% endfor %}
+                            {% else %}
+                                {{ form_1.item(class='form-field', id='fst-gen', placeholder='search item') }}
+                            {% endif %}
                         </div>
                         <div>
                             {{ form_1.quantity(class='form-field', placeholder='quantity') }}
-                        </div>
-                        <div>
-                            {{ form_1.item_type(class='form-field', placeholder='item type') }}
                         </div>
                         <div>
                             {{ form_1.add(class='form-submit') }}
@@ -32,7 +36,9 @@
                     <div id="outoforder">
                         <fieldset class="new-order">
                             <legend><h4>new stock</h4></legend>
-
+                                {% for item in recents %}
+                                    <p class="list" style="text-align: left;">• {{item.item_name}}</p>
+                                {% endfor %}
                         </fieldset>
                     </div>
                 </div>
@@ -44,6 +50,13 @@
                         {{ form_2.hidden_tag() }}
                         <legend><h4 class="chkut">Checkout</h4></legend>
                         <div>
+                            {% if order_progress %}
+                                {% for order_item in order_progress %}
+                                    <p class="list">• {{ order_item.tem_items }}</p>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <div>
                             {{ form_2.order_made_by(class='form-field', id='made_by', placeholder='made by') }}
                         </div>
                         <div style="color: white; padding-top: 1px; margin-top: 0;">
@@ -54,6 +67,7 @@
                         </div>
                     </fieldset>
                 </form>
+                        <a href="{{ url_for('cancelorder/last_item.id') }}"><button type="submit" class="form-submit" id="cancel">cancel order</button></a>
                 <div>
                     <div id="pending-order">
                         <fieldset class="new-order">

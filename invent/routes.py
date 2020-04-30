@@ -24,14 +24,30 @@ def index():
 @app.route('/order', methods=['GET', 'POST'])
 def order():
     date = datetime.utcnow().date()
-    items = []
     form_1 = New_Order()
     form_2 = MakeOrder()
     form_2.order_made_by.data = f'made by: {current_user.name}'
     if form_1.validate_on_submit():
-        item_order = Tempdb(
-            items=form_1.item.data, quantity=form_1.quantity.data, item_type=form_1.item_type.data)
-    return render_template('order.html', title='Make Order', form_1=form_1, form_2=form_2, date=date)
+        cap_item = string.capwords(form_1.item.data)
+        # typpe = Items.query.filter_by(item_name=cap_item).first()
+        temp_items = f'{cap_item}, {form_1.quantity.data}'
+        item_order = Tempdb(tem_items=temp_items, made_by=current_user.name)
+        db.session.add(item_order)
+        db.session.commit()
+    order_progress = Tempdb.query.filter_by(made_by=current_user.name)
+    last_item = order_progress[-1]
+    recents = Items.query.order_by(Items.id).all()
+    out_of_stock = Items.query.filter_by(item_quantity=0).all()
+    return render_template('order.html', title='Make Order', form_1=form_1, form_2=form_2, date=date, recents=recents, out_of_stock=out_of_stock,
+                           order_progress=order_progress, last_item=last_item)
+
+
+@app.route('/cancelorder/<int:order_id>', methods=['GET', 'POST'])
+def cancelorder(order_id):
+    cancel_items = Tempdb.query.get_or_404(order_id)
+    db.session.remove()
+    db.session.commit()
+    return redirect(url_for('order'))
 
 
 @app.route('/history')
@@ -88,13 +104,18 @@ def additem():
         else:
             flash('failed to update item', 'danger')
     if form_2.validate_on_submit():
-        item = string.capwords(form_2.item.data)
-        item_type = string.capwords(form_2.item_type)
-        new_item = Items(item_name=item,
-                         item_quantity=form.quantity.data, item_type=item_type)
+        item2 = string.capwords(form_2.item.data)
+        item_type = string.capwords(form_2.item_type.data)
+        item_desc = string.capwords(form_2.item_description.data)
+        new_item = Items(item_name=item2,
+                         item_quantity=form.quantity.data, item_type=item_type, item_description=item_desc)
+        # new_item = Items(item_name=form_2.item.data, item_quantity=form.quantity.data,
+        #                  item_type=form_2.item_type.data, item_description=form_2.item_description.data)
         db.session.add(new_item)
         db.session.commit()
         flash('new item added to inventory', 'info')
+        return redirect(url_for('additem'))
     else:
         flash('failed to add new item to inventory', 'danger')
-    return render_template('additem.html', title='Update Iventory', form=form, form_2=form_2)
+    recents = Items.query.order_by(Items.id).all()
+    return render_template('additem.html', title='Update Iventory', form=form, form_2=form_2, recents=recents)

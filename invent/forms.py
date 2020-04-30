@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, IntegerField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, ValidationError
-from invent.models import User, Items
+from invent.models import User, Items, Tempdb
+from flask_login import current_user
 
 
 class Login(FlaskForm):
@@ -24,8 +25,12 @@ class Login(FlaskForm):
 class New_Order(FlaskForm):
     item = StringField('search item', validators=[DataRequired()])
     quantity = IntegerField('quantity', validators=[DataRequired()])
-    item_type = StringField('type', validators=[DataRequired()])
     add = SubmitField('add to order')
+
+    def validate_item(self, item):
+        check_item = Items.query.filter_by(item_name=item.data).first()
+        if not check_item:
+            raise ValidationError("item is not in stock or dooesn't exist")
 
 
 class MakeOrder(FlaskForm):
@@ -69,7 +74,7 @@ class Updateitems(FlaskForm):
     submit = SubmitField('update')
 
     def validate_item(self, item):
-        item_check = Items.query.filter_by(item_name=item.data)
+        item_check = Items.query.filter_by(item_name=item.data).first()
         if not item_check:
             raise ValidationError('this is a new item. use the second form')
 
@@ -78,10 +83,12 @@ class AddnewItem(FlaskForm):
     item = StringField('item', validators=[DataRequired()])
     quantity = IntegerField('quantity', validators=[DataRequired()])
     item_type = StringField('item type', validators=[DataRequired()])
+    item_description = StringField(
+        'item description', validators=[DataRequired()])
     submit = SubmitField('add item')
 
     def validate_item(self, item):
-        item_check = Items.query.filter_by(item_name=item.data)
+        item_check = Items.query.filter_by(item_name=item.data).first()
         if item_check:
             raise ValidationError(
                 'item already in database. use the first form')
