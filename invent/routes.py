@@ -29,23 +29,31 @@ def order():
     form_2.order_made_by.data = f'made by: {current_user.name}'
     if form_1.validate_on_submit():
         cap_item = string.capwords(form_1.item.data)
-        # typpe = Items.query.filter_by(item_name=cap_item).first()
+        typpe = Items.query.filter_by(item_name=cap_item).first()
         temp_items = f'{cap_item}, {form_1.quantity.data}'
         item_order = Tempdb(tem_items=temp_items, made_by=current_user.name)
         db.session.add(item_order)
         db.session.commit()
-    order_progress = Tempdb.query.filter_by(made_by=current_user.name)
-    last_item = order_progress[-1]
+
+        if form_2.validate_on_submit:
+            main_order = Order(items=cap_item, quantity=form_1.quantity.data,
+                               item_types=typpe.item_type, made_by=current_user.name)
+            typpe.item_quantity = typpe.item_quantity - form_1.quantity.data
+            db.session.add(main_order)
+            for element in order_progress:
+                db.session.delete(element.id)
+            db.session.commit()
+    order_progress = Tempdb.query.filter_by(made_by=current_user.name).all()
     recents = Items.query.order_by(Items.id).all()
     out_of_stock = Items.query.filter_by(item_quantity=0).all()
     return render_template('order.html', title='Make Order', form_1=form_1, form_2=form_2, date=date, recents=recents, out_of_stock=out_of_stock,
-                           order_progress=order_progress, last_item=last_item)
+                           order_progress=order_progress)
 
 
 @app.route('/cancelorder/<int:order_id>', methods=['GET', 'POST'])
 def cancelorder(order_id):
     cancel_items = Tempdb.query.get_or_404(order_id)
-    db.session.remove()
+    db.session.delete(cancel_items)
     db.session.commit()
     return redirect(url_for('order'))
 

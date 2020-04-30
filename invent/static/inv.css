@@ -552,12 +552,13 @@ footer .container p.small-text{
 
 #cancel{
     background-color: red;
+    float: right;
 }
 
 #cancel:hover{
     background-color: white;
     color:red;
-    border: transparent;;
+    border: transparent;
 }
 
 

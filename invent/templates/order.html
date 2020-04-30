@@ -67,7 +67,9 @@
                         </div>
                     </fieldset>
                 </form>
-                        <a href="{{ url_for('cancelorder/last_item.id') }}"><button type="submit" class="form-submit" id="cancel">cancel order</button></a>
+                    {% if order_progress %}
+                        <a href="{{ url_for('cancelorder', order_id=order_progress[-1].id) }}"><button type="submit" class="form-submit" id="cancel">cancel last</button></a>
+                    {% endif %}
                 <div>
                     <div id="pending-order">
                         <fieldset class="new-order">

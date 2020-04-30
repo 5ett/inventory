@@ -1,8 +1,9 @@
+import string
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, IntegerField, SubmitField, TextAreaField
-from wtforms.validators import DataRequired, Length, Email, ValidationError
-from invent.models import User, Items, Tempdb
 from flask_login import current_user
+from invent.models import User, Items, Tempdb
+from wtforms.validators import DataRequired, Length, Email, ValidationError
+from wtforms import StringField, PasswordField, IntegerField, SubmitField, TextAreaField
 
 
 class Login(FlaskForm):
@@ -28,9 +29,17 @@ class New_Order(FlaskForm):
     add = SubmitField('add to order')
 
     def validate_item(self, item):
-        check_item = Items.query.filter_by(item_name=item.data).first()
+        cap_item = string.capwords(item.data)
+        check_item = Items.query.filter_by(item_name=cap_item).first()
         if not check_item:
             raise ValidationError("item is not in stock or dooesn't exist")
+
+            def validate_quantity(self, quantity):
+                check_item_quantity = Items.query.filter_by(
+                    item_name=item.data).first()
+                if check_item_quantity.item_quantity >= quantity.data:
+                    raise ValidationError(
+                        'you request is absurd and cannot be provided')
 
 
 class MakeOrder(FlaskForm):
