@@ -14,7 +14,7 @@ body{
 }
 
 .backgrd{
-    background: url('media/bv.png') no-repeat;
+    background: url('media/bv.png') fixed no-repeat;
     background-size: cover;
     height: calc(100vh - 80px);
 }

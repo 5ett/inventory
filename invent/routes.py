@@ -36,15 +36,17 @@ def order():
         db.session.commit()
 
         if form_2.validate_on_submit:
+            new_quantity = int(typpe.item_quantity) - int(form_1.quantity.data)
+            typpe.item_quantity = new_quantity
+            # for element in order_progress:
+            #     db.session.delete(element.id)
             main_order = Order(items=cap_item, quantity=form_1.quantity.data,
                                item_types=typpe.item_type, made_by=current_user.name)
-            typpe.item_quantity = typpe.item_quantity - form_1.quantity.data
             db.session.add(main_order)
-            for element in order_progress:
-                db.session.delete(element.id)
             db.session.commit()
+            flash('your order has been made. pendind approval', 'info')
     order_progress = Tempdb.query.filter_by(made_by=current_user.name).all()
-    recents = Items.query.order_by(Items.id).all()
+    recents = Items.query.order_by(Items.id.desc()).all()
     out_of_stock = Items.query.filter_by(item_quantity=0).all()
     return render_template('order.html', title='Make Order', form_1=form_1, form_2=form_2, date=date, recents=recents, out_of_stock=out_of_stock,
                            order_progress=order_progress)

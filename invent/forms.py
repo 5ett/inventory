@@ -31,8 +31,14 @@ class New_Order(FlaskForm):
     def validate_item(self, item):
         cap_item = string.capwords(item.data)
         check_item = Items.query.filter_by(item_name=cap_item).first()
+        check_order = Tempdb.query.filter_by(made_by=current_user.name).all()
         if not check_item:
             raise ValidationError("item is not in stock or dooesn't exist")
+        if check_order:
+            for order in check_order:
+                if cap_item in order.tem_items:
+                    raise ValidationError(
+                        'you have already made a similar order')
 
             def validate_quantity(self, quantity):
                 check_item_quantity = Items.query.filter_by(
