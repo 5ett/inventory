@@ -2,49 +2,52 @@
 
 {% block head %}
 {% endblock %}
+     {% block content %}
+     <div class="bkgrd">
+       <section class="grey">
+            <div class="container">
+                <div id="hidari">
+                    <h1 class="banner-size">
+                        Your <br>
+                        Logistics <br>
+                        Anywhere You Are!
+                    </h1>
+                    <p class="small-text">Our team is always ready to take your ideas to the their utmost uniqueness. We are always growing and learning and always hoping to make your brand what it deserves to be.</p>
+                    <button type="submit" class="ichi"><a href="{{url_for('catalogue')}}">view catalogue</a></button>
+                </div>
+                <div id="migi">
+                    {% if current_user.is_authenticated %}
+                        <div class="up-img">
+                            <h3 class="banner-size">Welcome to the Inventory</h3>
+                        </div>
+                    {% else %}
+                        <form action="" method="POST" id="formset">
+                            <fieldset class="">
+                                {{ form.hidden_tag() }}
+                                <div>
 
-{% block content %}
-   <section class="grey">
-        <div class="container">
-            <div id="hidari">
-                <h1 class="banner-size">
-                    Your <br>
-                    Logistics <br>
-                    Anywhere You Are!
-                </h1>
-                <p class="small-text">Our team is always ready to take your ideas to the their utmost uniqueness. We are always growing and learning and always hoping to make your brand what it deserves to be.</p>
-                <button type="submit" class="ichi"><a href="{{url_for('catalogue')}}">view catalogue</a></button>
+                                {% if form.email.errors %}
+                                    {{form.email(class='form-field-err', id='fst-gen', placeholder='email')}}
+                                        {% for error in form.email.errors %}
+                                            <div class="error-msg"><span>{{error}}</span></div>
+                                        {% endfor %}
+                                {% else %}
+                                    {{ form.email(class='form-field', id='fst-gen', placeholder='email') }}
+                                {% endif %}
+                                </div>
+                                <div>
+                                    {{ form.password(class='form-field', placeholder='password') }}
+                                </div>
+                                <div>
+                                    {{ form.submit(class='form-submit') }}
+                                </div>
+                            </fieldset>
+                        </form>
+                    {% endif %}
+                </div>
             </div>
-            <div id="migi">
-                {% if current_user.is_authenticated %}
-                    <div class="up-img">
-                        <h3 class="banner-size">Welcome to the Inventory</h3>
-                    </div>
-                {% else %}
-                    <form action="" method="POST" id="formset">
-                        <fieldset class="">
-                            {{ form.hidden_tag() }}
-                            <div>
-
-                            {% if form.email.errors %}
-                                {{form.email(class='form-field-err', id='fst-gen', placeholder='email')}}
-                                    {% for error in form.email.errors %}
-                                        <div class="error-msg"><span>{{error}}</span></div>
-                                    {% endfor %}
-                            {% else %}
-                                {{ form.email(class='form-field', id='fst-gen', placeholder='email') }}
-                            {% endif %}
-                            </div>
-                            <div>
-                                {{ form.password(class='form-field', placeholder='password') }}
-                            </div>
-                            <div>
-                                {{ form.submit(class='form-submit') }}
-                            </div>
-                        </fieldset>
-                    </form>
-                {% endif %}
-            </div>
-        </div>
-    </section>
+        </section>
+    </div>
 {% endblock %}
+
+

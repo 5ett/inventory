@@ -67,13 +67,28 @@
                         </div>
                     </fieldset>
                 </form>
-                    {% if order_progress %}
+                <div>
+                   {% if order_progress %}
                         <a href="{{ url_for('cancelorder', order_id=order_progress[-1].id) }}"><button type="submit" class="form-submit" id="cancel">cancel last</button></a>
+                    {% else %}
+                        <a<a href="#"><button type="submit" class="form-submit" id="inactive">cancel last</button></a>
                     {% endif %}
+                </div>
                 <div>
                     <div id="pending-order">
                         <fieldset class="new-order">
                             <legend><h4>pending orders</h4></legend>
+                                {% if pending_orders %}
+                                    {% for order in pending_orders %}
+                                        <p class="list" style="text-align: left; color: black;">
+                                        • {{ order.order_date.date() }} || {{ order.items }}</p>
+                                    {% endfor %}
+                                {% endif %}
+                        </fieldset>
+                    </div>
+                    <div id="pending-order">
+                        <fieldset class="new-order">
+                            <legend><h4>approved orders</h4></legend>
 
                         </fieldset>
                     </div>

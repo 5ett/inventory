@@ -8,16 +8,16 @@
 body{
     margin: 0;
     font-family: 'roboto';
-    background: url('media/bv.png') no-repeat;
-    background-size: cover;
-    height: calc(100vh - 80px);
-}
-
-.backgrd{
     background: url('media/bv.png') fixed no-repeat;
     background-size: cover;
     height: calc(100vh - 80px);
 }
+
+/*body .bkgrd{
+    background: url('media/bv.png') fixed no-repeat;
+    background-size: cover;
+    height: calc(100vh - 80px);
+}*/
 
 @font-face{
     font-family: 'roboto';
@@ -279,13 +279,13 @@ fieldset{
 }
 
 #pending-order{
-    width: 50%;
+    width: 48%;
     background-color:#F19921;
     border-radius: 9px;
     padding: 15px 12px;
     margin-top:40px;
     float: left;
-    margin-right: 15px;
+    margin-right:5px;
     font-family: 'montserat';
     text-align: center;
     color: black;
@@ -550,7 +550,7 @@ footer .container p.small-text{
     background-color: #2e86c1;
 }
 
-#cancel{
+#backgrdel{
     background-color: red;
     float: right;
 }
@@ -559,6 +559,16 @@ footer .container p.small-text{
     background-color: white;
     color:red;
     border: transparent;
+}
+
+#inactive{
+    background-color: #AEAEAE;
+    float: right;
+}
+
+#inactive:hover{
+    border: none;
+    color: #AEAEAE;
 }
 
 
@@ -581,6 +591,7 @@ footer .container p.small-text{
     text-align: center;
     margin-bottom: 20px;
     transition: all .3s;
+    font-size: 10;
 }
 .success{
     background-color: #a3e4d7;
@@ -620,12 +631,6 @@ footer .container p.small-text{
 }
 
 @media (max-width: 858px){
-    body{
-    background: url('media/bvmob.png') no-repeat;
-    background-size: cover;
-    height: calc(100vh);
-    }
-
     .menu{
         display: block;
     }
