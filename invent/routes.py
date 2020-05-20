@@ -14,7 +14,6 @@ def index():
         user_auth = User.query.filter_by(email=form.email.data).first()
         if user_auth and guard.check_password_hash(user_auth.password, form.password.data):
             login_user(user_auth)
-            return redirect(url_for('catalogue'))
         else:
             flash('invalid credentials, try logging in again', 'danger')
 
@@ -30,7 +29,9 @@ def order():
     form_2.order_made_by.data = f'made by: {current_user.name}'
     if form_1.validate_on_submit():
         cap_item = string.capwords(form_1.item.data)
+        key.append(cap_item)
         typpe = Items.query.filter_by(item_name=cap_item).first()
+        key.append(typpe)
         temp_items = f'{cap_item}, {form_1.quantity.data}'
         item_order = Tempdb(tem_items=temp_items, made_by=current_user.name)
         db.session.add(item_order)
