@@ -1,6 +1,7 @@
 from flask import url_for, request, redirect, render_template, flash
 import string
 from datetime import datetime
+from collections import Counter
 from invent import app, guard, db
 from invent.models import Tempdb, Order, Items, User
 from flask_login import login_user, logout_user, current_user, login_required
@@ -75,7 +76,9 @@ def deletetemp():
 
 @app.route('/history')
 def history():
-    return render_template('history.html', title='Order History')
+    receipts = Counter(Order.query.filter_by(
+        made_by=current_user.name).order_by(Order.order_date.desc()).all())
+    return render_template('history.html', receipts=receipts, title='Profile & History')
 
 
 @app.route('/catalogue')

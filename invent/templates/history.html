@@ -1,1 +1,28 @@
 {% extends 'grounds.html' %}
+
+
+{% block content %}
+    <section class="history">
+        <div class="container">
+                <div id="history-box">
+                    <legend><h4>{{ current_user.name }}</h4></legend>
+                    <p class="small-text">{{ current_user.email }}</p>
+                    <p class="small-text">{{ current_user.username }}</p>
+                </div>
+        </div>
+    </section>
+    <section class="history">
+        <div class="container">
+                <div id="history-box-2">
+                    <legend><h4>Order History</h4></legend>
+                    {% if receipts %}
+                        {% for order in receipts %}
+                            <ul>
+                                <li><p class="small-text">{{ order.items }} {{ (order.order_date) }}</li>
+                            </ul>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+        </div>
+    </section>
+{% endblock %}

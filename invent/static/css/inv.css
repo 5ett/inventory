@@ -1,3 +1,6 @@
+html{
+    height: 100%;
+}
 *{
     padding: 0;
     text-decoration: none;
@@ -42,6 +45,11 @@ body{
 @font-face{
     font-family: 'work-sans';
     src: url('/static/fonts/WorkSans-Medium.ttf');
+}
+
+@font-face{
+    font-family: 'sf';
+    src: url('/static/fonts/sfdis.ttf');
 }
 
 nav{
@@ -319,6 +327,47 @@ fieldset{
     margin-bottom: 1px;
 }
 
+.history{
+    color: #012033;
+    padding-top: 15px;
+}
+
+#history-box{
+    width: 50%;
+    background-color:#F6F6F6;
+    border-radius: 1px;
+    padding: 20px 25px;
+    margin-top:40px;
+    margin-right: 25px 15px;
+    font-family: 'montserat';
+    text-align: left;
+    color: #012033;
+    font-size: 20;
+    box-shadow: 1px 1px 2px #CBCBCB
+}
+
+#history-box-2{
+    width: 70%;
+    background-color:#F6F6F6;
+    border-radius: 1px;
+    padding: 20px 70px;
+    margin-top:40px;
+    margin-right: 25px 15px;
+    font-family: 'sf';
+    text-align: left;
+    color: #012033;
+    font-size: 20;
+    box-shadow: 1px 1px 2px #CBCBCB
+}
+
+#history-box .small-text, #history-box-2 .small-text{
+    font-size: 14;
+}
+
+#history-box-2 li{
+    list-style: disc;
+}
+
 .error-msg{
     font-size: 10;
     color: red;
@@ -572,9 +621,37 @@ footer .container p.small-text{
     color: #AEAEAE;
 }
 
+.preview{
+    background: url('../media/vvv.png');
+    background-size: cover;
+    color: white;
+    padding: 40px;
+    margin-top: 30px;
+    display: flex;
+    border-radius: 8px;
+}
 
+.preview label{
+    font-size: 26px;
+    font-family: 'sf';
+    font-weight: bold;
+    float: left;
+    width: 30%;
+    padding-top: 30px;
+}
 
+.preview ul{
+    float:right;
+    padding-top: 199px;
+    width: 30%;
+    text-align: center;
+}
 
+.preview li{
+    display: inline;
+    padding: 0 10px;
+    text-shadow: 1px 1px 3px grey;
+}
 
 
 
