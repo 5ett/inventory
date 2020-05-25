@@ -16,6 +16,15 @@
                     <button type="submit" class="ichi"><a href="{{url_for('catalogue')}}">view catalogue</a></button>
                 </div>
                 <div id="migi">
+                    <div class="myalert">
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages  %}
+                                {% for category, message in messages %}
+                                    <div class="{{category}}">{{ message }}</div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                    </div>
                     {% if current_user.is_authenticated %}
                         <div class="up-img">
                             <h3 class="banner-size">Welcome to the Inventory</h3>
