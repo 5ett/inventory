@@ -1,11 +1,11 @@
-from flask import url_for, request, redirect, render_template, flash
-import string
-from datetime import datetime
-from collections import Counter
-from invent import app, guard, db
-from invent.models import Tempdb, Order, Items, User
 from flask_login import login_user, logout_user, current_user, login_required
-from invent.forms import Login, New_Order, MakeOrder, NewUser, Updateitems, AddnewItem
+from invent.forms import Login, New_Order, NewUser, Updateitems, AddnewItem
+from flask import url_for, request, redirect, render_template, flash
+from invent.models import Order, Items, User
+from invent.other_functions import cap
+from invent import app, guard, db
+from collections import Counter
+from datetime import datetime
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -23,38 +23,11 @@ def index():
 
 @app.route('/order', methods=['GET', 'POST'])
 def order():
-    date = datetime.utcnow().date()
-    key = []
-    form_1 = New_Order()
-    form_2 = MakeOrder()
-    form_2.order_made_by.data = f'made by: {current_user.name}'
-    if form_1.validate_on_submit():
-        cap_item = string.capwords(form_1.item.data)
-        key.append(cap_item)
-        typpe = Items.query.filter_by(item_name=cap_item).first()
-        key.append(typpe)
-        temp_items = f'{cap_item}, {form_1.quantity.data}'
-        item_order = Tempdb(tem_items=temp_items, made_by=current_user.name)
-        db.session.add(item_order)
-        db.session.commit()
-
-        if form_2.validate_on_submit():
-            new_quantity = int(typpe.item_quantity) - int(form_1.quantity.data)
-            typpe.item_quantity = new_quantity
-            # for element in order_progress:
-            #     db.session.delete(element.id)
-            main_order = Order(items=cap_item, quantity=form_1.quantity.data,
-                               item_types=typpe.item_type, made_by=current_user.name)
-            db.session.add(main_order)
-            db.session.commit()
-            flash('your order has been made. pendind approval', 'info')
-            # return redirect(url_for('deletetemp'))
-
-    order_progress = Tempdb.query.filter_by(made_by=current_user.name).all()
-    pending_orders = Order.query.filter_by(made_by=current_user.name).all()
-    recents = Items.query.order_by(Items.id.desc()).all()
-    out_of_stock = Items.query.filter_by(item_quantity=0).all()
-    return render_template('order.html', title='Make Order', form_1=form_1, form_2=form_2, date=date, recents=recents, out_of_stock=out_of_stock, order_progress=order_progress, pending_orders=pending_orders)
+    form = New_Order()
+    items_n_qtty = []
+    if form.validate_on_submit():
+        pass
+    return render_template('order.html', form=form, title='Make Order')
 
 
 @app.route('/cancelorder/<int:order_id>', methods=['GET', 'POST'])
@@ -65,13 +38,13 @@ def cancelorder(order_id):
     return redirect(url_for('order'))
 
 
-@app.route('/deletetemp')
-def deletetemp():
-    temp = Tempdb.query.filter_by(made_by=current_user.name).all()
-    for temporary_order in temp:
-        db.session.delete(temporary_order)
-        db.session.commit()
-    return redirect(url_for('order'))
+# @app.route('/deletetemp')
+# def deletetemp():
+#     temp = Tempdb.query.filter_by(made_by=current_user.name).all()
+#     for temporary_order in temp:
+#         db.session.delete(temporary_order)
+#         db.session.commit()
+#     return redirect(url_for('order'))
 
 
 @app.route('/history')

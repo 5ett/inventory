@@ -13,7 +13,10 @@ body{
     font-family: 'roboto';
     background: url('../media/bv.png') fixed no-repeat;
     background-size: cover;
-    height: calc(100vh - 80px);
+    /*height: calc(100vh - 80px);*/
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 /*body .bkgrd{
@@ -154,6 +157,7 @@ button:hover{
 .plain{
     padding-top: 40px;
     padding-bottom: 20px;
+    display: flex;
 }
 
 #hidari{
@@ -185,21 +189,20 @@ button:hover{
 
 .hidari{
     float: left;
-    width: 55%;
+    box-sizing: border-box;;
+    margin-right: 0px;
+    width: 50%;
 }
 
 .migi{
     float: right;
-    width: 45%;
+    width: 50%;
     line-height: 1.5em;
     font-size: 15px;
     font-family: 'roboto';
     color: #333;
     transition: all .2s;
-    adding-left: 20px;
-    padding-top: 12px;
-    padding-right: 20px;
-    padding-left: 20px;
+    padding: 12px 50px;
     font-family: Helvetica;
     margin-top: 20px;
 }
@@ -257,10 +260,10 @@ fieldset{
 }
 
 #orderset{
-    width: 40%;
+    width: 90%;
     background-color: #D2D2D2;
-    border-radius: 9px;
-    padding: 15px 12px;
+    border-radius: 5px;
+    padding: 15px 30px;
     margin-top:80px;
 }
 
@@ -268,39 +271,40 @@ fieldset{
     margin-top:50px;
     /*background-color: #B5B5B5;*/
     background-color:#6898B4;
-    border-radius: 10px;
+    border-radius: 5px;
     padding:40px;
 }
 
-#outoforder{
-    width: 40%;
-    /*background-color: #EEEAEA;*/
-    background-color:#2D46B9;
-    border-radius: 9px;
-    padding: 15px 12px;
+#stock{
+    float: left;
+    width: 45%;
+    margin-right:10%;
+}
+
+.order-status{
+    width: 45%;
+    float: right;
+    margin-left: 10%;
+}
+
+
+#user{
+    width: 18%;
+    background-color:#F6F6F6;
+    border-radius: 1px;
+    padding: 20px 10px;
     margin-top:40px;
     float: left;
     margin-right: 15px;
     font-family: 'montserat';
-    text-align: center;
-    color: white;
+    text-align: left;
+    color: #012033;
+    font-size: 12;
+    box-shadow: 1px 1px 2px #CBCBCB;
 }
 
-#pending-order{
-    width: 48%;
-    background-color:#F19921;
-    border-radius: 9px;
-    padding: 15px 12px;
-    margin-top:40px;
-    float: left;
-    margin-right:5px;
-    font-family: 'montserat';
-    text-align: center;
-    color: black;
-}
-
-#user{
-    width: 18%;
+#pending, #approved, #stock-stat{
+    width: 21%;
     background-color:#F6F6F6;
     border-radius: 1px;
     padding: 20px 10px;
@@ -331,6 +335,7 @@ fieldset{
     color: #012033;
     padding-top: 15px;
 }
+
 
 #history-box{
     width: 50%;
@@ -583,7 +588,7 @@ footer .container p.small-text{
 }
 
 #nu-user{
-    background-color:#498E7B;
+-    background-color:#498E7B;
 }
 
 /*#qtty{
@@ -621,12 +626,17 @@ footer .container p.small-text{
     color: #AEAEAE;
 }
 
+.badges{
+    padding: 40px 20px;
+    margin-top: 20px;
+}
+
 .preview{
     background: url('../media/vvv.png');
     background-size: cover;
     color: white;
     padding: 40px;
-    margin-top: 30px;
+    margin-top: 90px;
     display: flex;
     border-radius: 8px;
 }
@@ -634,10 +644,14 @@ footer .container p.small-text{
 .preview label{
     font-size: 26px;
     font-family: 'sf';
-    font-weight: bold;
     float: left;
     width: 30%;
     padding-top: 30px;
+    transition: all .3s;
+}
+
+.preview label:hover{
+    font-size: 30px;
 }
 
 .preview ul{
@@ -777,17 +791,8 @@ footer .container p.small-text{
         padding: 10px;
     }
 
-    #orderset{
-    width: 80%;
-    }
-
-    #outoforder{
-        width: 60%;
-        float:none;
-    }
-
     #neworder{
-        width: 90%;
+        width: 100%;
         margin-left: 0;
     }
 
@@ -795,6 +800,39 @@ footer .container p.small-text{
         float: none;
         display: block;
         width: 50%;
+    }
+
+    .badges{
+        padding: 10px;
+    }
+
+    #stock{
+        float: none;
+        width: 90%;
+        padding: 10px;
+        margin-right: 0;
+        display: block;
+    }
+
+    #stock-stat{
+        float: none;
+        width: 100%;
+    }
+
+    #order-stat{
+        float: none;
+        width: 90%;
+        padding: 10px;
+    }
+
+    #pending{
+        width: 90%;
+        margin-bottom: 10px;
+    }
+
+    #approved{
+        width: 90%;
+        margin: 0;
     }
 
 }

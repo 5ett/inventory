@@ -1,7 +1,7 @@
 {% extends 'grounds.html' %}
 
 {% block content %}
-       <section class="plain">
+    <section class="plain">
         <div class="container">
             <div class="hidari">
                <form action="" method="POST" id="orderset">
@@ -26,72 +26,47 @@
                         </div>
                     </fieldset>
                 </form>
-                <div>
-                    <div id="outoforder">
-                        <fieldset class="new-order">
-                            <legend><h4>out of Stock</h4></legend>
-
-                        </fieldset>
-                    </div>
-                    <div id="outoforder">
-                        <fieldset class="new-order">
-                            <legend><h4>new stock</h4></legend>
-                                {% for item in recents %}
-                                    <p class="list" style="text-align: left;">• {{item.item_name}}</p>
-                                {% endfor %}
-                        </fieldset>
-                    </div>
-                </div>
-
             </div>
             <div class="migi">
-                <form action="" method="=GET" id="neworder">
-                    <fieldset class="new-order">
-                        {{ form_2.hidden_tag() }}
-                        <legend><h4 class="chkut">Checkout</h4></legend>
-                        <div>
-                            {% if order_progress %}
-                                {% for order_item in order_progress %}
-                                    <p class="list">• {{ order_item.tem_items }}</p>
-                                {% endfor %}
-                            {% endif %}
-                        </div>
-                        <div>
-                            {{ form_2.order_made_by(class='form-field', id='made_by', placeholder='made by') }}
-                        </div>
-                        <div style="color: white; padding-top: 1px; margin-top: 0; font-family: 'montserat-b';">
-                            <p>{{ date }}</p>
-                        </div>
-                        <div>
-                            {{ form_2.submit(class='form-submit') }}
-                        </div>
-                    </fieldset>
-                </form>
+
                 <div>
                    {% if order_progress %}
                         <a href="{{ url_for('cancelorder', order_id=order_progress[-1].id) }}"><button type="submit" class="form-submit" id="cancel">cancel last</button></a>
                     {% else %}
-                        <a<a href="#"><button type="submit" class="form-submit" id="inactive">cancel last</button></a>
+                        <a href="#"><button type="submit" class="form-submit" id="inactive">cancel last</button></a>
                     {% endif %}
                 </div>
-                <div>
-                    <div id="pending-order">
-                        <fieldset class="new-order">
-                            <legend><h4>pending orders</h4></legend>
-                                {% if pending_orders %}
-                                    {% for order in pending_orders %}
-                                        <p class="list" style="text-align: left; color: black;">
-                                        • {{ order.order_date.date() }} || {{ order.items }}</p>
-                                    {% endfor %}
-                                {% endif %}
-                        </fieldset>
-                    </div>
-                    <div id="pending-order">
-                        <fieldset class="new-order">
-                            <legend><h4>approved orders</h4></legend>
+            </div>
+        </div>
+    </section>
+    <section class="badges">
+        <div class="container">
+            <div id="stock">
+                <div id="stock-stat" style="width: 45%;">
+                    <legend><h4>new stock</h4></legend>
+                    {% for item in recents %}
+                        <p class="list" style="text-align: left;">• {{item.item_name}}</p>
+                    {% endfor %}
+                </div>
+                <div id="stock-stat" style="width: 45%;"">
+                    <legend><h4>out of Stock</h4></legend>
+                </div>
+            </div>
+            <div id="order-stat">
+                <div id="pending">
+                    <legend><h4>pending orders</h4></legend>
+                    {% if pending_orders %}
+                        {% for order in pending_orders %}
+                            <p class="list" style="text-align: left; color: black;">
+                            • {{ order.order_date.date() }} || {{ order.items }}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div id="approved">
+                    <fieldset class="new-order">
+                        <legend><h4>approved orders</h4></legend>
 
-                        </fieldset>
-                    </div>
+                    </fieldset>
                 </div>
             </div>
         </div>

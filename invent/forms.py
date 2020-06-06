@@ -48,12 +48,6 @@ class New_Order(FlaskForm):
                         'you request is absurd and cannot be provided')
 
 
-class MakeOrder(FlaskForm):
-    # items_qty = TextAreaField('cart', validators=[DataRequired()])
-    order_made_by = StringField('made by', validators=[DataRequired()])
-    submit = SubmitField('make order')
-
-
 class NewUser(FlaskForm):
     first_name = StringField('first name', validators=[DataRequired()])
     last_name = StringField('last name', validators=[DataRequired()])
