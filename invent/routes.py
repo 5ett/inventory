@@ -1,7 +1,7 @@
 from flask_login import login_user, logout_user, current_user, login_required
 from invent.forms import Login, New_Order, NewUser, Updateitems, AddnewItem
 from flask import url_for, request, redirect, render_template, flash
-from invent.models import Order, Items, User
+from invent.models import Order, Items, User, Tempdb
 from invent.other_functions import cap
 from invent import app, guard, db
 from collections import Counter
@@ -27,7 +27,8 @@ def order():
     items_n_qtty = []
     if form.validate_on_submit():
         pass
-    return render_template('order.html', form=form, title='Make Order')
+    order_progress = Tempdb.query.filter_by(user_name=current_user.name).all()
+    return render_template('order.html', form=form, order_progress=order_progress, title='Make Order')
 
 
 @app.route('/cancelorder/<int:order_id>', methods=['GET', 'POST'])
@@ -88,24 +89,25 @@ def users():
     all_users = User.query.all()
     return render_template('manage_users.html', all_users=all_users, title='Users')
 
-
+#adding items to and updating inventory
 @app.route('/additem', methods=['GET', 'POST'])
 def additem():
     form = Updateitems()
     form_2 = AddnewItem()
     if form.validate_on_submit():
-        item = string.capwords(form.item.data)
+        item = cap(form.item.data)
         item_update = Items.query.filter_by(item_name=item).first()
         if item_update:
-            item_update.item_quantity = item_update.item_quantity + form.quantity.data
+            item_update.item_quantity = int(
+                item_update.item_quantity) + int(form.quantity.data)
             db.session.commit()
             flash('item updated', 'success')
         else:
             flash('failed to update item', 'danger')
     if form_2.validate_on_submit():
-        item2 = string.capwords(form_2.item.data)
-        item_type = string.capwords(form_2.item_type.data)
-        item_desc = string.capwords(form_2.item_description.data)
+        item2 = cap(form_2.item.data)
+        item_type = cap(form_2.item_type.data)
+        item_desc = cap(form_2.item_description.data)
         new_item = Items(item_name=item2,
                          item_quantity=form.quantity.data, item_type=item_type, item_description=item_desc)
         # new_item = Items(item_name=form_2.item.data, item_quantity=form.quantity.data,

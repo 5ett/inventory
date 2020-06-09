@@ -7,27 +7,38 @@
                <form action="" method="POST" id="orderset">
                     <fieldset class="new-order">
                         <legend><h4>Order Form</h4></legend>
-                        {{ form_1.hidden_tag() }}
+                        {{ form.hidden_tag() }}
                         <div>
-                            {% if form_1.item.errors %}
-                                {{ form_1.item(class='form-field-err', id='fst-gen', placeholder='search item') }}
-                                {% for error in form_1.item.errors %}
+                            {% if form.item.errors %}
+                                {{ form.item(class='form-field-err', id='fst-gen', placeholder='search item') }}
+                                {% for error in form.item.errors %}
                                     <div class="error-msg"><span>{{ error }}</span></div>
                                 {% endfor %}
                             {% else %}
-                                {{ form_1.item(class='form-field', id='fst-gen', placeholder='search item') }}
+                                {{ form.item(class='form-field', id='fst-gen', placeholder='search item') }}
                             {% endif %}
                         </div>
                         <div>
-                            {{ form_1.quantity(class='form-field', placeholder='quantity') }}
+                            {{ form.quantity(class='form-field', placeholder='quantity') }}
                         </div>
                         <div>
-                            {{ form_1.add(class='form-submit') }}
+                            {{ form.add(class='form-submit') }}
                         </div>
                     </fieldset>
                 </form>
             </div>
             <div class="migi">
+                <div class="orders">
+                    {% if order_progress %}
+                        {% for order in order_progress %}
+                            <ul>
+                                <li>{{ order.item }} - {{ order.quantity }}</li>
+                            </ul>
+                        {% endfor %}
+                    {% else %}
+                        <legend class="notification" style="font-family: 'sf'; font-size: 18; color: inherit; " >no item in checkout list</legend>
+                    {% endif %}
+                </div>
 
                 <div>
                    {% if order_progress %}

@@ -260,7 +260,7 @@ fieldset{
 }
 
 #orderset{
-    width: 90%;
+    width: 60%;
     background-color: #D2D2D2;
     border-radius: 5px;
     padding: 15px 30px;
@@ -285,8 +285,17 @@ fieldset{
     width: 45%;
     float: right;
     margin-left: 10%;
+    font-family: 'sf';
 }
 
+
+.orders{
+    background-color: #F6F6F6;
+    color: #012033;
+    text-align: center;
+    width: 500px;
+    margin-top: 80px;
+}
 
 #user{
     width: 18%;
@@ -616,9 +625,13 @@ footer .container p.small-text{
     border: transparent;
 }
 
-#inactive{
+.migi #cancel{
+    align-self: flex-end;
+}
+
+.migi #inactive{
     background-color: #AEAEAE;
-    float: right;
+    align-self: flex-end;
 }
 
 #inactive:hover{
@@ -789,6 +802,8 @@ footer .container p.small-text{
         float: none;
         width: 90%;
         padding: 10px;
+        display: flex;
+        flex-direction: column;
     }
 
     #neworder{
