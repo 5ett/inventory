@@ -9,13 +9,15 @@
             <div id="main">
                 <section>
                     <div class="container">
-                        {% with message = get_flashed_messages(with_categories=true) %}
-                            {% if messages  %}
-                                {% for message, category in messages %}
-                                    <div class="{{category}}">{{ message }}</div>
-                                {% endfor %}
-                            {% endif %}
-                        {% endwith %}
+                          <div class="myalert-UI">
+                            {% with messages = get_flashed_messages(with_categories=true) %}
+                                {% if messages  %}
+                                    {% for category, message in messages %}
+                                        <div class="{{category}}">{{ message }}</div>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endwith %}
+                          </div>
                         <div id="for-additem">
                             <form action="" method="POST" id="additem">
                                 <legend><h3 class="banner-size">update inventory</h3></legend>
@@ -90,8 +92,10 @@
                     <div id="sidebar-item">
                         <fieldset class="new-order">
                             <legend><h4>new stock</h4></legend>
-                                {% for item in recents %}
+                                {% for item in added_stock %}
+                                    {% if item.item_quantity != 0 %}
                                     <p class="list" style="text-align: left; color: black;">• {{item.item_name}}</p>
+                                    {% endif %}
                                 {% endfor %}
                         </fieldset>
                     </div>

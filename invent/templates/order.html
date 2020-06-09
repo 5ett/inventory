@@ -55,7 +55,7 @@
             <div id="stock">
                 <div id="stock-stat" style="width: 45%;">
                     <legend><h4>new stock</h4></legend>
-                    {% for item in recents %}
+                    {% for item in in_stock %}
                         <p class="list" style="text-align: left;">• {{item.item_name}}</p>
                     {% endfor %}
                 </div>

@@ -204,7 +204,6 @@ button:hover{
     transition: all .2s;
     padding: 12px 50px;
     font-family: Helvetica;
-    margin-top: 20px;
 }
 
 .up-img{
@@ -295,6 +294,7 @@ fieldset{
     text-align: center;
     width: 500px;
     margin-top: 80px;
+    padding: 20px 20px;
 }
 
 #user{
@@ -521,6 +521,11 @@ legend h4.chkut{
     padding: 30px;
 }
 
+.cata-div{
+    padding-top: 40px;
+    font-family: 'sf';
+}
+
 #additem{
     float: left;
     width: 300px;
@@ -626,17 +631,16 @@ footer .container p.small-text{
 }
 
 .migi #cancel{
-    align-self: flex-end;
+    align-self: flex-end r;
 }
 
 .migi #inactive{
     background-color: #AEAEAE;
-    align-self: flex-end;
+    align-self: flex-end r;
 }
 
 #inactive:hover{
     border: none;
-    color: #AEAEAE;
 }
 
 .badges{
@@ -694,15 +698,28 @@ footer .container p.small-text{
     margin: auto;
     border-width: 0;
     text-align: center;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
     transition: all .3s;
     font-size: 10;
     font-family: 'work-sans';
 }
+
+.myalert-UI{
+    width: 63%;
+    margin-left: 31px ;
+    border-width: 0;
+    text-align: center;
+    margin-bottom: 5px;
+    transition: all .3s;
+    padding: 2px 5px;
+    font-size: 12;
+    font-family: 'work-sans';
+}
+
 .success{
     background-color: #a3e4d7;
     color: #0e6251;
-    padding: 2px;
+    padding: 3px;
     border-radius: 5px;
     transition: all .3s;
 }
@@ -710,7 +727,7 @@ footer .container p.small-text{
 .danger{
     background-color: #ff9f9f;
     color: #a10101;
-    padding: 2px;
+    padding: 3px;
     border-radius: 5px;
     transition: all .3s;
 }
@@ -718,7 +735,7 @@ footer .container p.small-text{
 .info{
     background-color: #a9cce3;
     color: #2e86c1;
-    padding: 2px;
+    padding: 3px;
     border-radius: 5px;
     transition: all .3s;
 }

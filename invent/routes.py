@@ -17,8 +17,8 @@ def index():
             login_user(user_auth)
         else:
             flash('invalid credentials, try logging in again', 'danger')
-
-    return render_template('index.html', form=form)
+    in_stock = Items.query.order_by(Items.id.desc()).all()
+    return render_template('index.html', form=form, in_stock=in_stock)
 
 
 @app.route('/order', methods=['GET', 'POST'])
@@ -26,9 +26,19 @@ def order():
     form = New_Order()
     items_n_qtty = []
     if form.validate_on_submit():
-        pass
+        order_item = cap(form.item.data)
+        item_search = Items.query.filter_by(item_name=order_item).first()
+        if item_search:
+            new_temp_order = Tempdb(
+                item=order_item, quantity=form.quantity.data)
+            items_n_qtty.append(f'({order_item}, {form.quantity.data})')
+            db.session.add(new_temp_order)
+            db.session.commit()
     order_progress = Tempdb.query.filter_by(user_name=current_user.name).all()
-    return render_template('order.html', form=form, order_progress=order_progress, title='Make Order')
+    in_stock = Items.query.order_by(Items.id.desc()).all()
+    out_of_stock = Items.query.filter_by(
+        item_quantity=0).order_by(Items.id.desc()).all()
+    return render_template('order.html', form=form, order_progress=order_progress, in_stock=in_stock, out_of_stock=out_of_stock, items_n_quantity=items_n_quantity, title='Make Order')
 
 
 @app.route('/cancelorder/<int:order_id>', methods=['GET', 'POST'])
@@ -51,13 +61,14 @@ def cancelorder(order_id):
 @app.route('/history')
 def history():
     receipts = Counter(Order.query.filter_by(
-        made_by=current_user.name).order_by(Order.order_date.desc()).all())
+        user_id=current_user.id).order_by(Order.order_date.desc()).all())
     return render_template('history.html', receipts=receipts, title='Profile & History')
 
 
 @app.route('/catalogue')
 def catalogue():
-    return render_template('catalogue.html', title='Catalogue')
+    in_stock = Items.query.order_by(Items.id.desc()).all()
+    return render_template('catalogue.html', title='Catalogue', in_stock=in_stock)
 
 
 @app.route('/newuser', methods=['GET', 'POST'])
@@ -89,7 +100,8 @@ def users():
     all_users = User.query.all()
     return render_template('manage_users.html', all_users=all_users, title='Users')
 
-#adding items to and updating inventory
+
+# adding items to and updating inventory
 @app.route('/additem', methods=['GET', 'POST'])
 def additem():
     form = Updateitems()
@@ -104,7 +116,7 @@ def additem():
             flash('item updated', 'success')
         else:
             flash('failed to update item', 'danger')
-    if form_2.validate_on_submit():
+    elif form_2.validate_on_submit():
         item2 = cap(form_2.item.data)
         item_type = cap(form_2.item_type.data)
         item_desc = cap(form_2.item_description.data)
@@ -117,5 +129,7 @@ def additem():
         flash('new item added to inventory', 'info')
     else:
         flash('failed to add new item to inventory', 'danger')
-    recents = Items.query.order_by(Items.id.desc()).all()
-    return render_template('additem.html', title='Update Iventory', form=form, form_2=form_2, recents=recents)
+    added_stock = Items.query.order_by(Items.id.desc()).all()
+    out_of_stock = Items.query.filter_by(
+        item_quantity=0).order_by(Items.id.desc()).all()
+    return render_template('additem.html', title='Update Iventory', form=form, form_2=form_2, out_of_stock=out_of_stock, added_stock=added_stock)

@@ -67,10 +67,16 @@
                         </a>
                     </label>
                     <ul>
-                        <li>brunch</li>
-                        <li>brunch</li>
-                        <li>brunch</li>
-                        <li>brunch</li>
+                        {% if in_stock %}
+                            {% for new_item in in_stock[0:4]  %}
+                                <li>{{new_item.item_name}}</li>
+                            {% endfor %}
+                        {% else %}
+                            <li>brunch</li>
+                            <li>brunch</li>
+                            <li>brunch</li>
+                            <li>brunch</li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

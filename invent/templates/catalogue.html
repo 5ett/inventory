@@ -4,22 +4,29 @@
     <section class="cata-div">
         <div class="container">
             <div>
-                <h2>Stationery</h2>
+                <h2>Welcome To Catalogue</h2>
             </div>
             <div>
                 {% if current_user.is_authenticated %}
                         <div class="preview">
                             <label>
                                 <a href="{{ url_for('catalogue') }}">
-                                New Updates in <br>
-                                Catalogue
+                                The New<br>
+                                Catalogue <br>
+                                With A New Vision
                                 </a>
                             </label>
                             <ul>
-                                <li>brunch</li>
-                                <li>brunch</li>
-                                <li>brunch</li>
-                                <li>brunch</li>
+                                {% if in_stock %}
+                                    {% for new_item in in_stock[0:4]  %}
+                                        <li>{{new_item.item_name}}</li>
+                                    {% endfor %}
+                                {% else %}
+                                    <li>brunch</li>
+                                    <li>brunch</li>
+                                    <li>brunch</li>
+                                    <li>brunch</li>
+                                {% endif %}
                             </ul>
                         </div>
                 {% endif %}
