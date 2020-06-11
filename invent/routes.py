@@ -24,21 +24,19 @@ def index():
 @app.route('/order', methods=['GET', 'POST'])
 def order():
     form = New_Order()
-    items_n_qtty = []
     if form.validate_on_submit():
         order_item = cap(form.item.data)
         item_search = Items.query.filter_by(item_name=order_item).first()
         if item_search:
             new_temp_order = Tempdb(
                 item=order_item, quantity=form.quantity.data)
-            items_n_qtty.append(f'({order_item}, {form.quantity.data})')
             db.session.add(new_temp_order)
             db.session.commit()
     order_progress = Tempdb.query.filter_by(user_name=current_user.name).all()
     in_stock = Items.query.order_by(Items.id.desc()).all()
     out_of_stock = Items.query.filter_by(
         item_quantity=0).order_by(Items.id.desc()).all()
-    return render_template('order.html', form=form, order_progress=order_progress, in_stock=in_stock, out_of_stock=out_of_stock, items_n_quantity=items_n_quantity, title='Make Order')
+    return render_template('order.html', form=form, order_progress=order_progress, in_stock=in_stock, out_of_stock=out_of_stock, title='Make Order')
 
 
 @app.route('/cancelorder/<int:order_id>', methods=['GET', 'POST'])
@@ -49,13 +47,30 @@ def cancelorder(order_id):
     return redirect(url_for('order'))
 
 
-# @app.route('/deletetemp')
-# def deletetemp():
-#     temp = Tempdb.query.filter_by(made_by=current_user.name).all()
-#     for temporary_order in temp:
-#         db.session.delete(temporary_order)
-#         db.session.commit()
-#     return redirect(url_for('order'))
+@app.route('/make_order')
+def make_order():
+    items_n_qtty = {}
+    item_types_list = []
+    temp = Tempdb.query.filter_by(made_by=current_user.name).all()
+    for temporary_order in temp:
+        items_n_qtty[temporary_order.item] = int(temporary_order.quantity)
+        check_item_type = Items.query.filter_by(
+            item_name=temporary_order.item).first()
+        check_item_type.item_quantity = int(
+            check_item_type.item_quantity) - int(temporary_order.quantity)
+        item_types_list.append(check_item_type.item_type)
+        db.session.delete(temporary_order)
+    new_order = Order(items_n_quantities=items_n_qtty,
+                      item_types=item_types_list)
+    db.session.add(new_order)
+    db.session.commit()
+    return redirect(url_for('order'))
+
+
+@app.route('/pending_orders', methods=['POST', 'GET'])
+def pending_orders():
+    all_orders = Order.query.order_by(Order.id).all()
+    return render_template('view_orders.html', all_orders=all_orders, title='Pending Orders')
 
 
 @app.route('/history')

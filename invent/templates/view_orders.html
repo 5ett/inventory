@@ -1,0 +1,31 @@
+{% extends 'grounds.html' %}
+
+{% block content %}
+    <div style="margin-top: 60px; text-align: center;">
+        <div class="container">
+            <table class="pending-order-table">
+                <th >order ID</th>
+                <th >made by</th>
+                <th>ordered items</th>
+                <th>date</th>
+                {% if all_orders %}
+                    <tr>
+                        {% for order in all_orders %}
+                            <td>{{oder.id}}</td>
+                            <td>{{oder.user_id.name}}</td>
+                            <td>{{order.items_n_quantities}}</td>
+                            <td>{{order.order_date}}</td>
+                        {% endfor %}
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td>no orders</td>
+                        <td>no orders</td>
+                        <td>no orders</td>
+                        <td>no orders</td>
+                    </tr>
+                {% endif %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

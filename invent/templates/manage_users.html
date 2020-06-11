@@ -4,6 +4,9 @@
     <section class="all-users">
         <div class="container">
             <div>
+                <button style="margin-top: 20px"><li><a href="{{ url_for('pending_orders') }}">pending orders</a></li></button>
+            </div>
+            <div>
                {% for user in all_users %}
                 <div id="user">
                     <legend><h4>{{user.name}}</h4></legend>

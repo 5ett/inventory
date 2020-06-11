@@ -1,3 +1,4 @@
+/*html elements*/
 html{
     height: 100%;
 }
@@ -17,42 +18,6 @@ body{
     min-height: 100%;
     display: flex;
     flex-direction: column;
-}
-
-/*body .bkgrd{
-    background: url('media/bv.png') fixed no-repeat;
-    background-size: cover;
-    height: calc(100vh - 80px);
-}*/
-
-@font-face{
-    font-family: 'roboto';
-    src: url('/static/fonts/Roboto-Regular.ttf');
-}
-
-@font-face{
-    font-family: 'roboto-b';
-    src: url('/static/fonts/Roboto-Bold.ttf');
-}
-
-@font-face{
-    font-family: 'montserat';
-    src: url('/static/fonts/Montserrat-Regular.ttf');
-}
-
-@font-face{
-    font-family: 'montserat-b';
-    src: url('/static/fonts/Montserrat-Bold.ttf');
-}
-
-@font-face{
-    font-family: 'work-sans';
-    src: url('/static/fonts/WorkSans-Medium.ttf');
-}
-
-@font-face{
-    font-family: 'sf';
-    src: url('/static/fonts/sfdis.ttf');
 }
 
 nav{
@@ -101,7 +66,9 @@ nav a:active{
     background: #012033;
     color: #fff;
 }
+/*html elements end*/
 
+/*buttons*/
 button{
     border-radius: 4px;
     padding:5px;
@@ -121,7 +88,48 @@ button:hover{
     font-weight: bolder;
     transition: .2s;
 }
+/*buttons end*/
 
+/*body .bkgrd{
+    background: url('media/bv.png') fixed no-repeat;
+    background-size: cover;
+    height: calc(100vh - 80px);
+}*/
+
+
+/*fontface*/
+@font-face{
+    font-family: 'roboto';
+    src: url('/static/fonts/Roboto-Regular.ttf');
+}
+
+@font-face{
+    font-family: 'roboto-b';
+    src: url('/static/fonts/Roboto-Bold.ttf');
+}
+
+@font-face{
+    font-family: 'montserat';
+    src: url('/static/fonts/Montserrat-Regular.ttf');
+}
+
+@font-face{
+    font-family: 'montserat-b';
+    src: url('/static/fonts/Montserrat-Bold.ttf');
+}
+
+@font-face{
+    font-family: 'work-sans';
+    src: url('/static/fonts/WorkSans-Medium.ttf');
+}
+
+@font-face{
+    font-family: 'sf';
+    src: url('/static/fonts/sfdis.ttf');
+}
+/*fontface end*/
+
+/*nav elements*/
 .menu{
     font-size: 20px;
     color: #012033;
@@ -136,7 +144,10 @@ button:hover{
 #check{
     display: none;
 }
+/*nav-elements end*/
 
+
+/*containers*/
 .container{
     margin: 0 150px;
 }
@@ -145,6 +156,7 @@ button:hover{
     text-decoration: none;
     color: inherit;
 }
+/*containers end*/
 
 .grey{
     padding-top: 40px;
@@ -295,6 +307,7 @@ fieldset{
     width: 500px;
     margin-top: 80px;
     padding: 20px 20px;
+    font-family: 'sf';
 }
 
 #user{
@@ -684,7 +697,31 @@ footer .container p.small-text{
     text-shadow: 1px 1px 3px grey;
 }
 
+/*tables*/
+.pending-order-table{
+    padding: 15px;
+    border: solid thin #094164;
+}
 
+.pending-order-table th{
+    text-align: center;
+    padding: 5px;
+    color: #094164;
+    border-radius: 28px;
+}
+
+.pending-order-table tr{
+    text-align: center;
+    padding: 5px;
+    border: solid thin #094164;
+}
+
+td{
+    text-align: center;
+    padding-right:20px;
+    border-bottom: thin;
+}
+/*tables end*/
 
 
 

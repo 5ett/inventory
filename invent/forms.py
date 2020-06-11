@@ -1,6 +1,6 @@
-import string
 from flask_wtf import FlaskForm
 from flask_login import current_user
+from invent.other_functions import cap
 from invent.models import User, Items, Tempdb
 from wtforms.validators import DataRequired, Length, Email, ValidationError
 from wtforms import StringField, PasswordField, IntegerField, SubmitField, TextAreaField
@@ -29,9 +29,9 @@ class New_Order(FlaskForm):
     add = SubmitField('add to order')
 
     def validate_item(self, item):
-        cap_item = string.capwords(item.data)
+        cap_item = cap(item.data)
         check_item = Items.query.filter_by(item_name=cap_item).first()
-        check_order = Tempdb.query.filter_by(made_by=current_user.name).all()
+        check_order = Tempdb.query.filter_by(user_name=current_user.name).all()
         if not check_item:
             raise ValidationError("item is not in stock or dooesn't exist")
         if check_order:
