@@ -48,11 +48,11 @@
 
                 <div>
                    {% if order_progress %}
-                        <a href="{{ url_for('make_order') }}"><button type="submit" class="form-submit" id="cancel">make order</button></a>
-                        <a href="{{ url_for('cancelorder', order_id=order_progress[-1].id) }}"><button type="submit" class="form-submit" id="cancel">cancel last</button></a>
+                        <a href="{{ url_for('make_order') }}"><button type="submit" class="form-submit" onclick="orderlAlert()" id="cancel" style="background-color: #95D1C0;">make order</button></a>
+                        <a href="{{ url_for('cancelorder', order_id=order_progress[-1].id) }}"><button type="submit" class="form-submit" onclick="cancelAlert()" id="cancel">cancel last</button></a>
                     {% else %}
-                        <a href="{{ url_for('make_order') }}"><button type="submit" class="form-submit" id="inactive">make order</button></a>
-                        <a href="#"><button type="submit" class="form-submit" id="inactive">cancel last</button></a>
+                        <a href="#"><button type="submit" class="form-submit" onclick="inactiveAlert()" id="inactive">make order</button></a>
+                        <a href="#"><button type="submit" class="form-submit"  onclick='inactiveAlert2()' id="inactive">cancel last</button></a>
                     {% endif %}
                 </div>
             </div>

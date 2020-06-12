@@ -21,6 +21,7 @@ def index():
     return render_template('index.html', form=form, in_stock=in_stock)
 
 
+# fill order form
 @app.route('/order', methods=['GET', 'POST'])
 def order():
     form = New_Order()
@@ -47,6 +48,7 @@ def cancelorder(order_id):
     return redirect(url_for('order'))
 
 
+# make a new order / shaky logic/ am I depressed?
 @app.route('/make_order')
 def make_order():
     items_n_qtty = {}
@@ -86,6 +88,7 @@ def catalogue():
     return render_template('catalogue.html', title='Catalogue', in_stock=in_stock)
 
 
+# add a new user/ only available to admin
 @app.route('/newuser', methods=['GET', 'POST'])
 def newuser():
     form = NewUser()
@@ -127,24 +130,30 @@ def additem():
         if item_update:
             item_update.item_quantity = int(
                 item_update.item_quantity) + int(form.quantity.data)
-            db.session.commit()
             flash('item updated', 'success')
         else:
             flash('failed to update item', 'danger')
+
     elif form_2.validate_on_submit():
-        item2 = cap(form_2.item.data)
-        item_type = cap(form_2.item_type.data)
-        item_desc = cap(form_2.item_description.data)
-        new_item = Items(item_name=item2,
-                         item_quantity=form.quantity.data, item_type=item_type, item_description=item_desc)
-        # new_item = Items(item_name=form_2.item.data, item_quantity=form.quantity.data,
-        #                  item_type=form_2.item_type.data, item_description=form_2.item_description.data)
-        db.session.add(new_item)
-        db.session.commit()
-        flash('new item added to inventory', 'info')
-    else:
-        flash('failed to add new item to inventory', 'danger')
+        try:
+            item2 = cap(form_2.item.data)
+            item_type = cap(form_2.item_type.data)
+            item_desc = cap(form_2.item_description.data)
+            new_item = Items(item_name=item2, item_quantity=form.quantity.data,
+                             item_type=item_type, item_description=item_desc)
+            # new_item = Items(item_name=form_2.item.data, item_quantity=form.quantity.data,
+            #                  item_type=form_2.item_type.data, item_description=form_2.item_description.data)
+            db.session.add(new_item)
+            flash('new item added to inventory', 'info')
+        except:
+            flash('failed to add new item to inventory', 'danger')
+    db.session.commit()
     added_stock = Items.query.order_by(Items.id.desc()).all()
     out_of_stock = Items.query.filter_by(
         item_quantity=0).order_by(Items.id.desc()).all()
     return render_template('additem.html', title='Update Iventory', form=form, form_2=form_2, out_of_stock=out_of_stock, added_stock=added_stock)
+
+
+@app.route('/loop')
+def loop():
+    return redirect('order')

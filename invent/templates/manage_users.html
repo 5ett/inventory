@@ -5,6 +5,7 @@
         <div class="container">
             <div>
                 <button style="margin-top: 20px"><li><a href="{{ url_for('pending_orders') }}">pending orders</a></li></button>
+                <button style="margin-top: 20px; margin-left: 800px; background-color: #95D1C0; color: white;"><li><a href="{{ url_for('newuser') }}">add user</a></li></button>
             </div>
             <div>
                {% for user in all_users %}

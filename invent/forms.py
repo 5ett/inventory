@@ -43,7 +43,7 @@ class New_Order(FlaskForm):
             def validate_quantity(self, quantity):
                 check_item_quantity = Items.query.filter_by(
                     item_name=item.data).first()
-                if check_item_quantity.item_quantity >= quantity.data:
+                if check_item_quantity.item_quantity >= quantity.data or check_item_quantity.item_quantity == 0:
                     raise ValidationError(
                         'you request is absurd and cannot be provided')
 
@@ -86,6 +86,10 @@ class Updateitems(FlaskForm):
         item_check = Items.query.filter_by(item_name=item.data).first()
         if not item_check:
             raise ValidationError('this is a new item. use the second form')
+
+    def validate_quantity(self, quantity):
+        if quantity.data == 0:
+            raise ValidationError('zero quantity cannot be added to inventory')
 
 
 class AddnewItem(FlaskForm):
