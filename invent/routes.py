@@ -30,10 +30,11 @@ def order():
         item_search = Items.query.filter_by(item_name=order_item).first()
         if item_search:
             new_temp_order = Tempdb(
-                item=order_item, quantity=form.quantity.data)
+                item=order_item, quantity=form.quantity.data, owner=current_user.id)
             db.session.add(new_temp_order)
             db.session.commit()
-    order_progress = Tempdb.query.filter_by(user_name=current_user.name).all()
+            return redirect(url_for('order'))
+    order_progress = Tempdb.query.filter_by(owner=current_user.id).all()
     in_stock = Items.query.order_by(Items.id.desc()).all()
     out_of_stock = Items.query.filter_by(
         item_quantity=0).order_by(Items.id.desc()).all()
@@ -53,7 +54,7 @@ def cancelorder(order_id):
 def make_order():
     items_n_qtty = {}
     item_types_list = []
-    temp = Tempdb.query.filter_by(made_by=current_user.name).all()
+    temp = Tempdb.query.filter_by(owner=current_user.id).all()
     for temporary_order in temp:
         items_n_qtty[temporary_order.item] = int(temporary_order.quantity)
         check_item_type = Items.query.filter_by(
@@ -130,9 +131,11 @@ def additem():
         if item_update:
             item_update.item_quantity = int(
                 item_update.item_quantity) + int(form.quantity.data)
+            db.session.commit()
             flash('item updated', 'success')
         else:
             flash('failed to update item', 'danger')
+        return redirect(url_for('additem'))
 
     elif form_2.validate_on_submit():
         try:
@@ -144,10 +147,12 @@ def additem():
             # new_item = Items(item_name=form_2.item.data, item_quantity=form.quantity.data,
             #                  item_type=form_2.item_type.data, item_description=form_2.item_description.data)
             db.session.add(new_item)
+            db.session.commit()
             flash('new item added to inventory', 'info')
         except:
             flash('failed to add new item to inventory', 'danger')
-    db.session.commit()
+        return redirect(url_for('additem'))
+
     added_stock = Items.query.order_by(Items.id.desc()).all()
     out_of_stock = Items.query.filter_by(
         item_quantity=0).order_by(Items.id.desc()).all()

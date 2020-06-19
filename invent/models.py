@@ -1,6 +1,6 @@
 from invent import db, osyrus
 from datetime import datetime
-from flask_login import UserMixin
+from flask_login import UserMixin, current_user
 
 
 @osyrus.user_loader
@@ -14,8 +14,10 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String, unique=True, nullable=False)
     username = db.Column(db.String, unique=True, nullable=False)
     password = db.Column(db.String(200), unique=True, nullable=False)
-    order = db.relationship('Order', backref='ordered_by', lazy='dynamic')
-    made_by = db.relationship('Tempdb', backref='made_by', lazy='dynamic')
+    order_owner = db.relationship('Order', backref='ordered_by', lazy=True)
+
+    def __repr__(self):
+        return f"'{self.id}','{self.name}', '{self.email}', '{self.usrname}'"
 
 
 class Items(db.Model):
@@ -26,6 +28,9 @@ class Items(db.Model):
     item_description = db.Column(db.String(300), nullable=False)
     item_status = db.Column(db.String, nullable=False, default='In Stock')
 
+    def __repr__(self):
+        return f"'{self.item_name}', {self.item_quantity}, '{self.item_type}', '{self.item_status}'"
+
 
 class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -34,11 +39,17 @@ class Order(db.Model):
     order_status = db.Column(db.String, nullable=False, default='Pending')
     order_date = db.Column(db.DateTime, nullable=False,
                            default=datetime.utcnow().date())
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def __repr__(self):
+        return f"'{self.items_n_quantities}', '{self.item_types}', '{self.order_date}', '{self.order_owner}'"
 
 
 class Tempdb(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     item = db.Column(db.String, nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
-    user_name = db.Column(db.Integer, db.ForeignKey('user.name'))
+    owner = db.Column(db.Integer, nullable=False)
+
+    def __repr__(self):
+        return f"'{self.item}', '{self.item_types}', '{self.temp_order_owner}'"

@@ -32,9 +32,12 @@
                     {% if order_progress %}
                         {% for order in order_progress %}
                             <table>
-                                <title>checkout list</title>
-                                <th>item</th>
-                                <th>quantity</th>
+                                <thead>
+                                    <tr>
+                                        <th>item</th>
+                                        <th>quantity</th>
+                                    </tr>
+                                </thead>
                                 <tr>
                                     <td>{{ order.item }}</td>
                                     <td>{{ order.quantity }}</td>

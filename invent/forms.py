@@ -31,9 +31,9 @@ class New_Order(FlaskForm):
     def validate_item(self, item):
         cap_item = cap(item.data)
         check_item = Items.query.filter_by(item_name=cap_item).first()
-        check_order = Tempdb.query.filter_by(user_name=current_user.name).all()
+        check_order = Tempdb.query.filter_by(owner=current_user.id).all()
         if not check_item:
-            raise ValidationError("item is not in stock or dooesn't exist")
+            raise ValidationError("item is out of stock or dooesn't exist")
         if check_order:
             for order in check_order:
                 if cap_item in order.tem_items:

@@ -7,7 +7,9 @@ inventt.sublime-project
 inventt.sublime-workspace
 fonts
 media
-inventory.db
+inventori.db
 temporary.txt
+necc_funcs.py
+
 
 
