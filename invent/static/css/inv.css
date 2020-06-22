@@ -395,22 +395,6 @@ fieldset{
     list-style: disc;
 }
 
-.error-msg{
-    font-size: 10;
-    color: red;
-    margin-top: 0;
-    margin-bottom: 10px;
-}
-
-.info-msg{
-    font-size: 12;
-    background-color: #a9cce3;
-    color: #2e86c1;
-    margin-top: 0;
-    margin-bottom: 10px;
-    padding: 5px;
-}
-
 /*#formset{
     margin-top: 15px;
 }*/
@@ -615,7 +599,7 @@ footer .container p.small-text{
 }
 
 #nu-user{
--    background-color:#498E7B;
+    background-color:#498E7B;
 }
 
 /*#qtty{
@@ -632,19 +616,15 @@ footer .container p.small-text{
     background-color: #2e86c1;
 }
 
-#backgrdel{
+.migi #cancel{
+    align-self: flex-end r;
     background-color: red;
-    float: right;
 }
 
 #cancel:hover{
     background-color: white;
     color:red;
     border: transparent;
-}
-
-.migi #cancel{
-    align-self: flex-end r;
 }
 
 .migi #inactive{
@@ -654,6 +634,18 @@ footer .container p.small-text{
 
 #inactive:hover{
     border: none;
+    font-weight: normal;
+}
+
+.migi #make_order{
+    background-color: #47AC65;
+}
+
+#make_order:hover{
+    background-color: #95D1C0;
+    border: transparent;
+    font-weight: normal;
+    color: white;
 }
 
 .badges{
@@ -729,7 +721,7 @@ td{
 
 
 
-
+/*alerts and notifications*/
 .myalert{
     width: 95%;
     margin: auto;
@@ -776,6 +768,28 @@ td{
     border-radius: 5px;
     transition: all .3s;
 }
+.error-msg{
+    font-size: 10;
+    color: red;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.info-msg{
+    font-size: 12;
+    background-color: #a9cce3;
+    color: #2e86c1;
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+/*alerts and notifications end*/
+
+
+
+
+
+
 
 
 

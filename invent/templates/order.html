@@ -51,7 +51,7 @@
 
                 <div>
                    {% if order_progress %}
-                        <a href="{{ url_for('make_order') }}"><button type="submit" class="form-submit" onclick="orderlAlert()" id="cancel" style="background-color: #95D1C0;">make order</button></a>
+                        <a href="{{ url_for('make_order') }}"><button type="submit" class="form-submit" onclick="orderAlert()" id="make_order">make order</button></a>
                         <a href="{{ url_for('cancelorder', order_id=order_progress[-1].id) }}"><button type="submit" class="form-submit" onclick="cancelAlert()" id="cancel">cancel last</button></a>
                     {% else %}
                         <a href="#"><button type="submit" class="form-submit" onclick="inactiveAlert()" id="inactive">make order</button></a>
@@ -82,17 +82,34 @@
             <div id="order-stat">
                 <div id="pending">
                     <legend><h4>pending orders</h4></legend>
-                    {% if pending_orders %}
-                        {% for order in pending_orders %}
-                            <p class="list" style="text-align: left; color: black;">
-                            • {{ order.order_date.date() }} || {{ order.items }}</p>
+                    {% if user_orders %}
+                        {% for order in user_orders %}
+                            {% if order.order_status == 'Pending' %}
+                                <p class="list" style="text-align: left; color: black;">
+                                • {{ order.order_date.date() }} || {{ order.items_n_quantities }}</p>
+                            {% else %}
+                                <p>no pending orders</p>
+                            {% endif %}
                         {% endfor %}
+                    {% else %}
+                        <p>no orders for user</p>
                     {% endif %}
                 </div>
                 <div id="approved">
                     <fieldset class="new-order">
                         <legend><h4>approved orders</h4></legend>
-
+                        {% if user_orders %}
+                            {% for order in user_orders %}
+                                {% if order.order_status == 'Approved' %}
+                                    <p class="list" style="text-align: left; color: black;">
+                                    • {{ order.order_date.date() }} || {{ order.items_n_quantities }}</p>
+                                {% else %}
+                                    <p>no approved orders</p>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <p>no orders for user</p>
+                        {% endif %}
                     </fieldset>
                 </div>
             </div>

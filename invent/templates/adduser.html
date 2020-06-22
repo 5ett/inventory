@@ -3,13 +3,16 @@
 {% block content %}
 <section>
     <div class="container">
-        {% with message = get_flashed_messages(with_categories=true) %}
+        <div class="myalert">
+            {% with message = get_flashed_messages(with_categories=true) %}
             {% if messages  %}
                 {% for message, category in messages %}
                     <div class="{{category}}">{{ message }}</div>
                 {% endfor %}
             {% endif %}
         {% endwith %}
+        </div>
+
         <div id="">
             <form action="" method="POST" id="newuser">
                 <legend><h3 class="banner-size">add new user</h3></legend>

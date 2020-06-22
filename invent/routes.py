@@ -38,7 +38,9 @@ def order():
     in_stock = Items.query.order_by(Items.id.desc()).all()
     out_of_stock = Items.query.filter_by(
         item_quantity=0).order_by(Items.id.desc()).all()
-    return render_template('order.html', form=form, order_progress=order_progress, in_stock=in_stock, out_of_stock=out_of_stock, title='Make Order')
+    user_orders = Order.query.filter_by(
+        owner=current_user.id).order_by(Order.order_date.desc()).all()
+    return render_template('order.html', form=form, order_progress=order_progress, in_stock=in_stock, out_of_stock=out_of_stock, user_orders=user_orders, title='Make Order')
 
 
 @app.route('/cancelorder/<int:order_id>', methods=['GET', 'POST'])
@@ -52,21 +54,18 @@ def cancelorder(order_id):
 # make a new order / shaky logic/ am I depressed?
 @app.route('/make_order')
 def make_order():
-    items_n_qtty = {}
-    item_types_list = []
-    temp = Tempdb.query.filter_by(owner=current_user.id).all()
-    for temporary_order in temp:
-        items_n_qtty[temporary_order.item] = int(temporary_order.quantity)
-        check_item_type = Items.query.filter_by(
-            item_name=temporary_order.item).first()
-        check_item_type.item_quantity = int(
-            check_item_type.item_quantity) - int(temporary_order.quantity)
-        item_types_list.append(check_item_type.item_type)
-        db.session.delete(temporary_order)
-    new_order = Order(items_n_quantities=items_n_qtty,
-                      item_types=item_types_list)
-    db.session.add(new_order)
+    # item_types_list = []
+    temporay_order = Tempdb.query.filter_by(owner=current_user.id).all()
+    for order in temporay_order:
+        item_ck = Items.query.filter_by(item_name=order.item).first()
+        new_order = Order(
+            items_n_quantities=f'({order.item}, {order.quantity})', item_types=f'{item_ck.item_type}', owner=current_user.id)
+        db.session.add(new_order)
+        item_ck.item_quantity = int(
+            item_ck.item_quantity) - int(order.quantity)
+        db.session.delete(order)
     db.session.commit()
+    flash('order successful', 'succes')
     return redirect(url_for('order'))
 
 
@@ -103,6 +102,7 @@ def newuser():
         db.session.add(new_user)
         db.session.commit()
         flash('user details added succesfully', 'success')
+        return redirect(url_for('newuser'))
     else:
         flash('failed to add user, try again', 'succes')
     return render_template('adduser.html', title='Add User', form=form)
