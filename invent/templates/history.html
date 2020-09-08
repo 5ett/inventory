@@ -14,14 +14,22 @@
     <section class="history">
         <div class="container">
                 <div id="history-box-2">
-                    <legend><h4>Order History</h4></legend>
-                    {% if receipts %}
-                        {% for order in receipts %}
-                            <ul>
-                                <li><p class="small-text">{{ order.items }} {{ (order.order_date) }}</li>
-                            </ul>
-                        {% endfor %}
-                    {% endif %}
+                    <table>
+                            <legend><h4>Order History</h4></legend>
+                        <tr>
+                            <th>item & qtty</td>
+                            <th>date of order</td>
+                        </tr>
+                        <tr>
+                            {% if receipts %}
+                                {% for order in receipts %}
+                                    <td>{{ order.items_n_quantities }}</td>
+                                    <td>{{ (order.order_date) }}</td>
+                                {% endfor %}
+                            {% endif %}
+                        </tr>
+
+                    </table>
                 </div>
         </div>
     </section>

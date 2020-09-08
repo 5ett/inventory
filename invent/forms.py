@@ -36,14 +36,14 @@ class New_Order(FlaskForm):
             raise ValidationError("item is out of stock or dooesn't exist")
         if check_order:
             for order in check_order:
-                if cap_item in order.tem_items:
+                if cap_item in order.item:
                     raise ValidationError(
                         'you have already made a similar order')
 
             def validate_quantity(self, quantity):
-                check_item_quantity = Items.query.filter_by(
-                    item_name=item.data).first()
-                if check_item_quantity.item_quantity >= quantity.data or check_item_quantity.item_quantity == 0:
+                # check_item_quantity = Items.query.filter_by(
+                #     item_name=item.data).first()
+                if quantity.data > check_item.item_quantity or check_item.item_quantity == 0:
                     raise ValidationError(
                         'you request is absurd and cannot be provided')
 

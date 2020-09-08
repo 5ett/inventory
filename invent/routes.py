@@ -59,7 +59,7 @@ def make_order():
     for order in temporay_order:
         item_ck = Items.query.filter_by(item_name=order.item).first()
         new_order = Order(
-            items_n_quantities=f'({order.item}, {order.quantity})', item_types=f'{item_ck.item_type}', owner=current_user.id)
+            items_n_quantities=f'{order.item}, {order.quantity}', item_types=f'{item_ck.item_type}', owner=current_user.id)
         db.session.add(new_order)
         item_ck.item_quantity = int(
             item_ck.item_quantity) - int(order.quantity)
@@ -78,7 +78,7 @@ def pending_orders():
 @app.route('/history')
 def history():
     receipts = Counter(Order.query.filter_by(
-        user_id=current_user.id).order_by(Order.order_date.desc()).all())
+        owner=current_user.id).order_by(Order.order_date.desc()).all())
     return render_template('history.html', receipts=receipts, title='Profile & History')
 
 

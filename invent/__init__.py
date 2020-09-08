@@ -12,3 +12,4 @@ guard = Bcrypt(app)
 osyrus = LoginManager(app)
 
 from invent import routes
+from invent import other_functions

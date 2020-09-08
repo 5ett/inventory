@@ -17,7 +17,7 @@ class User(db.Model, UserMixin):
     order_owner = db.relationship('Order', backref='maker', lazy=True)
 
     def __repr__(self):
-        return f"User('{self.id}','{self.name}', '{self.email}', '{self.usrname}')"
+        return f"User('{self.id}','{self.name}', '{self.email}', '{self.username}')"
 
 
 class Order(db.Model):

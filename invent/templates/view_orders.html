@@ -14,7 +14,7 @@
                     <tr>
                         {% for order in all_orders %}
                             <td>{{order.id}}</td>
-                            <td>{{order.owner.name}}</td>
+                            <td>{{order.maker.name}}</td>
                             <td>{{order.items_n_quantities}}</td>
                             <td>{{order.order_date}}</td>
                         {% endfor %}
