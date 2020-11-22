@@ -4,38 +4,43 @@
 {% block content %}
 <body class="bg-light">
     <div class="container2">
+
         <div class="row order-row">
                     <div class="col-md-8 order-md-1 col">
                         <h4 class="mb-3">New Order</h4>
                         <form class="" method="POST">
+                            {{ form.hidden_tag() }}
                           <div class="row">
                             <div class="col-md-6 mb-4">
-                              <label for="firstName">First name</label>
-                              <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-                              <div class="invalid-feedback">
-                                Valid first name is required.
-                              </div>
+                                {{ form.item(class='form-control', placeholder='search item') }}
+                                {% if form.item.errors %}
+                                    {% for err in form.item.errors %}
+                                        <div class="invalid-feedback">
+                                            {{err}}
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
                             </div>
                             <div class="col-md-6 mb-4">
-                              <label for="lastName">Quantity</label>
-                              <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+
+                              {{ form.quantity(class='form-control', placeholder='quantity') }}
                               <div class="invalid-feedback">
-                                Valid last name is required.
+
                               </div>
                             </div>
                           </div>
 
                           <div class="mb-4">
                             <div class="input-group">
-                              <input type="text" class="form-control" id="username" placeholder="item type">
+                              {{ form.item_type(class='form-control', placeholder='item type', disabled="") }}
                             </div>
                           </div>
 
                           <div class="mb-4">
-                            <input type="email" class="form-control" id="item-desc" placeholder="item description">
+                            {{ form.item_description(class='form-control', placeholder='item description', disabled="") }}
                           </div>
 
-                          <button class="btn btn-primary btn-lg btn-block" type="submit">Add to order</button>
+                          {{ form.add(class='btn btn-primary btn-lg btn-block') }}
                           <div class="row">
                           </div>
                         </form>
@@ -45,35 +50,31 @@
 
 
                           <h4 class="mb-3">Request New Item</h4>
-                          <form class="needs-validation" novalidate>
-
+                          <form class="needs-validation" >
+                            {{ form.hidden_tag() }}
                           <div class="row">
                             <div class="col-md-6 mb-3 col">
-                              <label for="cc-name">Item Name</label>
-                              <input type="text" class="form-control" id="cc-name" placeholder="" required>
-                              <small class="text-muted">Start each word with block letters</small>
+                              {{ new_request.item(class='form-control', placeholder='item') }}
+                              <small class="text-muted" style="font-size: 12;"">Start each word with block letters</small>
                               <div class="invalid-feedback">
                                 Name on card is required
                               </div>
                             </div>
                             <div class="col-md-6 mb-3">
-                              <label for="cc-number">Item Type</label>
-                              <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                              {{ new_request.quantity(class='form-control', placeholder='quantity') }}
                             </div>
                           </div>
                           <div class="row">
                             <div class="col-md-3 mb-3">
-                              <label for="">Item Type</label>
-                              <input type="text" class="form-control" id="" placeholder="" >
-                              <small class="text-muted">eg. Drinks, Stationery, Houehold Item etc</small>
+                                {{ new_request.item_type(class='form-control', placeholder='item type') }}
+                              <small class="text-muted" style="font-size: 12;">eg. Drinks, Stationery, Houehold Item etc</small>
                             </div>
                             <div class="col-md-3 mb-3">
-                              <label for="cc-cvv">Description</label>
-                              <input type="text" class="form-control" id="cc-cvv" placeholder="">
+                              {{ new_request.item_description(class='form-control', placeholder='item description') }}
+                              <small class="text-muted" style="font-size: 12;">eg. Boxes, Cartons, Sticks etc</small>
                             </div>
                           </div>
-
-                          <button class="btn btn-primary btn-lg btn-block" type="submit">Submit for review and purchase</button>
+                            {{ new_request.second_sub(class='btn btn-primary btn-lg btn-block') }}
                         </form>
                       </div>
 
@@ -82,44 +83,43 @@
                       <div class="col-md-4 order-md-2 mb-4">
                         <h4 class="d-flex justify-content-between align-items-center mb-3">
                             <span class="text-muted">Your Order</span>
-                            <span class="badge badge-secondary badge-pill">5</span>
+                            {% if order_progress %}
+                                <span class="badge badge-secondary badge-pill">{{ size }}</span>
+                            {% else %}
+                                <span class="badge badge-secondary badge-pill">0</span>
+                            {% endif %}
                         </h4>
                         <ul class="list-group mb-3">
-                            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                <div>
-                                    <h6 class="my-0">Ordered Item</h6>
-                                    <small class="text-muted">Item Type</small>
-                                  </div>
-                                  <span class="text-muted">12</span>
-                                  <a href=""><img class="img-btn" src="bin.png" alt=""></a>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                <div>
-                                    <h6 class="my-0">Ordered Item</h6>
-                                    <small class="text-muted">Item Type</small>
-                                  </div>
-                                  <span class="text-muted">12</span>
-                                  <a href=""><img class="img-btn" src="bin.png" alt=""></a>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                <div>
-                                    <h6 class="my-0">Ordered Item</h6>
-                                    <small class="text-muted">Item Type</small>
-                                  </div>
-                                  <span class="text-muted">12</span>
-                                  <a href=""><img class="img-btn" src="bin.png" alt=""></a>
-                            </li>
+                            {% if order_progress %}
+                                {% for order in order_progress %}
+                                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                    <div>
+                                        <h6 class="my-0">{{ order.item }}</h6>
+                                        <small class="text-muted">{{referenced_type}}</small>
+                                      </div>
+                                      <span class="text-muted">{{order.quantity}}</span>
+                                      <a href="{{ url_for('cancelorder', order_id=order.id) }}"><img class="img-btn" src="{{url_for('static', filename='media/icons/bin.png')}}" alt=""></a>
+                                </li>
+                                {% endfor %}
+                            {% else %}
+                                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                    <div>
+                                        <h6 class="my-0">No Current Order</h6>
+                                        <small class="text-muted" style="font-size: 11;">your ordered items will appear here</small>
+                                    </div>
+                                </li>
+                            {% endif %}
                             <li class="list-group-item d-flex justify-content-between">
                                 <span>Order made on</span>
-                                <strong>24/05/04</strong>
+                                <strong>{{today}}</strong>
                             </li>
                         </ul>
                         <div class="card p-2">
                             <div class="input-group">
-                              <input type="text" class="form-control" placeholder="Owner" disabled>
-                              <div class="input-group-append">
-                                <button type="submit" class="btn btn-secondaire">Make Order</button>
-                              </div>
+                              <input type="text" class="form-control" placeholder="{{current_user.name}}" disabled>
+
+                                <a href="{{ url_for('make_order') }}" class="btn-block"><button type="submit" class="btn btn-secondaire">Make Order</button></a>
+
                             </div>
                           </div>
                     </div>

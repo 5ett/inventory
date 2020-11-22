@@ -1,0 +1,995 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"item_desc",
+				"item_description"
+			],
+			[
+				"refer",
+				"refrenced_type\tstatement"
+			],
+			[
+				"item",
+				"item_type"
+			],
+			[
+				"btn",
+				"btn-block\t inv.css"
+			],
+			[
+				"ord",
+				"order_progress\tstatement"
+			],
+			[
+				"ut",
+				"utcnow\tfunction"
+			],
+			[
+				"date",
+				"datetime\tclass"
+			],
+			[
+				"to",
+				"today\tstatement"
+			],
+			[
+				"u",
+				"utcnow\tfunction"
+			],
+			[
+				"new",
+				"new_request"
+			],
+			[
+				"new_request_",
+				"new_request_type\tstatement"
+			],
+			[
+				"I",
+				"Items\tclass"
+			],
+			[
+				"Add",
+				"AddnewItem\tclass"
+			],
+			[
+				"A",
+				"AddnewItem\tclass"
+			],
+			[
+				"padd",
+				"padding-top\tproperty"
+			],
+			[
+				"padding",
+				"padding-top\tproperty"
+			],
+			[
+				"text",
+				"text-decoration\tproperty"
+			],
+			[
+				"back",
+				"background-position\tproperty"
+			],
+			[
+				"it",
+				"item_status"
+			],
+			[
+				"order",
+				"order_date\tstatement"
+			],
+			[
+				"fil",
+				"filter_by"
+			],
+			[
+				"qu",
+				"query"
+			],
+			[
+				"Ord",
+				"Orders"
+			],
+			[
+				"bacck",
+				"background-color\tproperty"
+			],
+			[
+				"font-",
+				"font-weight\tproperty"
+			],
+			[
+				"border",
+				"border\tproperty"
+			],
+			[
+				"ite",
+				"item_ck\tstatement"
+			],
+			[
+				"ret",
+				"return\tkeyword"
+			],
+			[
+				"c",
+				"current_user"
+			],
+			[
+				"os",
+				"osyrus"
+			],
+			[
+				"ar",
+				"argv\tinstance"
+			],
+			[
+				"tab",
+				"table\tfunction"
+			],
+			[
+				"re",
+				"return\tkeyword"
+			],
+			[
+				"table",
+				"table_element"
+			],
+			[
+				"in",
+				"instance\tstatement"
+			],
+			[
+				"if",
+				"ifmain\tif __name__ == '__main__'"
+			],
+			[
+				"Mi",
+				"MigrateCommand\tinstance"
+			],
+			[
+				"M",
+				"Manager\tstatement"
+			],
+			[
+				"try",
+				"try\tTry/Except"
+			],
+			[
+				"margin",
+				"margin-left\tproperty"
+			],
+			[
+				"check",
+				"check_item_quantity\tstatement"
+			],
+			[
+				"item_type",
+				"item_types_list\tstatement"
+			],
+			[
+				"items_",
+				"items_n_qtty\tstatement"
+			],
+			[
+				"margi",
+				"margin\tproperty"
+			],
+			[
+				"bor",
+				"border-radius\tproperty"
+			],
+			[
+				"font",
+				"font-size\tproperty"
+			],
+			[
+				"all",
+				"all_orders\tstatement"
+			],
+			[
+				"s",
+				"sf"
+			],
+			[
+				"paddign",
+				"padding-top\tproperty"
+			],
+			[
+				"item_",
+				"item_quantity\tstatement"
+			],
+			[
+				"de",
+				"desc"
+			],
+			[
+				"fle",
+				"flex-start\talign-self"
+			],
+			[
+				"Te",
+				"Tempdb\tclass"
+			],
+			[
+				"ali",
+				"align-self\tproperty"
+			],
+			[
+				"order_",
+				"order_status"
+			],
+			[
+				"In",
+				"Integer"
+			],
+			[
+				"ca",
+				"cap\tfunction"
+			],
+			[
+				"cap",
+				"capwords\tfunction"
+			],
+			[
+				"def",
+				"default"
+			],
+			[
+				"int",
+				"Integer"
+			],
+			[
+				"f",
+				"flex\tproperty"
+			],
+			[
+				"box",
+				"box-sizing\tproperty"
+			],
+			[
+				"flex",
+				"flex-direction\tproperty"
+			],
+			[
+				"backgr",
+				"background-color\tproperty"
+			],
+			[
+				"font-s",
+				"font-size\tproperty"
+			],
+			[
+				"BORDER",
+				"border-radius\tproperty"
+			],
+			[
+				"list",
+				"list-style\tproperty"
+			],
+			[
+				"backgroiu",
+				"background-size\tproperty"
+			],
+			[
+				"next",
+				"next_page\tstatement"
+			],
+			[
+				"pendi",
+				"pending_orders\tstatement"
+			],
+			[
+				"tem",
+				"temporary_order\tstatement"
+			],
+			[
+				"dele",
+				"delete"
+			],
+			[
+				"na",
+				"name"
+			],
+			[
+				"made",
+				"order_made_by"
+			],
+			[
+				"or",
+				"order_progress"
+			],
+			[
+				"q",
+				"quantity\tstatement"
+			],
+			[
+				"form",
+				"form_1\tstatement"
+			],
+			[
+				"ty",
+				"typpe\tstatement"
+			],
+			[
+				"form_",
+				"form_1"
+			],
+			[
+				"fi",
+				"filter_by"
+			],
+			[
+				"oder",
+				"order_progress"
+			],
+			[
+				"can",
+				"cancel_items"
+			],
+			[
+				"last",
+				"last_item\tstatement"
+			],
+			[
+				"canc",
+				"cancel_items\tstatement"
+			],
+			[
+				"Ma",
+				"MakeOrder\tclass"
+			],
+			[
+				"ch",
+				"check_item\tstatement"
+			],
+			[
+				"for",
+				"form_2\tstatement"
+			],
+			[
+				"Valid",
+				"validators\tparam"
+			],
+			[
+				"marg",
+				"margin-top\tproperty"
+			],
+			[
+				"recent",
+				"recents_list\tstatement"
+			],
+			[
+				"name",
+				"item_name"
+			],
+			[
+				"rece",
+				"recents_list\tstatement"
+			],
+			[
+				"fo",
+				"form"
+			],
+			[
+				"valida",
+				"validate_on_submit\tfunction"
+			],
+			[
+				"da",
+				"danger"
+			],
+			[
+				"side",
+				"sidebar-item\t inv.css"
+			],
+			[
+				"valisa",
+				"validators\tparam"
+			],
+			[
+				"lo",
+				"login_required\tfunction"
+			],
+			[
+				"mar",
+				"margin-top\tproperty"
+			],
+			[
+				"paddin",
+				"padding-top\tproperty"
+			],
+			[
+				"log",
+				"logout_user\tfunction"
+			],
+			[
+				"logo",
+				"logout_user\tfunction"
+			],
+			[
+				"va",
+				"ValidationError\tclass"
+			],
+			[
+				"user",
+				"user_auth\tstatement"
+			],
+			[
+				"logi",
+				"login_user\tfunction"
+			],
+			[
+				"flask_",
+				"flask_login\tmodule"
+			],
+			[
+				"pas",
+				"passwd\tstatement"
+			],
+			[
+				"pass",
+				"password"
+			],
+			[
+				"Use",
+				"UserMixin\tclass"
+			],
+			[
+				"Us",
+				"UserMixin\tclass"
+			],
+			[
+				"falsk",
+				"flask_login\tmodule"
+			],
+			[
+				"tra",
+				"transition\tproperty"
+			],
+			[
+				"trans",
+				"transition\tproperty"
+			],
+			[
+				"mo",
+				"montserat"
+			],
+			[
+				"mon",
+				"montserat-b"
+			],
+			[
+				"w",
+				"work-sans"
+			],
+			[
+				"v",
+				"ValidationError\tclass"
+			],
+			[
+				"border-c",
+				"border-color\tproperty"
+			],
+			[
+				"thi",
+				"thin\tborder-width"
+			],
+			[
+				"borde",
+				"border\tproperty"
+			],
+			[
+				"E",
+				"Email\tclass"
+			],
+			[
+				"e",
+				"Email\tclass"
+			],
+			[
+				"S",
+				"SubmitField\tclass"
+			],
+			[
+				"Ne",
+				"NewUser\tclass"
+			],
+			[
+				"N",
+				"NewUser\tclass"
+			],
+			[
+				"valid",
+				"validate_on_submit\tfunction"
+			],
+			[
+				"p",
+				"pritn\tfunction"
+			],
+			[
+				"ra",
+				"ratty\tstatement"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/E/1.3/slavia/inventory/.gitignore",
+			"settings":
+			{
+				"buffer_size": 5,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Anaconda Python Builder",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"g",
+				"Git: Commit"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Remove Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/E/1.3/slavia/inventory"
+	],
+	"file_history":
+	[
+		"/E/1.3/slavia/inventory/invent/templates/order.html",
+		"/E/1.3/slavia/inventory/invent/forms.py",
+		"/E/1.3/slavia/inventory/temporary.txt",
+		"/E/1.3/slavia/inventory/invent/static/css/inv.css",
+		"/E/1.3/slavia/inventory/invent/templates/grounds.html",
+		"/E/1.3/slavia/inventory/invent/routes.py",
+		"/E/1.3/slavia/inventory/invent/other_functions.py",
+		"/E/1.3/slavia/inventory/invent/models.py",
+		"/E/1.3/slavia/inventory/necc_funcs.py",
+		"/E/1.3/slavia/inventory/invent/static/css/extra.css",
+		"/E/1.3/slavia/inventory/invent/templates/additem.html",
+		"/E/1.3/slavia/inventory/invent/templates/adduser.html",
+		"/E/1.3/slavia/inventory/invent/templates/history.html",
+		"/E/1.3/slavia/inventory/invent/templates/view_orders.html",
+		"/E/1.3/slavia/inventory/invent/__init__.py",
+		"/E/1.3/slavia/inventory/invent/static/css/inventory.js",
+		"/E/1.3/slavia/inventory/.gitignore",
+		"/E/1.3/slavia/inventory/invent.bat",
+		"/E/1.3/slavia/inventory/invent.py",
+		"/E/1.3/slavia/latvia/tryts.py",
+		"/E/1.3/slavia/latvia/tinyurl.py",
+		"/E/1.3/slavia/inventory/invent/static/inventory.js",
+		"/E/1.3/slavia/inventory/invent/templates/manage_users.html",
+		"/C/Users/SONY/AppData/Roaming/Sublime Text 3/Packages/User/Anaconda.sublime-settings",
+		"/C/Users/SONY/AppData/Roaming/Sublime Text 3/Packages/Anaconda/Anaconda.sublime-settings",
+		"/E/1.3/slavia/inventory/invent/inventory.db",
+		"/E/1.3/slavia/inventory/invent/templates/index.html",
+		"/E/1.3/slavia/inventory/invent/templates/catalogue.html",
+		"/C/Users/SONY/Desktop/ht.html",
+		"/E/1.3/slavia/inventory/invent/inventt.sublime-project",
+		"/E/1.3/slavia/stack/surverysis.py",
+		"/E/1.3/slavia/inventory/invent/static/font-awesome.min.css",
+		"/E/1.3/slavia/rumble/routes.py",
+		"/E/1.3/slavia/inventory/invent/static/inv.css",
+		"/E/1.3/slavia/Lootwell/flapp/ichi/routes.py",
+		"/E/1.3/slavia/rumble/grounds.html",
+		"/E/1.3/slavia/rumble/viewreq.html",
+		"/E/1.3/slavia/rumble/login.html",
+		"/E/1.3/slavia/rumble/view.html",
+		"/E/1.3/slavia/rumble/models.py",
+		"/E/1.3/slavia/rumble/forms.py",
+		"/E/1.3/slavia/inventory/invent/templates/adduser",
+		"/C/Users/SONY/AppData/Roaming/Sublime Text 3/Packages/ColorPicker/ColorPicker.sublime-settings",
+		"/C/Users/SONY/AppData/Roaming/Sublime Text 3/Packages/User/ColorPicker.sublime-settings",
+		"/E/1.3/slavia/covid-19_livefeed.py",
+		"/C/Users/SONY/AppData/Roaming/Sublime Text 3/Packages/Git/Git.sublime-settings",
+		"/C/Users/SONY/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/SONY/AppData/Roaming/Sublime Text 3/Packages/Origami/Default (Windows).sublime-keymap",
+		"/C/Users/SONY/AppData/Roaming/Sublime Text 3/Packages/User/Origami.sublime-settings",
+		"/C/Users/SONY/AppData/Roaming/Sublime Text 3/Packages/Origami/Origami.sublime-settings",
+		"/C/Users/SONY/AppData/Roaming/Sublime Text 3/Packages/Terminal/Terminal.sublime-settings",
+		"/C/Users/SONY/AppData/Roaming/Sublime Text 3/Packages/User/Terminal.sublime-settings",
+		"/E/1.3/slavia/rumble/__init__.py",
+		"/E/1.3/slavia/rumble/otherfuncs.py",
+		"/E/1.3/slavia/inventory/templates/index.html",
+		"/E/1.3/slavia/inventory/templates/login.html",
+		"/E/1.3/slavia/inventory/templates/order.html",
+		"/C/Users/SONY/AppData/Roaming/Sublime Text 3/Packages/User/Git.sublime-settings",
+		"/C/Users/SONY/Desktop/blofi/index.html.htm",
+		"/C/Users/SONY/Desktop/blofi/blofi.css",
+		"/E/1.3/slavia/stack/tryts.py",
+		"/C/Users/SONY/Desktop/fork/covfork.py",
+		"/C/Users/SONY/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/SONY/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/E/1.3/slavia/newcovfork/covid-19_livefeed.py",
+		"/E/1.3/slavia/newcovfork/databank.txt",
+		"/E/1.3/slavia/newcovfork/newcovfork.py",
+		"/E/1.3/slavia/tryts.py",
+		"/C/Users/SONY/Desktop/fork/wrkspc.py",
+		"/C/Users/SONY/AppData/Roaming/Sublime Text 3/Packages/User/Emmet.sublime-settings",
+		"/C/Users/SONY/AppData/Roaming/Sublime Text 3/Packages/Emmet/Emmet.sublime-settings",
+		"/C/Users/SONY/AppData/Roaming/Sublime Text 3/Packages/User/Side Bar.sublime-settings",
+		"/C/Users/SONY/AppData/Roaming/Sublime Text 3/Packages/User/sublime_jedi.sublime-settings",
+		"/E/1.3/slavia/databank.txt",
+		"/E/1.3/slavia/newcovfork.py",
+		"/E/1.3/slavia/corona.py",
+		"/C/Users/SONY/Desktop/fork/tryts.py",
+		"/C/Users/SONY/AppData/Roaming/Sublime Text 3/Packages/SideBarEnhancements/Side Bar.sublime-settings",
+		"/C/Users/SONY/Desktop/fork/lop.py"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"span",
+			"h4",
+			"muted",
+			"text-muted",
+			"pending_orders",
+			"pending",
+			"string.capwords",
+			"orders",
+			"'orders'",
+			"orders",
+			"<li>",
+			"order",
+			"string.capwords",
+			"cancel",
+			"form_1",
+			"stock",
+			"sto",
+			"app",
+			"stock",
+			"newor",
+			"migi",
+			"neworder",
+			"new-order",
+			"neworder",
+			"pending-",
+			"out",
+			"new-orde",
+			"outofo",
+			"user",
+			"backgrd",
+			"small",
+			"<small>",
+			"</small>",
+			"item_type",
+			"h3.banner",
+			"h3 ban",
+			"legend",
+			"form-field-info",
+			"form",
+			"top",
+			"5px",
+			"username",
+			"first_name",
+			"fst-gen",
+			"form"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/E/1.3/slavia/inventory/.gitignore",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": ".",
+									"selector": "source.python - string - comment - constant.numeric"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								}
+							],
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content"
+							],
+							"syntax": "Packages/Git Formats/Git Ignore.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 69.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.CSS Extended Completions":
+	{
+		"height": 0.0
+	},
+	"output.Terminus":
+	{
+		"height": 236.0
+	},
+	"output.Terminus 2":
+	{
+		"height": 150.0
+	},
+	"output.exec":
+	{
+		"height": 150.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 150.0
+	},
+	"output.mdpopups":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "inventt.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 152.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

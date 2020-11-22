@@ -17,3 +17,8 @@ def return_item_status():
 
 
 return_item_status()
+
+
+def check_item(item):
+    check = Items.query.filter_by(item_name=item).first()
+    return check

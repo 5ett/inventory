@@ -26,7 +26,9 @@ class Login(FlaskForm):
 class New_Order(FlaskForm):
     item = StringField('search item', validators=[DataRequired()])
     quantity = IntegerField('quantity', validators=[DataRequired()])
-    add = SubmitField('add to order')
+    add = SubmitField('Add to order')
+    item_type = StringField('item type')
+    item_description = StringField('item description')
 
     def validate_item(self, item):
         cap_item = cap(item.data)
@@ -99,6 +101,7 @@ class AddnewItem(FlaskForm):
     item_description = StringField(
         'item description', validators=[DataRequired()])
     submit = SubmitField('add item')
+    second_sub = SubmitField('Submit for review and purchase')
 
     def validate_item(self, item):
         item_check = Items.query.filter_by(item_name=item.data).first()

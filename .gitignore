@@ -1,16 +1,4 @@
-Include
-Lib
-Scripts
-pyvenv.cfg
-__pycache__
-inventt.sublime-project
-inventt.sublime-workspace
-fonts
-media
-invent1.db
-temporary.txt
-necc_funcs.py
-invent.bat
+
 
 
 
