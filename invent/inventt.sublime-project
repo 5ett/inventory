@@ -5,17 +5,13 @@
 			"file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
 			"name": "Anaconda Python Builder",
 			"selector": "source.python",
-			"shell_cmd": "\"e:\\1.3\\slavia\\inventory\\Scripts\\python\" -u \"$file\""
+			"shell_cmd": "\"python\" -u \"$file\""
 		}
 	],
 	"folders":
 	[
 		{
-			"path": "E:\\1.3\\slavia\\inventory"
+			"path": "D:\\2.3\\appppoi\\inventory"
 		}
-	],
-	"settings":
-	{
-		"python_interpreter": "E:\\1.3\\slavia\\inventory\\Scripts\\python"
-	}
+	]
 }

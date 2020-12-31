@@ -1,5 +1,12 @@
 import string
 from invent.models import Items
+from datetime import datetime
+
+
+today = str(datetime.utcnow().date())
+today = today.replace('-', '/')
+
+print(today)
 
 
 def cap(item):

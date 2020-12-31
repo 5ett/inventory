@@ -3,85 +3,105 @@
 {% block head %}
 {% endblock %}
      {% block content %}
-     <div class="bkgrd">
-       <section class="grey">
-            <div class="container">
-                <div id="hidari">
-                    <h1 class="banner-size">
-                        Your <br>
-                        Logistics <br>
-                        Anywhere You Are!
-                    </h1>
-                    <p class="small-text">Our team is always ready to take your ideas to the their utmost uniqueness. We are always growing and learning and always hoping to make your brand what it deserves to be.</p>
-                    <button type="submit" class="ichi"><a href="{{url_for('catalogue')}}">view catalogue</a></button>
-                </div>
-                <div id="migi">
-                    <div class="myalert">
-                        {% with messages = get_flashed_messages(with_categories=true) %}
-                            {% if messages  %}
-                                {% for category, message in messages %}
-                                    <div class="{{category}}">{{ message }}</div>
-                                {% endfor %}
-                            {% endif %}
-                        {% endwith %}
-                    </div>
+       <div class="container-neo ">
+                <div class="">
                     {% if current_user.is_authenticated %}
-                        <div class="up-img">
-                            <h3 class="banner-size">Welcome to the Inventory</h3>
-                        </div>
-                    {% else %}
-                        <form action="" method="POST" id="formset">
-                            <fieldset class="">
-                                {{ form.hidden_tag() }}
-                                <div>
+                    <div class="grocery-back-nosplit">
+                        <div class="index-no-split">
+                            <h1>
+                                Your <br>
+                                Logistics <br>
+                                Anywhere You Are!
+                            </h1>
+                            <p class="small">Our team is always ready to take your ideas to the their utmost uniqueness. We are always growing and learning and always hoping to make your brand what it deserves to be.</p>
+                            <button type="submit" class="btn btn-primary btn-unique"><a href="{{url_for('catalogue')}}">view catalogue</a></button>
 
-                                {% if form.email.errors %}
-                                    {{form.email(class='form-field-err', id='fst-gen', placeholder='email')}}
-                                        {% for error in form.email.errors %}
-                                            <div class="error-msg"><span>{{error}}</span></div>
-                                        {% endfor %}
-                                {% else %}
-                                    {{ form.email(class='form-field', id='fst-gen', placeholder='email') }}
-                                {% endif %}
-                                </div>
-                                <div>
-                                    {{ form.password(class='form-field', placeholder='password') }}
-                                </div>
-                                <div>
-                                    {{ form.submit(class='form-submit') }}
-                                </div>
-                            </fieldset>
-                        </form>
-                    {% endif %}
+                            <!-- <p class="company-info">
+                                <span><img src="static/media/favicon.png" alt="motaku_pr_mini_logo" class="footer-img"><small>MotakuPR&copy; 2020 | Designed by the Motaku Team&reg;</small></span>
+                            </p> -->
+
+                            <div class="slide-menu wrapper">
+                                <div class="slide-menu-item">inv 1</div>
+                                <div class="slide-menu-item">inv 2</div>
+                                <div class="slide-menu-item">inv 3</div>
+                                <div class="slide-menu-item">inv 4</div>
+                                <div class="slide-menu-item">inv 5</div>
+                                <div class="slide-menu-item">inv 6</div>
+                            </div>
+                        </div> 
+                        
+                        
+                    </div>
+
+                    
+
+                    
+                    {% else %}
+                    <div class="split">
+                        <div class="grocery-back">
+                            <div class="float-left">
+                                <h1>
+                                    Your <br>
+                                    Logistics <br>
+                                    Anywhere You Are!
+                                </h1>
+                                <p class="small">Our team is always ready to take your ideas to the their utmost uniqueness. We are always growing and learning and always hoping to make your brand what it deserves to be.</p>
+                                <button type="submit" class="btn btn-primary"><a href="{{url_for('catalogue')}}">view catalogue</a></button>
+
+                                <p class="company-info">
+                                    <span><img src="static/media/favicon.png" alt="motaku_pr_mini_logo" class="footer-img"><small>MotakuPR&copy; 2020 | Designed by the Motaku Team&reg;</small></span>
+                                </p>
+                            </div>
+                        </div>
+
+                            <div class="float-right login">
+                                
+                                    {% with messages = get_flashed_messages(with_categories=true) %}
+                                        {% if messages  %}
+                                            {% for category, message in messages %}
+                                            <div class="alert">
+                                                <div class="alert-{{category}}">{{ message }}</div>
+                                            </div>
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endwith %}
+                                
+                                <form action="" method="POST">
+                                    {{ form.hidden_tag() }}
+                                    <h6>Log in</h6>
+                                    <div class="fields">                        
+                                        {% if form.email.errors %}
+                                            {{form.email(class='form-control is-invalid', placeholder='email')}}
+                                            {% for error in form.email.errors %}
+                                                <div class="invalid-feedback"><span>{{error}}</span></div>
+                                            {% endfor %}
+                                        {% else %}
+                                            {{ form.email(class='form-control field', placeholder='email') }}
+                                        {% endif %}
+                                        
+                                        <div>
+                                            {{ form.password(class='form-control field', placeholder='password') }}
+                                        </div>                
+                                        <input name="bot-field" id="bot-field">
+                                        <!-- <button type="submit" class="btn custom-btn">send</button> -->
+                                        <div>
+                                            {{ form.submit(class='btn custom-btn') }}
+                                        </div>
+                                    </div>
+                                
+                                </form>
+                            </div>
+                        {% endif %}     
+                    </div>        
                 </div>
-            </div>
-        </section>
-        <section>
-        {% if current_user.is_authenticated %}
-            <div class="container">
-                <div class="preview">
-                    <label>
-                        <a href="{{ url_for('catalogue') }}">
-                        New Updates in <br>
-                        Catalogue
-                        </a>
-                    </label>
-                    <ul>
-                        {% if in_stock %}
-                            {% for new_item in in_stock[0:4]  %}
-                                <li>{{new_item.item_name}}</li>
-                            {% endfor %}
-                        {% else %}
-                            <li>brunch</li>
-                            <li>brunch</li>
-                            <li>brunch</li>
-                            <li>brunch</li>
-                        {% endif %}
-                    </ul>
+            <div>
+            {% if current_user.is_authenticated %}
+                <div class="">
+
                 </div>
+            {% endif %}
             </div>
-        {% endif %}
-        </section>
+        </div>    
     </div>
 {% endblock %}
 

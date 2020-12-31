@@ -35,7 +35,8 @@ class New_Order(FlaskForm):
         check_item = Items.query.filter_by(item_name=cap_item).first()
         check_order = Tempdb.query.filter_by(owner=current_user.id).all()
         if not check_item:
-            raise ValidationError("item is out of stock or dooesn't exist")
+            raise ValidationError(
+                "item is out of stock or doesn't exist. Use the form below to request for purchase")
         if check_order:
             for order in check_order:
                 if cap_item in order.item:
@@ -45,9 +46,11 @@ class New_Order(FlaskForm):
             def validate_quantity(self, quantity):
                 # check_item_quantity = Items.query.filter_by(
                 #     item_name=item.data).first()
-                if quantity.data > check_item.item_quantity or check_item.item_quantity == 0:
+                if int(quantity.data) > int(check_item.item_quantity):
                     raise ValidationError(
-                        'you request is absurd and cannot be provided')
+                        'your request is absurd and cannot be provided')
+                if  int(check_item.item_quantity) == 0:
+                    raise ValidationError('your request is absurd and cannot be taken seriously')
 
 
 class NewUser(FlaskForm):

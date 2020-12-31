@@ -1,114 +1,40 @@
-<section class="plain">
-        <div class="container">
-            <div class="hidari">
-               <form action="" method="POST" id="orderset">
-                    <fieldset class="new-order">
-                        <legend><h4>Order Form</h4></legend>
-                        {{ form.hidden_tag() }}
-                        <div>
-                            {% if form.item.errors %}
-                                {{ form.item(class='form-field-err', id='fst-gen', placeholder='search item') }}
-                                {% for error in form.item.errors %}
-                                    <div class="error-msg"><span>{{ error }}</span></div>
+<div class=".float-right-login">
+                    <div class="myalert">
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages  %}
+                                {% for category, message in messages %}
+                                    <div class="{{category}}">{{ message }}</div>
                                 {% endfor %}
-                            {% else %}
-                                {{ form.item(class='form-field', id='fst-gen', placeholder='search item') }}
                             {% endif %}
+                        {% endwith %}
+                    </div>
+                    {% if current_user.is_authenticated %}
+                        <div class="up-img">
+                            <h3 class="banner-size">Welcome to the Inventory</h3>
                         </div>
-                        <div>
-                            {{ form.quantity(class='form-field', placeholder='quantity') }}
-                        </div>
-                        <div>
-                            {{ form.add(class='form-submit') }}
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-            <div class="migi">
-                <div class="orders">
-                    {% if order_progress %}
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>item</th>
-                                <th>quantity</th>
-                            </tr>
-                        </thead>
-                        {% for order in order_progress %}
-
-                                <tr>
-                                    <td>{{ order.item }}</td>
-                                    <td>{{ order.quantity }}</td>
-                                </tr>
-
-                        {% endfor %}
-                    </table>
                     {% else %}
-                        <legend class="notification" style="font-family: 'sf'; font-size: 18; color: inherit; " >no item in checkout list</legend>
-                    {% endif %}
-                </div>
+                        <form action="" method="POST" class="log-in-form">
+                            <fieldset class="">
+                                {{ form.hidden_tag() }}
+                                <div>
 
-                <div>
-                   {% if order_progress %}
-                        <a href="{{ url_for('make_order') }}"><button type="submit" class="form-submit" onclick="orderAlert()" id="make_order">make order</button></a>
-                        <a href="{{ url_for('cancelorder', order_id=order_progress[-1].id) }}"><button type="submit" class="form-submit" onclick="cancelAlert()" id="cancel">cancel last</button></a>
-                    {% else %}
-                        <a href="#"><button type="submit" class="form-submit" onclick="inactiveAlert()" id="inactive">make order</button></a>
-                        <a href="#"><button type="submit" class="form-submit"  onclick='inactiveAlert2()' id="inactive">cancel last</button></a>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="badges">
-        <div class="container">
-            <div id="stock">
-                <div id="stock-stat" style="width: 45%;">
-                    <legend><h4>new stock</h4></legend>
-                    {% for item in in_stock %}
-                        {% if item.item_quantity != 0 %}
-                            <p class="list" style="text-align: left;">• {{item.item_name}}</p>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-                <div id="stock-stat" style="width: 45%;">
-                    <legend><h4>out of Stock</h4></legend>
-                        {% for item in out_of_stock %}
-                                <p class="list" style="text-align: left;">• {{item.item_name}}</p>
-                    {% endfor %}
-                </div>
-            </div>
-            <div id="order-stat">
-                <div id="pending">
-                    <legend><h4>pending orders</h4></legend>
-                    {% if user_orders %}
-                        {% for order in user_orders %}
-                            {% if order.order_status == 'Pending' %}
-                                <p class="list" style="text-align: left; color: black;">
-                                • {{ order.order_date.date() }} || {{ order.items_n_quantities }}</p>
-                            {% else %}
-                                <p>no pending orders</p>
-                            {% endif %}
-                        {% endfor %}
-                    {% else %}
-                        <p>no orders for user</p>
-                    {% endif %}
-                </div>
-                <div id="approved">
-                    <fieldset class="new-order">
-                        <legend><h4>approved orders</h4></legend>
-                        {% if user_orders %}
-                            {% for order in user_orders %}
-                                {% if order.order_status == 'Approved' %}
-                                    <p class="list" style="text-align: left; color: black;">
-                                    • {{ order.order_date.date() }} || {{ order.items_n_quantities }}</p>
+                                {% if form.email.errors %}
+                                    {{form.email(class='', id='fst-gen', placeholder='email')}}
+                                        {% for error in form.email.errors %}
+                                            <div class="error-msg"><span>{{error}}</span></div>
+                                        {% endfor %}
+                                {% else %}
+                                    {{ form.email(class='form-control', id='fst-gen', placeholder='email') }}
                                 {% endif %}
-                            {% endfor %}
-                        {% else %}
-                            <p>no approved orders for user</p>
-                        {% endif %}
-                    </fieldset>
+                                </div>
+                                <div>
+                                    {{ form.password(class='form-control', placeholder='password') }}
+                                </div>
+                                <div>
+                                    {{ form.submit(class='btn') }}
+                                </div>
+                            </fieldset>
+                        </form>
+                    {% endif %}
                 </div>
             </div>
-        </div>
-    </section>

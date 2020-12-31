@@ -1,60 +1,96 @@
 {% extends "grounds.html" %}
 
 {% block content %}
-<section>
-    <div class="container">
-        <div class="myalert">
-            {% with message = get_flashed_messages(with_categories=true) %}
-            {% if messages  %}
-                {% for category, message in messages %}
-                    <div class="{{category}}">{{ message }}</div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
+
+<div class="container-neo">
+    <div class="split new-user-tab">
+
+        <div class="float-left index-3">
+            <div class="guidelines">
+                <h1>Guidelines</h1>
+
+                <p>
+                    When adding a new user there are few things one has to take note of in order to have a completley smooth experience.
+                </p>
+                <p>
+                    <ul>
+                        <li>Make sure the name is properly typed in; both first and last.</li>
+                        <li>The user will have to choose personal password after authorization so a simple password will suffice for now.</li>
+                        <li>Make sure you type in a correct email in order to ensure confirmation link is sent to added user</li>
+                    </ul>
+                </p>
+            </div>
         </div>
 
-        <div id="">
-            <form action="" method="POST" id="newuser">
-                <legend><h3 class="banner-size">add new user</h3></legend>
-                <hr style="width: 39%; margin-top: 2px; margin-left: 16px;border-color: #014A36;">
-                <fieldset class="">
-                        {{ form.hidden_tag() }}
-                        <div>
-                            {{ form.first_name(class='form-field', id='adduser', placeholder='first name') }}
+        <div class="float-right">
+            
+            <div class="">
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages  %}
+                    {% for category, message in messages %}
+                        <div class="alert">
+                            <div class="alert-{{category}}">{{ message }}</div>
                         </div>
-                        <div>
-                          {{ form.last_name(class='form-field', id='adduser', placeholder='last name') }}
-                        </div>
-                        <div>
-                            {% if form.username.errors %}
-                                {{ form.username(class='form-field-err', id='adduser', placeholder='first name') }}
-                                {% for error in form.username.errors %}
-                                    <div class="error-msg"><span>{{ error }}</span></div>
-                                {% endfor %}
-                            {% else %}
-                                {{ form.username(class='form-field', id='adduser', placeholder='username') }}
-                            {% endif %}
-                        </div>
-                        <div>
-                            {{ form.email(class='form-field', id='adduser', placeholder='email') }}
-                        </div>
-                        <div>
-                            {% if form.password.errors %}
-                                {{ form.password(class='form-field-err', id='adduser', placeholder='first name') }}
-                                {% for error in form.password.errors %}
-                                    <span class="small-text">{{ error }}</span>
-                                {% endfor %}
-                            {% else %}
-                                {{ form.password(class='form-field', id='adduser', placeholder='password') }}
-                            {% endif %}
-                        </div>
-                        <div>
-                            {{ form.submit(class='form-submit', id='nu-user') }}
-                        </div>
-                </fieldset>
-            </form>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+                <form action="" method="POST">
+                    
+                    <!-- <hr style="width: fit-content; margin-top: 2px; margin-left: 16px;border-color: #014A36;"> -->
+            
+                            {{ form.hidden_tag() }}
+                            <div class="fields">
+                                <legend><h3 class="heading">Add New User</h3></legend>
+
+                                <div>
+                                    {{ form.first_name(class='form-control field', placeholder='first name') }}
+                                </div>
+        
+                                <div>
+                                    {{ form.last_name(class='form-control field', placeholder='last name') }}
+                                </div>
+        
+                                <div>
+                                    {% if form.username.errors %}
+                                        {{ form.username(class='form-control is-invalid', placeholder='first name') }}
+                                        {% for error in form.username.errors %}                                                                
+                                            <div class="invalid-feedback"><span>{{error}}</span></div>                          
+                                        {% endfor %}
+                                    {% else %}
+                                        {{ form.username(class='form-control field', placeholder='username') }}
+                                    {% endif %}
+                                </div>
+        
+                                <div>
+                                    {{ form.email(class='form-control field', placeholder='email') }}
+                                </div>
+        
+                                <div>
+                                    {% if form.password.errors %}
+                                        {{ form.password(class='form-control is-invalid', placeholder='first name') }}
+                                        {% for error in form.password.errors %}
+                                            <div class="invalid-feedback"><span>{{error}}</span></div>   
+                                        {% endfor %}
+                                    {% else %}
+                                        {{ form.password(class='form-control field', placeholder='password') }}
+                                    {% endif %}
+                                </div>
+        
+                                <div>
+                                    {{ form.submit(class='btn custom-btn') }}
+                                </div>
+        
+                            </div>
+        
+                </form>
+            </div>
         </div>
+
     </div>
-</section>
+
+    
+</div>
+
 
 {% endblock %}

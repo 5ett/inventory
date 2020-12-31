@@ -2,31 +2,52 @@
 
 
 {% block content %}
-<body class="bg-light">
+<body class="">
     <div class="container2">
 
         <div class="row order-row">
-                    <div class="col-md-8 order-md-1 col">
+         
+                    <div class="col-md-6 order-md-1 col">
+
+                      
+                        {% with message = get_flashed_messages(with_categories=true) %}
+                          {% if messages  %}
+                              {% for category, message in messages %}
+                              <div class="alert"></div>
+                                <div class="alert-{{category}}">{{ message }}</div>
+                              </div>
+                              {% endfor %}
+                          {% endif %}
+                        {% endwith %}
+                      
+
                         <h4 class="mb-3">New Order</h4>
                         <form class="" method="POST">
                             {{ form.hidden_tag() }}
                           <div class="row">
-                            <div class="col-md-6 mb-4">
-                                {{ form.item(class='form-control', placeholder='search item') }}
+                            <div class="col-md-6 mb-4">                      
                                 {% if form.item.errors %}
-                                    {% for err in form.item.errors %}
-                                        <div class="invalid-feedback">
-                                            {{err}}
-                                        </div>
-                                    {% endfor %}
+                                  {{ form.item(class='form-control is-invalid', placeholder='search item') }}
+                                  {% for err in form.item.errors %}
+                                      <div class="invalid-feedback">
+                                          <span>{{err}}</span>
+                                      </div>
+                                  {% endfor %}
+                                {% else %}
+                                  {{ form.item(class='form-control', placeholder='search item') }}
                                 {% endif %}
                             </div>
                             <div class="col-md-6 mb-4">
-
-                              {{ form.quantity(class='form-control', placeholder='quantity') }}
-                              <div class="invalid-feedback">
-
-                              </div>
+                              {% if form.quantity.errors %}
+                                {{ form.quantity(class='form-control is-invalid', placeholder='quantity') }}
+                                {% for err in form.quantity.errors %}
+                                  <div class="invalid-feedback">
+                                      <span>{{err}}</span>
+                                  </div>
+                                {% endfor %}
+                              {% else %}
+                                {{ form.quantity(class='form-control', placeholder='quantity') }}
+                              {% endif %}
                             </div>
                           </div>
 
@@ -40,7 +61,7 @@
                             {{ form.item_description(class='form-control', placeholder='item description', disabled="") }}
                           </div>
 
-                          {{ form.add(class='btn btn-primary btn-lg btn-block') }}
+                          {{ form.add(class='btn btn-primary btn-unique btn-block') }}
                           <div class="row">
                           </div>
                         </form>
@@ -50,14 +71,14 @@
 
 
                           <h4 class="mb-3">Request New Item</h4>
-                          <form class="needs-validation" >
+                          <form class="needs-validation new-item-request" >
                             {{ form.hidden_tag() }}
                           <div class="row">
                             <div class="col-md-6 mb-3 col">
                               {{ new_request.item(class='form-control', placeholder='item') }}
                               <small class="text-muted" style="font-size: 12;"">Start each word with block letters</small>
                               <div class="invalid-feedback">
-                                Name on card is required
+                              
                               </div>
                             </div>
                             <div class="col-md-6 mb-3">
@@ -65,16 +86,16 @@
                             </div>
                           </div>
                           <div class="row">
-                            <div class="col-md-3 mb-3">
+                            <div class="col-md-6 mb-3">
                                 {{ new_request.item_type(class='form-control', placeholder='item type') }}
-                              <small class="text-muted" style="font-size: 12;">eg. Drinks, Stationery, Houehold Item etc</small>
+                              <small class="text-muted" style="font-size: 12;">eg. Drinks, Stationery, Household Item etc</small>
                             </div>
-                            <div class="col-md-3 mb-3">
+                            <div class="col-md-6 mb-3">
                               {{ new_request.item_description(class='form-control', placeholder='item description') }}
                               <small class="text-muted" style="font-size: 12;">eg. Boxes, Cartons, Sticks etc</small>
                             </div>
                           </div>
-                            {{ new_request.second_sub(class='btn btn-primary btn-lg btn-block') }}
+                            {{ new_request.second_sub(class='btn btn-primary btn-unique btn-block') }}
                         </form>
                       </div>
 
@@ -93,7 +114,7 @@
                             {% if order_progress %}
                                 {% for order in order_progress %}
                                 <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                    <div>
+                                    <div style="width: 30%;">
                                         <h6 class="my-0">{{ order.item }}</h6>
                                         <small class="text-muted">{{referenced_type}}</small>
                                       </div>

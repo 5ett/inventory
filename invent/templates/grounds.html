@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/inv.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/extra.css')}}">
     <link rel="stylesheet"  href="{{url_for('static', filename='css/font-awesome.min.css')}}">
     <!-- <script src="https://kit.fontawesome.com/a076d05399.js"></script> -->
@@ -15,41 +15,33 @@
 {% block head %}
 {% endblock %}
 <body>
-<section class="backgrd">
     <nav>
         <input type="checkbox" id="check">
         <label for="check" class="menu">
             <i class="fa fa-bars"></i>
         </label>
-        <label for="" class="logo">THE INVENTORY</label>
-        <ul>
+        <label for="" class="logo"><a href="{{ url_for('index') }}">THE INVENTORY</a></label>
+        <ul class="navlinks">
             {% if current_user.is_authenticated %}
                 {% if current_user.username == "codecmnd" %}
-                <li><a href="{{ url_for('index') }}">home</a></li>
-                <li><a href="{{ url_for('order') }}">new order</a></li>
-                <li><a href="{{ url_for('catalogue') }}">catalogue</a></li>
-                <li><a href="{{ url_for('additem') }}">update inventory</a></li>
-                <li><a href="{{ url_for('newuser') }}">new user</a></li>
-                <li><a href="{{ url_for('users') }}">manage users</a></li>
-                <li><a href="{{ url_for('logout') }}">logout</a></li>
-                {% elif 'admin' in current_user.username %}
-                    <li><a href="{{ url_for('index') }}">home</a></li>
-                    <li><a href="{{ url_for('order') }}">new order</a></li>
-                    <li><a href="{{ url_for('catalogue') }}">catalogue</a></li>
-                    <li><a href="{{ url_for('pending_orders') }}">pending orders</a></li>
-                    <li><a href="{{ url_for('history') }}">profile</a></li>
-                    <li><a href="{{ url_for('logout') }}">logout</a></li>
+                <a href="{{ url_for('index') }}" class=""><li>home</li></a>
+                <a href="{{ url_for('order') }}"><li>new order</li></a>
+                <a href="{{ url_for('catalogue') }}"><li>catalogue</li></a>
+                <a href="{{ url_for('additem') }}"><li>update inventory</li></a>
+                <a href="{{ url_for('newuser') }}"><li>new user</li></a>
+                <a href="{{ url_for('users') }}"><li>manage users</li></a>
+                <a href="{{ url_for('logout') }}"><li>logout</li></a>
+                
                 {% else %}
-                    <li><a href="{{ url_for('index') }}">home</a></li>
-                    <li><a href="{{ url_for('order') }}">new order</a></li>
-                    <li><a href="{{ url_for('catalogue') }}">catalogue</a></li>
-                    <li><a href="{{ url_for('history') }}">profile</a></li>
-                    <li><a href="{{ url_for('logout') }}">logout</a></li>
+                    <a href="{{ url_for('index') }}"><li>home</li></a>
+                    <a href="{{ url_for('order') }}"><li>new order</li></a>
+                    <a href="{{ url_for('catalogue') }}"><li>catalogue</li></a>
+                    <a href="{{ url_for('history') }}"><li>profile</li></a>
+                    <a href="{{ url_for('logout') }}"><li>logout</li></a>
                 {% endif %}
             {% else %}
-                <li><a href="{{ url_for('index') }}">home</a></li>
-                <li><a href="{{ url_for('order') }}">new order</a></li>
-                <li><a href="{{ url_for('catalogue') }}">catalogue</a></li>
+            <a href="{{ url_for('index') }}"><li>login</li></a>
+                <a href="{{ url_for('catalogue') }}"><li>catalogue</li></a>
             {% endif %}
         </ul>
     </nav>
@@ -61,6 +53,5 @@
             <p class="small-text">designed and developed by King Praise | The A-max Team 2020</p>
         </div>
     </footer> -->
-</section>
 </body>
 </html>

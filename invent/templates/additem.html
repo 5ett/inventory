@@ -6,23 +6,23 @@
 {% block content %}
    <section class="catalogue">
         <div class="container">
-            <div id="main">
-                <section>
-                    <div class="container">
-                          <div class="myalert-UI">
+            <div class=""split>
+
+                    <div class="float-left">
+                     
+                        <div >
                             {% with messages = get_flashed_messages(with_categories=true) %}
                                 {% if messages  %}
                                     {% for category, message in messages %}
-                                        <div class="{{category}}">{{ message }}</div>
+                                    <div class="alert"></div>
+                                        <div class="alert-{{category}}">{{ message }}</div>
+                                    </div>
                                     {% endfor %}
                                 {% endif %}
                             {% endwith %}
-                          </div>
-                        <div id="for-additem">
                             <form action="" method="POST" id="additem">
                                 <legend><h3 class="banner-size">update inventory</h3></legend>
                                 <hr style="width: 48%; margin-top: 2px; margin-left: 16px;border-color: #014A36;">
-                                <fieldset class="">
                                         {{ form.hidden_tag() }}
 
                                             <div>
@@ -41,14 +41,12 @@
                                            <div>
                                                {{ form.submit(class='form-submit', id='nu-user') }}
                                            </div>
-                                </fieldset>
                             </form>
                         </div>
                         <div id="">
                             <form action="" method="POST" id="update-item">
                                 <legend><h3 class="banner-size">add new item</h3></legend>
                                 <hr style="width: 40%; margin-top: 2px; margin-left: 16px;border-color: #145C8E;">
-                                <fieldset class="">
                                         {{ form.hidden_tag() }}
 
                                             <div>
@@ -73,13 +71,11 @@
                                            <div>
                                                {{ form_2.submit(class='form-submit', id='nu-item')}}
                                            </div>
-                                </fieldset>
                             </form>
                         </div>
                     </div>
-                </section>
             </div>
-            <div id="sidebar">
+            <div id="float-right sidebar">
                 <div>
                     <div id="sidebar-item">
                         <fieldset class="new-order">

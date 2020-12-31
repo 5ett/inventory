@@ -1,36 +1,32 @@
 {% extends 'grounds.html' %}
 
 {% block content %}
-    <section class="cata-div">
-        <div class="container">
-            <div>
-                <h2>Welcome To Catalogue</h2>
-            </div>
-            <div>
-                {% if current_user.is_authenticated %}
-                        <div class="preview">
-                            <label>
-                                <a href="{{ url_for('catalogue') }}">
-                                The New<br>
-                                Catalogue <br>
-                                With A New Vision
-                                </a>
-                            </label>
-                            <ul>
-                                {% if in_stock %}
-                                    {% for new_item in in_stock[0:4]  %}
-                                        <li>{{new_item.item_name}}</li>
-                                    {% endfor %}
-                                {% else %}
-                                    <li>brunch</li>
-                                    <li>brunch</li>
-                                    <li>brunch</li>
-                                    <li>brunch</li>
-                                {% endif %}
-                            </ul>
-                        </div>
-                {% endif %}
-            </div>
-        </div>
-    </section>
+<div class="container-neo ">
+    <div class="">
+        <div class="grocery-back-nosplit">
+                <div class="index-no-split">
+                    <h1>
+                        Catalogue
+                    </h1>
+                    <p class="small">Here you see all that is stored in your inventory plan. Whether the items are in-stock, out of stock or even in a request process to be purchased, you can access them here. </p>
+                    {% if current_user.is_authenticated %}
+                        <button type="submit" class="btn btn-primary btn-unique"><a href="{{url_for('order')}}">make an order</a></button>
+                    {% else %}
+                        <button type="submit" class="btn btn-primary btn-unique"><a href="{{url_for('index')}}">login</a></button>
+                    {% endif %}
+
+                    <!-- <p class="company-info">
+                        <span><img src="static/media/favicon.png" alt="motaku_pr_mini_logo" class="footer-img"><small>MotakuPR&copy; 2020 | Designed by the Motaku Team&reg;</small></span>
+                    </p> -->
+
+                    <div class="slide-menu wrapper">
+                        <div class="slide-menu-item">inv 1</div>
+                        <div class="slide-menu-item">inv 2</div>
+                        <div class="slide-menu-item">inv 3</div>
+                        <div class="slide-menu-item">inv 4</div>
+                        <div class="slide-menu-item">inv 5</div>
+                        <div class="slide-menu-item">inv 6</div>
+                    </div>
+                </div>   
+</div>
 {% endblock %}

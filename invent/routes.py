@@ -2,10 +2,10 @@ from flask_login import login_user, logout_user, current_user, login_required
 from invent.forms import Login, New_Order, NewUser, Updateitems, AddnewItem
 from flask import url_for, request, redirect, render_template, flash
 from invent.models import Order, Items, User, Tempdb
-from invent.other_functions import cap, check_item
+from invent.other_functions import cap, check_item, today
+
 from invent import app, guard, db
 from collections import Counter
-from datetime import datetime
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -24,13 +24,12 @@ def index():
 # fill order form
 @app.route('/order', methods=['GET', 'POST'])
 def order():
-    today = str(datetime.utcnow().date()).replace('-', '/')
     new_request = AddnewItem()
     form = New_Order()
     if form.validate_on_submit():
         order_item = cap(form.item.data)
         item_search = Items.query.filter_by(item_name=order_item).first()
-        refrenced_type = item_search.item_type
+        referenced_type = item_search.item_type
         # refrenced_description = item_search.item_description
 
         if item_search:
@@ -38,18 +37,20 @@ def order():
                 item=order_item, quantity=form.quantity.data, owner=current_user.id)
             db.session.add(new_temp_order)
             db.session.commit()
-            flash('Order Successfully Submitted', "success")
+            # flash('Item Successfully Added', "success")
             return redirect(url_for('order'))
 
     if new_request.validate_on_submit():
         new_request_item = cap(new_request.item.data)
-        new_request_type = cap(new_request.item_type)
-        new_request_description = cap(new_request.item_description)
+        new_request_type = cap(new_request.item_type.data)
+        new_request_description = cap(new_request.item_description.data)
         add_new_request = Items(
-            item_name=new_request_item, item_quantity=new_request.quantity.data, item_type=new_request_type, item_description=new_request_description, item_status='Request', refrenced_type=refrenced_type, today=today
+            item_name=new_request_item, item_quantity=new_request.quantity.data, item_type=new_request_type, item_description=new_request_description, item_status='Request', referenced_type=referenced_type, today=today
         )
         db.session.add(add_new_request)
         db.session.commit()
+        flash('Your Request Has Been Received', 'success')
+
     order_progress = Tempdb.query.filter_by(owner=current_user.id).all()
     order_size = len(order_progress)
     in_stock = Items.query.order_by(Items.id.desc()).all()
@@ -120,8 +121,6 @@ def newuser():
         db.session.commit()
         flash('user details added succesfully', 'success')
         return redirect(url_for('newuser'))
-    else:
-        flash('failed to add user, try again', 'succes')
     return render_template('adduser.html', title='Add User', form=form)
 
 
