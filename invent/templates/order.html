@@ -6,26 +6,26 @@
     <div class="container2">
 
         <div class="row order-row">
-         
+
                     <div class="col-md-6 order-md-1 col">
 
-                      
+
                         {% with message = get_flashed_messages(with_categories=true) %}
                           {% if messages  %}
                               {% for category, message in messages %}
-                              <div class="alert"></div>
+                              <div class="alert">
                                 <div class="alert-{{category}}">{{ message }}</div>
                               </div>
                               {% endfor %}
                           {% endif %}
                         {% endwith %}
-                      
+
 
                         <h4 class="mb-3">New Order</h4>
                         <form class="" method="POST">
                             {{ form.hidden_tag() }}
                           <div class="row">
-                            <div class="col-md-6 mb-4">                      
+                            <div class="col-md-6 mb-4">
                                 {% if form.item.errors %}
                                   {{ form.item(class='form-control is-invalid', placeholder='search item') }}
                                   {% for err in form.item.errors %}
@@ -78,7 +78,7 @@
                               {{ new_request.item(class='form-control', placeholder='item') }}
                               <small class="text-muted" style="font-size: 12;"">Start each word with block letters</small>
                               <div class="invalid-feedback">
-                              
+
                               </div>
                             </div>
                             <div class="col-md-6 mb-3">
@@ -119,7 +119,7 @@
                                         <small class="text-muted">{{referenced_type}}</small>
                                       </div>
                                       <span class="text-muted">{{order.quantity}}</span>
-                                      <a href="{{ url_for('cancelorder', order_id=order.id) }}"><img class="img-btn" src="{{url_for('static', filename='media/icons/bin.png')}}" alt=""></a>
+                                      <a href="{{ url_for('cancelorder', order_id=order.id) }}"><img class="img-btn" src="{{url_for('static', filename='media/icons/bin.png')}}" alt="" onclick="deleteAlert()"></a>
                                 </li>
                                 {% endfor %}
                             {% else %}
@@ -139,7 +139,12 @@
                             <div class="input-group">
                               <input type="text" class="form-control" placeholder="{{current_user.name}}" disabled>
 
-                                <a href="{{ url_for('make_order') }}" class="btn-block"><button type="submit" class="btn btn-secondaire">Make Order</button></a>
+                              {% if order_progress %}
+                                <a href="{{ url_for('make_order') }}" class="btn-block"><button type="submit" class="btn btn-secondaire" onclick="oderAlert()">Make Order</button></a>
+                              {% else %}
+                                <a href="{{ url_for('make_order') }}" class="btn-block"><button type="submit" class="btn btn-secondaire" disabled="" onclick="inactiveAlert()">Make Order</button></a>
+                              {% endif %}
+
 
                             </div>
                           </div>

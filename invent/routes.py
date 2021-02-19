@@ -18,7 +18,7 @@ def index():
         else:
             flash('invalid credentials, try logging in again', 'danger')
     in_stock = Items.query.order_by(Items.id.desc()).all()
-    return render_template('index.html', form=form, in_stock=in_stock)
+    return render_template('index.html', form=form, in_stock=in_stock, title='The Inventory')
 
 
 # fill order form
@@ -97,7 +97,7 @@ def pending_orders():
 def history():
     receipts = Counter(Order.query.filter_by(
         owner=current_user.id).order_by(Order.order_date.desc()).all())
-    return render_template('history.html', receipts=receipts, title='Profile & History')
+    return render_template('history.html', receipts=receipts, title=current_user.username)
 
 
 @app.route('/catalogue')
@@ -121,7 +121,7 @@ def newuser():
         db.session.commit()
         flash('user details added succesfully', 'success')
         return redirect(url_for('newuser'))
-    return render_template('adduser.html', title='Add User', form=form)
+    return render_template('adduser.html', title='Add New User', form=form)
 
 
 @app.route('/logout')
@@ -133,7 +133,7 @@ def logout():
 @app.route('/users', methods=['GET', 'POST'])
 def users():
     all_users = User.query.all()
-    return render_template('manage_users.html', all_users=all_users, title='Users')
+    return render_template('manage_users.html', all_users=all_users, title='Manage Users')
 
 
 # adding items to and updating inventory

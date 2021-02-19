@@ -84,10 +84,12 @@ label a:hover{
     color: rgb(90, 90, 90);
 }
 
-.navlinks li:hover{
+.navlinks li:hover, a .active{
     background-color: #d14f20;
     color: #fff;
 }
+
+
 
 .navlinks a:hover{
     color: #fff;
@@ -151,6 +153,11 @@ label a:hover{
     margin-bottom: 1rem;
 }
 
+.slide-menu-sm{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
 .wrapper{
     max-height: 120px;
     width: 50%;
@@ -159,7 +166,21 @@ label a:hover{
     overflow-x: auto;
 }
 
-.wrapper::-webkit-scrollbar{
+.wrapper-sm{
+    max-height: 120px;
+    width: 50%;
+    border: 1px solid transparent;
+    display: flex;
+    overflow-x: auto;
+    opacity:0;
+}
+
+/*.secondary-task:hover~ .wrapper-sm{
+    opacity: 1;
+}*/
+
+.wrapper::-webkit-scrollbar,
+.wrapper-sm::-webkit-scrollbar{
     width: 0;
 }
 
@@ -170,6 +191,17 @@ label a:hover{
     text-align: center;
     background-color: #ddd;
     margin-right:5px;
+}
+
+.wrapper-sm .slide-menu-item{
+    min-width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    margin-right:10px;
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
 }
 /* unique index elements end */
 
@@ -225,6 +257,10 @@ label a:hover{
     padding-right: 2rem;
 }
 
+.tagline{
+    position: absolute;
+}
+
 .new-user-tab .float-right{
     width: 70%;
     margin-right: 0;
@@ -261,7 +297,7 @@ label a:hover{
 
 .float-right{
     width: 36%;
-    transition: all .3;
+    /*transition: all .3;*/
 }
 
 
@@ -345,7 +381,7 @@ label a:hover{
     display: none;
 }
 
-.float-right .field:focus, 
+.float-right .field:focus,
 .float-right .field:focus-within,
 .float-left .field:focus,
 .float-left .field:focus-within{
@@ -368,7 +404,7 @@ label a:hover{
     background-color: #333;
     color: #fff;
     outline: transparent;
-    
+
 }
 
 .float-right .custom-btn:hover{
@@ -438,7 +474,7 @@ label a:hover{
 .list-group-item:last-child {
     border-bottom-right-radius: inherit;
     border-bottom-left-radius: inherit;
-    border-top: transparent;
+    border-top: thin;
 }
 /* order elements end */
 

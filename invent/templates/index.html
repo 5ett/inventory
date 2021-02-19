@@ -28,34 +28,44 @@
                                 <div class="slide-menu-item">inv 5</div>
                                 <div class="slide-menu-item">inv 6</div>
                             </div>
-                        </div> 
-                        
-                        
+                        </div>
+
+
                     </div>
 
-                    
 
-                    
+
+
                     {% else %}
                     <div class="split">
                         <div class="grocery-back">
                             <div class="float-left">
-                                <h1>
-                                    Your <br>
-                                    Logistics <br>
-                                    Anywhere You Are!
-                                </h1>
-                                <p class="small">Our team is always ready to take your ideas to the their utmost uniqueness. We are always growing and learning and always hoping to make your brand what it deserves to be.</p>
-                                <button type="submit" class="btn btn-primary"><a href="{{url_for('catalogue')}}">view catalogue</a></button>
+                                <div>
+                                   <h1 class="">
+                                        Your <br>
+                                        Logistics <br>
+                                        Anywhere You Are!
+                                    </h1>
+                                    <p class="small">Our team is always ready to take your ideas to the their utmost uniqueness. We are always growing and learning and always hoping to make your brand what it deserves to be.</p>
+                                    <button type="submit" class="btn btn-primary secondary-task"><a href="{{url_for('catalogue')}}">view catalogue</a></button>
+                                </div>
 
-                                <p class="company-info">
+                                <div class="slide-menu-sm wrapper-sm hidden">
+                                    <div class="slide-menu-item">inv 1</div>
+                                    <div class="slide-menu-item">inv 2</div>
+                                    <div class="slide-menu-item">inv 3</div>
+                                    <div class="slide-menu-item">inv 4</div>
+                                    <div class="slide-menu-item">inv 5</div>
+                                    <div class="slide-menu-item">inv 6</div>
+                                </div>
+                                <!-- <p class="company-info">
                                     <span><img src="static/media/favicon.png" alt="motaku_pr_mini_logo" class="footer-img"><small>MotakuPR&copy; 2020 | Designed by the Motaku Team&reg;</small></span>
-                                </p>
+                                </p> -->
                             </div>
                         </div>
 
                             <div class="float-right login">
-                                
+
                                     {% with messages = get_flashed_messages(with_categories=true) %}
                                         {% if messages  %}
                                             {% for category, message in messages %}
@@ -65,11 +75,11 @@
                                             {% endfor %}
                                         {% endif %}
                                     {% endwith %}
-                                
+
                                 <form action="" method="POST">
                                     {{ form.hidden_tag() }}
                                     <h6>Log in</h6>
-                                    <div class="fields">                        
+                                    <div class="fields">
                                         {% if form.email.errors %}
                                             {{form.email(class='form-control is-invalid', placeholder='email')}}
                                             {% for error in form.email.errors %}
@@ -78,21 +88,21 @@
                                         {% else %}
                                             {{ form.email(class='form-control field', placeholder='email') }}
                                         {% endif %}
-                                        
+
                                         <div>
                                             {{ form.password(class='form-control field', placeholder='password') }}
-                                        </div>                
+                                        </div>
                                         <input name="bot-field" id="bot-field">
                                         <!-- <button type="submit" class="btn custom-btn">send</button> -->
                                         <div>
                                             {{ form.submit(class='btn custom-btn') }}
                                         </div>
                                     </div>
-                                
+
                                 </form>
                             </div>
-                        {% endif %}     
-                    </div>        
+                        {% endif %}
+                    </div>
                 </div>
             <div>
             {% if current_user.is_authenticated %}
@@ -101,7 +111,7 @@
                 </div>
             {% endif %}
             </div>
-        </div>    
+        </div>
     </div>
 {% endblock %}
 

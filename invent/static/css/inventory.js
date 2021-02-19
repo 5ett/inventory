@@ -1,9 +1,13 @@
 function orderAlert(){
-    alert("are you sure you're done? you cannot cancel order if you proceed")
+    alert("are you sure you're done? you cannot cancel or edit order if you proceed")
 }
 
 function cancelAlert(){
     alert("are you sure you want to cancel the last item?")
+}
+
+function deleteAlert(){
+    alert("are you sure you want to remove this item from your order?")
 }
 
 function inactiveAlert(){
@@ -13,3 +17,5 @@ function inactiveAlert(){
 function inactiveAlert2(){
     alert("you can't cancel and empty order")
 }
+
+

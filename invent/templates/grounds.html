@@ -20,34 +20,97 @@
         <label for="check" class="menu">
             <i class="fa fa-bars"></i>
         </label>
-        <label for="" class="logo"><a href="{{ url_for('index') }}">THE INVENTORY</a></label>
+        <label for="" class="logo"><a href="{{ url_for('index') }}">FKT LIMITED</a></label>
         <ul class="navlinks">
             {% if current_user.is_authenticated %}
                 {% if current_user.username == "codecmnd" %}
-                <a href="{{ url_for('index') }}" class=""><li>home</li></a>
-                <a href="{{ url_for('order') }}"><li>new order</li></a>
-                <a href="{{ url_for('catalogue') }}"><li>catalogue</li></a>
-                <a href="{{ url_for('additem') }}"><li>update inventory</li></a>
-                <a href="{{ url_for('newuser') }}"><li>new user</li></a>
-                <a href="{{ url_for('users') }}"><li>manage users</li></a>
-                <a href="{{ url_for('logout') }}"><li>logout</li></a>
-                
+                    {% if title=='The Inventory' %}
+                        <a href="{{ url_for('index') }}" ><li class="active">home</li></a>
+                    {% else %}
+                        <a href="{{ url_for('index') }}"><li>home</li></a>
+                    {% endif %}
+
+
+                    {% if title=='Make Order' %}
+                        <a href="{{ url_for('order') }}" ><li class="active">new order</li></a>
+                    {% else %}
+                        <a href="{{ url_for('order') }}"><li>new order</li></a>
+                    {% endif %}
+
+                    {% if title=='Catalogue' %}
+                        <a href="{{ url_for('catalogue') }}" ><li class="active">catalogue</li></a>
+                    {% else %}
+                        <a href="{{ url_for('catalogue') }}"><li>catalogue</li></a>
+                    {% endif %}
+
+                    {% if title=='Update Inventory' %}
+                        <a href="{{ url_for('additem') }}" ><li class="active">update inventory</li></a>
+                    {% else %}
+                        <a href="{{ url_for('additem') }}"><li>update inventory</li></a>
+                    {% endif %}
+
+                    {% if title=='Add New User' %}
+                        <a href="{{ url_for('newuser') }}" ><li class="active">new user</li></a>
+                    {% else %}
+                        <a href="{{ url_for('newuser') }}"><li>new user</li></a>
+                    {% endif %}
+
+                    {% if title=='Manage Users' %}
+                        <a href="{{ url_for('users') }}" ><li class="active">manage users</li></a>
+                    {% else %}
+                        <a href="{{ url_for('users') }}"><li>manage users</li></a>
+                    {% endif %}
+
+                        <a href="{{ url_for('logout') }}"><li>logout</li></a>
+
                 {% else %}
-                    <a href="{{ url_for('index') }}"><li>home</li></a>
-                    <a href="{{ url_for('order') }}"><li>new order</li></a>
-                    <a href="{{ url_for('catalogue') }}"><li>catalogue</li></a>
-                    <a href="{{ url_for('history') }}"><li>profile</li></a>
-                    <a href="{{ url_for('logout') }}"><li>logout</li></a>
+                    {% if title=='The Inventory' %}
+                        <a href="{{ url_for('index') }}" ><li class="active">home</li></a>
+                    {% else %}
+                        <a href="{{ url_for('index') }}"><li>home</li></a>
+                    {% endif %}
+
+                    {% if title=='Make Order' %}
+                        <a href="{{ url_for('order') }}" ><li class="active">new order</li></a>
+                    {% else %}
+                        <a href="{{ url_for('order') }}"><li>new order</li></a>
+                    {% endif %}
+
+                    {% if title=='Catalogue' %}
+                        <a href="{{ url_for('catalogue') }}" ><li class="active">catalogue</li></a>
+                    {% else %}
+                        <a href="{{ url_for('catalogue') }}"><li>catalogue</li></a>
+                    {% endif %}
+
+                    {% if title == current_user.username %}
+                        <a href="{{ url_for('history') }}" ><li class="active">profile</li></a>
+                    {% else %}
+                        <a href="{{ url_for('history') }}"><li>profile</li></a>
+                    {% endif %}
+                        <a href="{{ url_for('logout') }}"><li>logout</li></a>
+
                 {% endif %}
             {% else %}
-            <a href="{{ url_for('index') }}"><li>login</li></a>
-                <a href="{{ url_for('catalogue') }}"><li>catalogue</li></a>
+                {% if title=='The Inventory' %}
+                    <a href="{{ url_for('index') }}" ><li class="active">login</li></a>
+                {% else %}
+                    <a href="{{ url_for('index') }}" ><li>login</li></a>
+                {% endif %}
+
+                {% if title=='Catalogue' %}
+                    <a href="{{ url_for('catalogue') }}" ><li class="active">catalogue</li></a>
+                {% else %}
+                    <a href="{{ url_for('catalogue') }}"><li>catalogue</li></a>
+                {% endif %}
             {% endif %}
         </ul>
     </nav>
 {% block content %}
 {% endblock %}
+    <script src="{{url_for('static', filename='css/TimelineMax.min.js')}}"></script>
+    <script src="{{url_for('static', filename='css/TweenMax.min.js')}}"></script>
     <script src="{{url_for('static', filename='css/inventory.js')}}"></script>
+    <script src="{{url_for('static', filename='css/animations.js')}}"></script>
     <!-- <footer style="background-color: black; color: white; font-family: 'sf'; text-align: center;">
         <div class="container">
             <p class="small-text">designed and developed by King Praise | The A-max Team 2020</p>
