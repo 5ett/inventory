@@ -20,7 +20,7 @@
         <label for="check" class="menu">
             <i class="fa fa-bars"></i>
         </label>
-        <label for="" class="logo"><a href="{{ url_for('index') }}">FKT LIMITED</a></label>
+        <label for="" class="logo"><a href="{{ url_for('index') }}" id="logo">FKT LIMITED</a></label>
         <ul class="navlinks">
             {% if current_user.is_authenticated %}
                 {% if current_user.username == "codecmnd" %}
