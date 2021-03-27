@@ -150,7 +150,7 @@ label a:hover{
 
 .slide-menu{
     margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
 }
 
 .slide-menu-sm{
@@ -240,6 +240,7 @@ label a:hover{
     background: url(../media/index2.jpg) no-repeat;
     background-size: cover;
     height: 100vh;
+    margin-bottom: 0;
 }
 
 .grocery-back-nosplit{
@@ -247,6 +248,7 @@ label a:hover{
     background: url(../media/index2.jpg) no-repeat;
     background-size: cover;
     background-position: bottom;
+    margin-bottom: 0;
 }
 
 .grocery-back .float-left{
@@ -260,6 +262,42 @@ label a:hover{
 .tagline{
     position: absolute;
 }
+
+.banner{
+    margin-top: 0;
+    padding-top: 0;
+    display: flex;
+}
+
+.banner .float-right{
+    background-color: #d14f20;
+    color: white;
+    margin-top: 0;
+    padding-top: 2em;
+    padding-left: 2rem;
+    width: 43%;
+}
+
+.title-l{
+    font-size: 70px;
+    font-family: 'Aileron';
+    font-weight: 700;
+    line-height: 55px;
+}
+
+.title-m{
+    font-size: 20px;
+    font-family: 'Aileron';
+    font-weight: 700;
+    line-height: 15px;
+} 
+
+.banner p{
+    font-size: 13px;
+    padding-top: 0.6rem;
+    padding-bottom: 2rem;
+}
+
 
 .new-user-tab .float-right{
     width: 70%;
@@ -519,13 +557,58 @@ label a:hover{
     #check:checked~ .logo{
         font-size: 17;
     }
+    
+    .Split{
+        flex-direction: column-reverse;
+    }
+
+    .Split .grocery-back{
+        width: 100%;
+        height: 30vh;
+    }
+
+    .grocery-back .float-left{
+        padding-top: 4rem;
+        width: 100%;
+        height: 60vh;
+    }
+
+    .login{
+        padding-bottom: 3rem;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .login form{
+       width: 70%; 
+    }
 
     .index-no-split{
         padding-left: 17px;
     }
 
+    .small{
+        width: 90%;
+    }
+
     .wrapper{
         width: 90%;
+    }
+
+    .slide-menu-item{
+        height: 60;
+        width: 50;
+    }
+
+    .banner{
+        padding-left: 0;
+        flex-direction: column-reverse;
+    }
+
+    .banner .float-right{
+        flex-direction: column;
+        width: 100%;
+        padding-left: 17px;
     }
 
 

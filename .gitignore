@@ -1,8 +1,8 @@
 Lib
 Include
 Scripts
-inventory\invent\__pycache__
-inventory\invent1.db
+inventory\\invent\__pycache__
+inventory\\invent1.db
 
 
 

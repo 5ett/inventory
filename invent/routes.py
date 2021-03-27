@@ -172,7 +172,7 @@ def additem():
     added_stock = Items.query.order_by(Items.id.desc()).all()
     out_of_stock = Items.query.filter_by(
         item_quantity=0).order_by(Items.id.desc()).all()
-    return render_template('additem.html', title='Update Iventory', form=form, form_2=form_2, out_of_stock=out_of_stock, added_stock=added_stock)
+    return render_template('additem.html', title='Update Inventory', form=form, form_2=form_2, out_of_stock=out_of_stock, added_stock=added_stock)
 
 
 @app.route('/loop')
