@@ -1,0 +1,273 @@
+{% extends "grounds.html" %}
+
+{% block content %}
+
+<div class="bg-light">
+    <div class="container3">
+
+      {% with message = get_flashed_messages(with_categories=true) %}
+        {% if messages  %}
+            {% for category, message in messages %}
+            <div class="alert">
+              <div class="alert-{{category}}">{{ message }}</div>
+            </div>
+            {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+    <div class="row">
+    <div class="col-md-4 order-md-2 mb-4">
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-muted">Your cart</span>
+        <span class="badge badge-secondary badge-pill">3</span>
+      </h4>
+      <ul class="list-group mb-3">
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0">Product name</h6>
+            <small class="text-muted">Brief description</small>
+          </div>
+          <span class="text-muted">$12</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0">Second product</h6>
+            <small class="text-muted">Brief description</small>
+          </div>
+          <span class="text-muted">$8</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0">Third item</h6>
+            <small class="text-muted">Brief description</small>
+          </div>
+          <span class="text-muted">$5</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between bg-light">
+          <div class="text-success">
+            <h6 class="my-0">Promo code</h6>
+            <small>EXAMPLECODE</small>
+          </div>
+          <span class="text-success">-$5</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <span>Total (USD)</span>
+          <strong>$20</strong>
+        </li>
+      </ul>
+
+      <form class="card p-2">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Promo code">
+          <div class="input-group-append">
+            <button type="submit" class="btn btn-secondary">Redeem</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-8 order-md-1">
+      <h4 class="mb-3">Billing address</h4>
+
+      <form class="needs-validation" method="POST">
+        {{ form.hidden_tag() }}
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="firstName">First name</label>
+              {% if form.first_name.errors %}
+                {{ form.first_name(class='form-control is-invalid', placeholder='First name') }}
+                <div class="invalid-feedback">
+                  Valid first name is required.
+                </div>
+              {% else %}
+                {{ form.first_name(class='form-control', id="firstName", placeholder='First name') }}
+              {% endif %}
+            <!-- <input type="text" class="form-control" id="firstName" placeholder="" value="" required> -->
+
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="lastName">Last name</label>
+            {% if form.last_name.errors %}
+                {{ form.last_name(class='form-control is-invalid', placeholder='Last name') }}
+                <div class="invalid-feedback">
+                  Valid last name is required.
+                </div>
+              {% else %}
+                {{ form.last_name(class='form-control', id="lastname", placeholder='Last name') }}
+              {% endif %}
+            <!-- <input type="text" class="form-control" id="lastName" placeholder="" value="" required> -->
+
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email">Email <span class="text-muted">(Optional)</span></label>
+              {% if form.email.errors %}
+                {{ form.email(class='form-control is-invalid', placeholder='you@example.com') }}
+                <div class="invalid-feedback">
+                  Please enter a valid email address for shipping updates.
+                </div>
+              {% else %}
+                {{ form.email(class='form-control', id="email", placeholder='you@example.com') }}
+              {% endif %}
+        </div>
+
+        <div class="mb-3">
+
+        </div>
+
+        <div class="mb-3">
+          <label for="address">Address</label>
+          {% if form.address_1.errors %}
+            {{ form.address_1(class='form-control is-invalid', placeholder='123 Main St') }}
+            <div class="invalid-feedback">
+              Valid last name is required.
+            </div>
+          {% else %}
+            {{ form.address_1(class='form-control', id="address1", placeholder='123 Main St') }}
+          {% endif %}
+        </div>
+
+        <div class="mb-3">
+          <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
+            {{ form.address_2(class='form-control', id="address2", placeholder='Apartment Suite') }}
+        </div>
+
+        <div class="row">
+          <div class="col-md-5 mb-3">
+            <label for="country">Country</label>
+            {% if form.country.errors %}
+              {{ form.country(class='is-invalid') }}
+            <div class="invalid-feedback">
+              Please select a valid country.
+            </div>
+          {% else %}
+            {{ form.country(class='custom-select d-block w-100', id="country") }}
+          {% endif %}
+            <!-- <select class="custom-select d-block w-100" id="country" required>
+              <option value="">Choose...</option>
+              <option>United States</option>
+            </select> -->
+
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="state">State</label>
+            {% if form.state.errors %}
+              {{ form.state(class='is-invalid') }}
+              <div class="invalid-feedback">
+                Please provide a valid state.
+              </div>
+            {% else %}
+              {{ form.state(class='custom-select d-block w-100', id="country") }}
+            {% endif %}
+            <!-- <select class="custom-select d-block w-100" id="state" required>
+              <option value="">Choose...</option>
+              <option>California</option>
+            </select> -->
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <label for="zip">Zip</label>
+            {% if form.zip_code.errors %}
+              {{ form.zip_code(class='is-invalid') }}
+              <div class="invalid-feedback">
+                Zip code required.
+              </div>
+            {% else %}
+              {{ form.zip_code(class='form-control', id="zip") }}
+            {% endif %}
+          </div>
+        </div>
+        <hr class="mb-4">
+        <div class="custom-control custom-checkbox">
+          <!-- <input type="checkbox" class="custom-control-input" id="same-address"> -->
+          {{ form.address_confirm(class='custom-control-input', id="same-address") }}
+          <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
+        </div>
+        <!-- <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="save-info">
+          <label class="custom-control-label" for="save-info">Save this information for next time</label>
+        </div> -->
+        <hr class="mb-4">
+
+        <h4 class="mb-3">Payment</h4>
+
+        <div class="d-block my-3">
+          <div class="custom-control custom-radio">
+            {{ form.credit_card(class='custom-control-input', id="credit", type="radio") }}
+            <!-- <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required> -->
+            <label class="custom-control-label" for="credit">Credit card</label>
+          </div>
+          <div class="custom-control custom-radio">
+            {{ form.credit_card(class='custom-control-input', id="debit", type="radio") }}
+            <!-- <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required> -->
+            <label class="custom-control-label" for="debit">Debit card</label>
+          </div>
+          <div class="custom-control custom-radio">
+            {{ form.credit_card(class='custom-control-input', id="paypal", type="radio") }}
+            <!-- <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required> -->
+            <label class="custom-control-label" for="paypal">PayPal</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="cc-name">Name on card</label>
+            {% if form.card_name.errors %}
+              {{ form.card_name(class='form-control is-invalid') }}
+              <div class="invalid-feedback">
+                Name on card is required
+              </div>
+            {% else %}
+              {{ form.card_name(class='form-control', id="cc-name") }}
+            {% endif %}
+            <!-- <input type="text" class="form-control" id="cc-name" placeholder="" required> -->
+            <small class="text-muted">Full name as displayed on card</small>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="cc-number">Credit card number</label>
+            {% if form.card_number.errors %}
+              {{ form.card_number(class='form-control is-invalid') }}
+              <div class="invalid-feedback">
+                Credit card number is required
+              </div>
+            {% else %}
+              {{ form.card_number(class='form-control', id="cc-number") }}
+            {% endif %}
+            <!-- <input type="text" class="form-control" id="cc-number" placeholder="" required> -->
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3 mb-3">
+            <label for="cc-expiration">Expiration</label>
+            {% if form.card_expiry.errors %}
+              {{ form.card_expiry(class='form-control is-invalid') }}
+              <div class="invalid-feedback">
+                Expiration date required
+              </div>
+            {% else %}
+              {{ form.card_expiry(class='form-control', id="cc-expiration") }}
+            {% endif %}
+            <!-- <input type="text" class="form-control" id="cc-expiration" placeholder="" required> -->
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="cc-cvv">CVV</label>
+            {% if form.cvv.errors %}
+              {{ form.cvv(class='form-control is-invalid') }}
+              <div class="invalid-feedback">
+                Security code required
+              </div>
+            {% else %}
+              {{ form.cvv(class='form-control', id="cc-cvv") }}
+            {% endif %}
+            <!-- <input type="text" class="form-control" id="cc-cvv" placeholder="" required> -->
+          </div>
+        </div>
+        <hr class="mb-4">
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+      </form>
+    </div>
+  </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -3,7 +3,7 @@ from flask_login import current_user
 from invent.other_functions import cap
 from invent.models import User, Items, Tempdb
 from wtforms.validators import DataRequired, Length, Email, ValidationError
-from wtforms import StringField, PasswordField, IntegerField, SubmitField, TextAreaField
+from wtforms import StringField, PasswordField, IntegerField, SubmitField, TextAreaField, BooleanField, SelectField, DateField
 
 
 class Login(FlaskForm):
@@ -23,34 +23,31 @@ class Login(FlaskForm):
             raise ValidationError('invalid password, try again!')
 
 
-class New_Order(FlaskForm):
-    item = StringField('search item', validators=[DataRequired()])
-    quantity = IntegerField('quantity', validators=[DataRequired()])
-    add = SubmitField('Add to order')
-    item_type = StringField('item type')
-    item_description = StringField('item description')
+class Checkout(FlaskForm):
+    first_name = StringField('first name', validators=[DataRequired()])
+    last_name = StringField('last name', validators=[DataRequired()])
 
-    def validate_item(self, item):
-        cap_item = cap(item.data)
-        check_item = Items.query.filter_by(item_name=cap_item).first()
-        check_order = Tempdb.query.filter_by(owner=current_user.id).all()
-        if not check_item:
-            raise ValidationError(
-                "item is out of stock or doesn't exist. Use the form below to request for purchase")
-        if check_order:
-            for order in check_order:
-                if cap_item in order.item:
-                    raise ValidationError(
-                        'you have already made a similar order')
+    email = StringField('email', validators=[Email()])
+    address_1 = StringField('address line 1', validators=[DataRequired()])
+    address_2 = StringField('adress line 2')
 
-            def validate_quantity(self, quantity):
-                # check_item_quantity = Items.query.filter_by(
-                #     item_name=item.data).first()
-                if int(quantity.data) > int(check_item.item_quantity):
-                    raise ValidationError(
-                        'your request is absurd and cannot be provided')
-                if  int(check_item.item_quantity) == 0:
-                    raise ValidationError('your request is absurd and cannot be taken seriously')
+    country = SelectField('country', choices=[('Choose...'), ('Ghana')], validators=[DataRequired()])
+    state = SelectField('state',choices=[('Choose...'), ('Takoradi'), ('Accra')], validators=[DataRequired()] )
+    zip_code = IntegerField('zip', validators=[DataRequired(), Length(min=3, max=3)])
+    address_confirm = BooleanField()
+    # save_confirm = BooleanField()
+
+    credit_card = BooleanField()
+    debit_card  = BooleanField()
+    paypal = BooleanField()
+    card_name = StringField('name on card', validators=[DataRequired()])
+    card_number = StringField('card number', validators=[DataRequired()])
+    card_expiry = DateField('expiration', format='%d-%m-%Y', validators=[DataRequired()])
+    cvv = IntegerField('cvv', validators=[DataRequired()])
+    promo_code = StringField('promo code')
+
+
+    submit = SubmitField('complete order')
 
 
 class NewUser(FlaskForm):

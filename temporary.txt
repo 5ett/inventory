@@ -38,3 +38,197 @@
                     {% endif %}
                 </div>
             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <body class="">
+    <div class="container2">
+
+        <div class="row order-row">
+
+                    <div class="col-md-6 order-md-1 col">
+
+
+                        {% with message = get_flashed_messages(with_categories=true) %}
+                          {% if messages  %}
+                              {% for category, message in messages %}
+                              <div class="alert">
+                                <div class="alert-{{category}}">{{ message }}</div>
+                              </div>
+                              {% endfor %}
+                          {% endif %}
+                        {% endwith %}
+
+
+                        <h4 class="mb-3">New Order</h4>
+                        <form class="" method="POST">
+                            {{ form.hidden_tag() }}
+                          <div class="row">
+                            <div class="col-md-6 mb-4">
+                                {% if form.item.errors %}
+                                  {{ form.item(class='form-control is-invalid', placeholder='search item') }}
+                                  {% for err in form.item.errors %}
+                                      <div class="invalid-feedback">
+                                          <span>{{err}}</span>
+                                      </div>
+                                  {% endfor %}
+                                {% else %}
+                                  {{ form.item(class='form-control', placeholder='search item') }}
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6 mb-4">
+                              {% if form.quantity.errors %}
+                                {{ form.quantity(class='form-control is-invalid', placeholder='quantity') }}
+                                {% for err in form.quantity.errors %}
+                                  <div class="invalid-feedback">
+                                      <span>{{err}}</span>
+                                  </div>
+                                {% endfor %}
+                              {% else %}
+                                {{ form.quantity(class='form-control', placeholder='quantity') }}
+                              {% endif %}
+                            </div>
+                          </div>
+
+                          <div class="mb-4">
+                            <div class="input-group">
+                              {{ form.item_type(class='form-control', placeholder='item type', disabled="") }}
+                            </div>
+                          </div>
+
+                          <div class="mb-4">
+                            {{ form.item_description(class='form-control', placeholder='item description', disabled="") }}
+                          </div>
+
+                          {{ form.add(class='btn btn-primary btn-unique btn-block') }}
+                          <div class="row">
+                          </div>
+                        </form>
+                          <hr class="mb-4">
+
+
+
+
+                          <h4 class="mb-3">Request New Item</h4>
+                          <form class="needs-validation new-item-request" >
+                            {{ form.hidden_tag() }}
+                          <div class="row">
+                            <div class="col-md-6 mb-3 col">
+                              {{ new_request.item(class='form-control', placeholder='item') }}
+                              <small class="text-muted" style="font-size: 12;"">Start each word with block letters</small>
+                              <div class="invalid-feedback">
+
+                              </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                              {{ new_request.quantity(class='form-control', placeholder='quantity') }}
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ new_request.item_type(class='form-control', placeholder='item type') }}
+                              <small class="text-muted" style="font-size: 12;">eg. Drinks, Stationery, Household Item etc</small>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                              {{ new_request.item_description(class='form-control', placeholder='item description') }}
+                              <small class="text-muted" style="font-size: 12;">eg. Boxes, Cartons, Sticks etc</small>
+                            </div>
+                          </div>
+                            {{ new_request.second_sub(class='btn btn-primary btn-unique btn-block') }}
+                        </form>
+                      </div>
+
+
+
+                      <div class="col-md-4 order-md-2 mb-4">
+                        <h4 class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="text-muted">Your Order</span>
+                            {% if order_progress %}
+                                <span class="badge badge-secondary badge-pill">{{ size }}</span>
+                            {% else %}
+                                <span class="badge badge-secondary badge-pill">0</span>
+                            {% endif %}
+                        </h4>
+                        <ul class="list-group mb-3">
+                            {% if order_progress %}
+                                {% for order in order_progress %}
+                                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                    <div style="width: 30%;">
+                                        <h6 class="my-0">{{ order.item }}</h6>
+                                        <small class="text-muted">{{referenced_type}}</small>
+                                      </div>
+                                      <span class="text-muted">{{order.quantity}}</span>
+                                      <a href="{{ url_for('cancelorder', order_id=order.id) }}"><img class="img-btn" src="{{url_for('static', filename='media/icons/bin.png')}}" alt="" onclick="deleteAlert()"></a>
+                                </li>
+                                {% endfor %}
+                            {% else %}
+                                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                    <div>
+                                        <h6 class="my-0">No Current Order</h6>
+                                        <small class="text-muted" style="font-size: 11;">your ordered items will appear here</small>
+                                    </div>
+                                </li>
+                            {% endif %}
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Order made on</span>
+                                <strong>{{today}}</strong>
+                            </li>
+                        </ul>
+                        <div class="card p-2">
+                            <div class="input-group">
+                              <input type="text" class="form-control" placeholder="{{current_user.name}}" disabled>
+
+                              {% if order_progress %}
+                                <a href="{{ url_for('make_order') }}" class="btn-block"><button type="submit" class="btn btn-secondaire" onclick="oderAlert()">Make Order</button></a>
+                              {% else %}
+                                <a href="{{ url_for('make_order') }}" class="btn-block"><button type="submit" class="btn btn-secondaire" disabled="" onclick="inactiveAlert()">Make Order</button></a>
+                              {% endif %}
+
+
+                            </div>
+                          </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

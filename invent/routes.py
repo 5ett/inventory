@@ -1,5 +1,5 @@
 from flask_login import login_user, logout_user, current_user, login_required
-from invent.forms import Login, New_Order, NewUser, Updateitems, AddnewItem
+from invent.forms import Login, Checkout, NewUser, Updateitems, AddnewItem
 from flask import url_for, request, redirect, render_template, flash
 from invent.models import Order, Items, User, Tempdb
 from invent.other_functions import cap, check_item, today
@@ -22,43 +22,9 @@ def index():
 
 
 # fill order form
-@app.route('/order', methods=['GET', 'POST'])
-def order():
-    new_request = AddnewItem()
-    form = New_Order()
-    if form.validate_on_submit():
-        order_item = cap(form.item.data)
-        item_search = Items.query.filter_by(item_name=order_item).first()
-        referenced_type = item_search.item_type
-        # refrenced_description = item_search.item_description
-
-        if item_search:
-            new_temp_order = Tempdb(
-                item=order_item, quantity=form.quantity.data, owner=current_user.id)
-            db.session.add(new_temp_order)
-            db.session.commit()
-            # flash('Item Successfully Added', "success")
-            return redirect(url_for('order'))
-
-    if new_request.validate_on_submit():
-        new_request_item = cap(new_request.item.data)
-        new_request_type = cap(new_request.item_type.data)
-        new_request_description = cap(new_request.item_description.data)
-        add_new_request = Items(
-            item_name=new_request_item, item_quantity=new_request.quantity.data, item_type=new_request_type, item_description=new_request_description, item_status='Request', referenced_type=referenced_type, today=today
-        )
-        db.session.add(add_new_request)
-        db.session.commit()
-        flash('Your Request Has Been Received', 'success')
-
-    order_progress = Tempdb.query.filter_by(owner=current_user.id).all()
-    order_size = len(order_progress)
-    in_stock = Items.query.order_by(Items.id.desc()).all()
-    out_of_stock = Items.query.filter_by(
-        item_quantity=0).order_by(Items.id.desc()).all()
-    user_orders = Order.query.filter_by(
-        owner=current_user.id).order_by(Order.order_date.desc()).all()
-    return render_template('order.html', form=form, order_progress=order_progress, in_stock=in_stock, out_of_stock=out_of_stock, user_orders=user_orders, new_request=new_request, size=order_size, title='Make Order')
+@app.route('/shop', methods=['GET', 'POST'])
+def shop():
+    return render_template("shop.html", title="Shop")
 
 
 @app.route('/cancelorder/<int:order_id>', methods=['GET', 'POST'])
@@ -66,7 +32,7 @@ def cancelorder(order_id):
     cancel_items = Tempdb.query.get_or_404(order_id)
     db.session.delete(cancel_items)
     db.session.commit()
-    return redirect(url_for('order'))
+    return redirect(url_for('shop'))
 
 
 # make a new order / shaky logic/ am I depressed?
@@ -84,7 +50,13 @@ def make_order():
         db.session.delete(order)
     db.session.commit()
     flash('order successful', 'succes')
-    return redirect(url_for('order'))
+    return redirect(url_for('shop'))
+
+
+@app.route('/checkout', methods=['POST', 'GET'])
+def checkout():
+    form = Checkout()
+    return render_template('checkout.html', title='Checkout', form=form)
 
 
 @app.route('/pending_orders', methods=['POST', 'GET'])

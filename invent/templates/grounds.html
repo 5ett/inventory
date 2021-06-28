@@ -20,7 +20,7 @@
         <label for="check" class="menu">
             <i class="fa fa-bars"></i>
         </label>
-        <label for="" class="logo"><a href="{{ url_for('index') }}" id="logo">FKT LIMITED</a></label>
+        <label for="" class="logo"><a href="{{ url_for('index') }}" id="logo">POM LIMITED</a></label>
         <ul class="navlinks">
             {% if current_user.is_authenticated %}
                 {% if current_user.username == "codecmnd" %}
@@ -31,10 +31,10 @@
                     {% endif %}
 
 
-                    {% if title=='Make Order' %}
-                        <a href="{{ url_for('order') }}" ><li class="active">new order</li></a>
+                    {% if title=='Shop' or title=='Checkout' %}
+                        <a href="{{ url_for('shop') }}" ><li class="active">shop</li></a>
                     {% else %}
-                        <a href="{{ url_for('order') }}"><li>new order</li></a>
+                        <a href="{{ url_for('shop') }}"><li>shop</li></a>
                     {% endif %}
 
                     {% if title=='Catalogue' %}
@@ -70,10 +70,10 @@
                         <a href="{{ url_for('index') }}"><li>home</li></a>
                     {% endif %}
 
-                    {% if title=='Make Order' %}
-                        <a href="{{ url_for('order') }}" ><li class="active">new order</li></a>
+                    {% if title=='Shop' or title=='Checkout' %}
+                        <a href="{{ url_for('shop') }}" ><li class="active">shop</li></a>
                     {% else %}
-                        <a href="{{ url_for('order') }}"><li>new order</li></a>
+                        <a href="{{ url_for('shop') }}"><li>shop</li></a>
                     {% endif %}
 
                     {% if title=='Catalogue' %}
@@ -111,7 +111,7 @@
     <script src="{{url_for('static', filename='css/TweenMax.min.js')}}"></script>
     <script src="{{url_for('static', filename='css/animations.js')}}"></script>
     <script src="{{url_for('static', filename='css/inventory.js')}}"></script>
-    
+
     <!-- <footer style="background-color: black; color: white; font-family: 'sf'; text-align: center;">
         <div class="container">
             <p class="small-text">designed and developed by King Praise | The A-max Team 2020</p>

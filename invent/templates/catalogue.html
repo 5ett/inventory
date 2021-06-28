@@ -10,7 +10,7 @@
                     </h1>
                     <p class="small">Here you see all that is stored in your inventory plan. Whether the items are in-stock, out of stock or even in a request process to be purchased, you can access them here. </p>
                     {% if current_user.is_authenticated %}
-                        <button type="submit" class="btn btn-primary btn-unique"><a href="{{url_for('order')}}">make an order</a></button>
+                        <button type="submit" class="btn btn-primary btn-unique"><a href="{{url_for('shop')}}">make an order!</a></button>
                     {% else %}
                         <button type="submit" class="btn btn-primary btn-unique"><a href="{{url_for('index')}}">login</a></button>
                     {% endif %}
@@ -30,8 +30,8 @@
                 </div>
 </div>
 <div class="container-neo">
-    <div class="">
-
+    <div class="bucket">
+        <img class="back" src="">
     </div>
 </div>
 {% endblock %}
