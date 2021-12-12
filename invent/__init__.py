@@ -1,10 +1,14 @@
+import os
+from dotenv import load_dotenv
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 
+load_dotenv()
+secret_code = os.get_env("HIDDEN_SECRET_KEY") 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'e9bayb5142b7767f6937161311e7ca3d'
+app.config['SECRET_KEY'] = secret code
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///invent1.db'
 
 db = SQLAlchemy(app)
