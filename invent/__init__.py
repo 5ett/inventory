@@ -6,7 +6,7 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 
 load_dotenv()
-secret_code = os.get_env("HIDDEN_SECRET_KEY") 
+secret_code = os.getenv("HIDDEN_SECRET_KEY") 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = secret code
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///invent1.db'
